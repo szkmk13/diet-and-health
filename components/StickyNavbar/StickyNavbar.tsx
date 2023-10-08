@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Group, Burger, Image, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';
@@ -14,7 +14,19 @@ const links = [
 export default function StickyNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
+  const [isSticky, setIsSticky] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const items = links.map((link) => (
     <Link
       key={link.label}
@@ -29,7 +41,7 @@ export default function StickyNavbar() {
     </Link>
   ));
   return (
-    <header className={classes.header}>
+    <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
       <Container size="md" className={classes.inner}>
         <Image
           src="images/Diet_and_Health_logo_bez_tla.png"

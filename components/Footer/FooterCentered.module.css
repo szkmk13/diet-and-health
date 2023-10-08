@@ -1,13 +1,14 @@
 .footer {
     /* height: 10vh; */
     /* margin-top: rem(120px); */
-    border-top: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+    background-color: rgb(188, 183, 177);
+    /* border-top: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5)); */
   }
   
   .inner {
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: var(--mantine-spacing-md) var(--mantine-spacing-md);
   

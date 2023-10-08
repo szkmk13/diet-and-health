@@ -1,47 +1,36 @@
-.card {
-    transition: transform 150ms ease, box-shadow 150ms ease;
-    background-color: rgb(248, 245, 241);
-    width: 200px;
-    height: 200px;
+.group {
+  background-color: #e7f2f9;
+  min-height: auto;
+  padding: 30px;
+}
 
-  
-    &:hover {
-      transform: scale(1.01);
-      box-shadow: var(--mantine-shadow-md);
-      background-color: rgb(189, 236, 249);
-    }
+.card,
+.longcard,
+.longestCard {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  background-color: rgb(231, 228, 225);
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: var(--mantine-shadow-md);
+    background-color: rgb(165, 219, 234);
   }
-  
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+}
+
+.longcard {
+  width: 500px;
+}
+
+.longestCard {
+  width: 800px;
+}
+
 .title {
   text-align: center;
   font-family: 'Greycliff CF', var(--mantine-font-family);
   font-weight: bold;
-}
-
-.longcard {
-  transition: transform 150ms ease, box-shadow 150ms ease;
-  background-color: rgb(248, 245, 241);
-  width: 500px;
-  /* height: 200px; */
-
-
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: var(--mantine-shadow-md);
-    background-color: rgb(189, 236, 249);
-  }
-}
-
-.longest {
-  transition: transform 150ms ease, box-shadow 150ms ease;
-  background-color: rgb(248, 245, 241);
-  width: 800px;
-  /* height: 250px; */
-
-
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: var(--mantine-shadow-md);
-    background-color: rgb(189, 236, 249);
-  }
 }

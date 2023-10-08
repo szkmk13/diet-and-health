@@ -1,3 +1,9 @@
+.sticky {
+  position: fixed;
+  width: 100%;
+  z-index: 10; /* Adjust as needed */
+
+}
 .header {
     height: 10vh;
     /* margin-bottom: rem(120px); */

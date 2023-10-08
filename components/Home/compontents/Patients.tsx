@@ -79,10 +79,10 @@ export default function Patients() {
   ));
 
   return (
-    <Group justify="center" gap={rem(40)} style={{ height: 300 }} p={50} mb={350}>
+    <Group justify="center"  gap={rem(40)} className={classes.group} >
       {cards}
       {longCards}
-      <Card key={'jednostki chorobowe'} radius="md" className={classes.longest}>
+      <Card key={'jednostki chorobowe'} radius="md" className={classes.longestCard} withBorder>
         <Center>
           <Image src={'images/search.svg'} style={{ height: '125px' }} />
         </Center>
@@ -91,7 +91,7 @@ export default function Patients() {
             Osobom z jednostkami chorobowymi takimi jak: Cukrzyca, insulinooporność, zaburzenia
             lipidowe, refluks pokarmowy, choroba wrzodowa, zaparcia, biegunki, nietolerancje
             pokarmowe, niedoczynność tarczycy, nadczynność tarczycy, Hashimoto, anemia, wrzodziejące
-            zapalenie jelita grubego, choroba Leśniowskiego-Crohna, dna moczanowa i inne.'
+            zapalenie jelita grubego, choroba Leśniowskiego-Crohna, dna moczanowa i inne.
           </Text>
         </Center>
       </Card>

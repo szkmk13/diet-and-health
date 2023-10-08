@@ -8,13 +8,6 @@ export default function HomePage() {
   return (
     <>
       <Home />
-      <Welcome />
-      <Welcome />
-      <Welcome />
-      <Welcome />
-      <Welcome />
-      <Welcome />
-      <ColorSchemeToggle />
     </>
   );
 }
