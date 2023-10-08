@@ -82,8 +82,8 @@ export default function Opinions() {
     <Box>
       <BackgroundImage src="images/opinions_background.jpg" radius="lg">
         <Center pt={30} pb={30}>
-          <Paper withBorder radius="md" shadow="sm" className={classes.textBackground}>
-            <Text fw={700} size={rem(70)}>
+          <Paper withBorder radius="md" shadow="sm"  w="fit-content"className={classes.textBackground}>
+            <Text fw={700} className={classes.title}>
               Opinie pacjentów
             </Text>
           </Paper>

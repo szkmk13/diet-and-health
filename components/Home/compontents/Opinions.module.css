@@ -17,4 +17,16 @@
 /* background-color: #f0f0f0;  */
 font-family: 'Greycliff CF', var(--mantine-font-family);
 padding: 15px; 
+@media (max-width: $mantine-breakpoint-sm) {
+
+  padding: 10px;
+}
+}
+.title{
+  font-size: rem(70);
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: rem(50);
+    text-align: center; /* Center the text */
+
+  }
 }

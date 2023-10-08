@@ -9,6 +9,7 @@ const links = [
   { link: '/', label: 'Home' },
   { link: '/uslugi', label: 'Usługi' },
   { link: '/kontakt', label: 'Kontakt' },
+  // { link: '/treningi', label: 'Treningi u Krzychulca' },
 ];
 
 export default function StickyNavbar() {
@@ -37,6 +38,7 @@ export default function StickyNavbar() {
         setActive(link.link);
         opened ? toggle() : null;
       }}
+      
     >
       {link.label}
     </Link>
@@ -62,10 +64,18 @@ export default function StickyNavbar() {
         <Group gap={50} visibleFrom="xs">
           {items}
           {znanyLekarzLink}
+              {/* <Link
+      key={'Treningi u Krzychulca'}
+      href={'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'}
+      className={classes.disabled}
+      target="_blank"
+    >
+      {'Treningi u Krzychulca'}
+    </Link> */}
         </Group>
         <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>
-      <Drawer position="left" size="sm" opened={opened} onClose={toggle}withCloseButton={false}>
+      <Drawer position="left" size="sm" opened={opened} onClose={toggle}>
         {items}
         {znanyLekarzLink}
       </Drawer>

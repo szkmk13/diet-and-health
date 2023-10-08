@@ -43,3 +43,9 @@
       color: var(--mantine-color-black);
     }
   }
+  .disabled {
+    color: #ccc; /* Change to the color you want for disabled links */
+    cursor: not-allowed;
+    pointer-events: none;
+    text-decoration: none; /* Optional: Remove underline for disabled links */
+  }

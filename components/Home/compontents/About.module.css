@@ -1,5 +1,9 @@
 .card {
     background-color: var(--mantine-color-body);
+    padding: 50px;
+    @media (max-width: $mantine-breakpoint-sm) {
+      padding: 0;
+    }
   }
   
   .title {
@@ -7,9 +11,11 @@
     font-family: Greycliff CF, var(--mantine-font-family);
     line-height: 1.2;
     font-size: xx-large;
+
   }
   
   .body {
     padding: var(--mantine-spacing-md);
     font-size: x-large;
+   
   }

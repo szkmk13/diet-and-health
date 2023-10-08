@@ -29,12 +29,12 @@ export default function Page() {
                 <Center>
                   <Paper withBorder radius="md" shadow="sm" w="fit-content" mt={3}>
                     <Title className={classes.title}>Monika Skibicka</Title>
-                  </Paper>{' '}
+                  </Paper>
                 </Center>
                 <Center>
                   <Paper withBorder radius="md" shadow="sm" w="fit-content" mt={3}>
                     <Text className={classes.description}>kontakt@diet-and-health.pl</Text>
-                  </Paper>{' '}
+                  </Paper>
                 </Center>
               </div>
               <div className={classes.form}>
@@ -53,7 +53,7 @@ export default function Page() {
                   required
                   label="Wiadomość"
                   placeholder="Dzień dobry mam chorom curke kiedy pani mi zrobi diete za darmo"
-                  minRows={4}
+                  minRows={5}
                   classNames={{ input: classes.input, label: classes.inputLabel }}
                 />
 

@@ -23,6 +23,10 @@
     color: var(--mantine-color-black);
     line-height: 1;
     padding: 3px;
+    /* @media (max-width: $mantine-breakpoint-sm) {
+      font-size: xx-large;
+      text-align: center;
+    } */
   }
   
   .description {
