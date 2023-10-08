@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Container, Group, Burger, Image, Text } from '@mantine/core';
+import { Container, Group, Burger, Image, Text, Drawer } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';
 import Link from 'next/link';
@@ -33,13 +33,24 @@ export default function StickyNavbar() {
       href={link.link}
       className={classes.link}
       data-active={active === link.link || undefined}
-      onClick={(event) => {
+      onClick={() => {
         setActive(link.link);
+        opened ? toggle() : null;
       }}
     >
       {link.label}
     </Link>
   ));
+  const znanyLekarzLink = (
+    <Link
+      key={'Umów wizytę'}
+      href={'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'}
+      className={classes.link}
+      target="_blank"
+    >
+      {'Umów wizytę'}
+    </Link>
+  );
   return (
     <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
       <Container size="md" className={classes.inner}>
@@ -48,21 +59,16 @@ export default function StickyNavbar() {
           radius="sm"
           className={classes.inner}
         />
-
         <Group gap={50} visibleFrom="xs">
           {items}
-          <Link
-            key={'Umów wizytę'}
-            href={'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'}
-            className={classes.link}
-            target="_blank"
-          >
-            {'Umów wizytę'}
-          </Link>
+          {znanyLekarzLink}
         </Group>
-
         <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>
+      <Drawer position="left" size="sm" opened={opened} onClose={toggle}withCloseButton={false}>
+        {items}
+        {znanyLekarzLink}
+      </Drawer>
     </header>
   );
 }

@@ -15,5 +15,6 @@
   }
 .textBackground {
 /* background-color: #f0f0f0;  */
+font-family: 'Greycliff CF', var(--mantine-font-family);
 padding: 15px; 
 }

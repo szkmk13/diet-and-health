@@ -2,7 +2,7 @@
   position: fixed;
   width: 100%;
   z-index: 10; /* Adjust as needed */
-
+  top: 0;
 }
 .header {
     height: 10vh;
@@ -30,6 +30,12 @@
   
     @mixin hover {
       background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    }
+
+    @media (max-width: $mantine-breakpoint-sm) {
+      line-height: 2;
+      font-weight: 700;
+
     }
   
     [data-mantine-color-scheme] &[data-active] {
