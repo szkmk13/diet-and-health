@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Allura';
+    src: url('/fonts/Allura-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+.textBackground {
+    /* background-color: #f0f0f0;  */
+    font-family: 'Greycliff CF', var(--mantine-font-family);
+    padding: 5px 20px 5px 20px;
+    @media (max-width: $mantine-breakpoint-sm) {
+    
+      padding: 10px;
+    }
+    }
+    .title{
+      font-size: rem(70);
+      font-family: "Allura";
+      color: rgb(132, 132, 132);
+      @media (max-width: $mantine-breakpoint-sm) {
+        font-size: rem(50);
+        text-align: center; /* Center the text */
+    
+      }
+    }

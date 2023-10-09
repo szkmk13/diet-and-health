@@ -19,19 +19,6 @@ const links = [
 ];
 
 export function FooterCentered() {
-  const items = links.map((link) => (
-    <Anchor
-      c="dimmed"
-      key={link.label}
-      href={link.link}
-      lh={1}
-      onClick={(event) => event.preventDefault()}
-      size="sm"
-    >
-      {link.label}
-    </Anchor>
-  ));
-
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>

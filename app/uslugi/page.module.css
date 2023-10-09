@@ -8,8 +8,8 @@
 .wrapper {
   display: flex;
   align-items: center;
-  padding: calc(var(--mantine-spacing-xl));
-  margin: calc(var(--mantine-spacing-xl));
+  padding: calc(var(--mantine-spacing-lg));
+  margin: calc(var(--mantine-spacing-lg));
   border-radius: var(--mantine-radius-md);
   background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
   border: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-8));

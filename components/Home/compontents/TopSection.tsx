@@ -2,9 +2,15 @@ import { BackgroundImage, Box, Center } from '@mantine/core';
 import Script from 'next/script';
 
 export default function TopSection() {
+
+
+
+
   return (
     <Box>
-      <Script src="znanylekarz.js" strategy="beforeInteractive" />
+      {/* <Script src="znanylekarz.js" strategy="afterInteractive" /> */}
+      {/* <ZlWidget /> */}
+      {/* {htmldata} */}
 
       <BackgroundImage src="images/1.jpg" radius="lg">
         <Center p="md">

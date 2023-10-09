@@ -25,10 +25,29 @@ export default function Page() {
         'Po przeprowadzeniu szczegółowego wywiadu medyczno-żywieniowego układam indywidualny plan żywieniowy. Układając jadłospis uwzględniam wszystkie dolegliwości i wymagania pacjenta. Oprócz tego biorę pod uwagę: preferencje smakowe, ilość czasu na gotowanie, umiejętności kulinarne. Proponowane przeze mnie posiłki są szybkie, łatwe do przygotowania, smaczne i urozmaicone.',
       image: 'images/service3.jpg',
     },
+    // {
+    //   title: 'Wizyta dla par',
+    //   price: '69 zł',
+    //   description: 'Dla tych co lubią conieco razem z drugą połówką',
+    //   image: 'images/service4.jpg',
+    // },
+    // {
+    //   title: 'Diety eliminacyjne',
+    //   price: 'xxx zł',
+    //   description:
+    //     'słodycze (ale nie przesadzaj ze słodyczami ,bo będziesz się źle czuł i będziesz gruby) ',
+    //   image: 'images/service5.jpg',
+    // },
+    // {
+    //   title: 'itd. ',
+    //   price: '♾️ zł',
+    //   description: 'iberyjski sekret',
+    //   image: 'images/iberyjskisekret.jpg',
+    // },
   ];
 
   const services = servicesData.map((service) => (
-    <div className={classes.wrapper}>
+    <div key={service.title} className={classes.wrapper}>
       <div className={classes.body}>
         <Title className={classes.title}>
           {service.title} - {service.price}
@@ -43,7 +62,16 @@ export default function Page() {
 
   return (
     <>
-      <Box className={classes.box}>{services}</Box>
+      <Box className={classes.box}>
+        {services}
+        <Text>
+          Po przeprowadzeniu szczegółowego wywiadu medyczno-żywieniowego układam indywidualny plan
+          żywieniowy. Układając jadłospis uwzględniam wszystkie dolegliwości i wymagania pacjenta.
+          Oprócz tego biorę pod uwagę: preferencje smakowe, ilość czasu na gotowanie, umiejętności
+          kulinarne. Proponowane przeze mnie posiłki są szybkie, łatwe do przygotowania, smaczne i
+          urozmaicone. Czas oczekiwania na jadłospis to 7 dni roboczych od konsultacji.
+        </Text>
+      </Box>
     </>
   );
 }

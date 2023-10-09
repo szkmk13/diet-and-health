@@ -20,6 +20,7 @@ import {
 import classes from './Opinions.module.css';
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
+import SectionHeader from '../SectionHeader';
 
 export default function Opinions() {
   const short = [
@@ -56,7 +57,7 @@ export default function Opinions() {
   ];
 
   const cards = short.map((patient) => (
-    <Paper withBorder radius="xl" shadow="sm" className={classes.comment} style={{ maxWidth: 500 }}>
+    <Paper key={patient.name} withBorder radius="xl" shadow="sm" className={classes.comment} style={{ maxWidth: 500 }}>
       <Group>
         {/* <Avatar
           src=""
@@ -81,18 +82,8 @@ export default function Opinions() {
   return (
     <Box>
       <BackgroundImage src="images/opinions_background.jpg" radius="lg">
-        <Center pt={30} pb={30}>
-          <Paper withBorder radius="md" shadow="sm"  w="fit-content"className={classes.textBackground}>
-            <Text fw={700} className={classes.title}>
-              Opinie pacjentów
-            </Text>
-          </Paper>
-        </Center>
-
-        {/* {cards} */}
+        <SectionHeader title='Opinie pacjentów'/>
         <Center p="md">
-          {/* {cards} */}
-
           <Group justify="center" gap={rem(40)} className={classes.group}>
             {cards}
           </Group>

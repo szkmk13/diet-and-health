@@ -6,7 +6,7 @@ export default function About() {
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Group wrap="nowrap" gap={60}>
-        <Image src="images/monia-sport.jpg" height={450} fit="contain" visibleFrom="md" />
+        <Image src="images/monia_sport.jpg" height={450} fit="contain" visibleFrom="md" />
         <div className={classes.body}>
           <Center>
             <Text className={classes.title} mt="xs" mb="md">

@@ -1,22 +1,23 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Container, Group, Burger, Image, Text, Drawer } from '@mantine/core';
+import { Container, Group, Burger, Image, Text, Drawer, Button, Popover } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const links = [
-  { link: '/', label: 'Home' },
-  { link: '/uslugi', label: 'Usługi' },
-  { link: '/kontakt', label: 'Kontakt' },
-  // { link: '/treningi', label: 'Treningi u Krzychulca' },
+  { link: '/', label: 'Strona Główna', active: true },
+  { link: '/uslugi', label: 'Usługi', active: true },
+  { link: '/kontakt', label: 'Kontakt', active: true },
+  { link: '/treningi', label: 'Treningi', active: false },
 ];
 
 export default function StickyNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
   const [isSticky, setIsSticky] = useState(false);
-
+  const [popoveropened, { close, open }] = useDisclosure(false);
+  const pathname = usePathname();
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0);
@@ -28,21 +29,47 @@ export default function StickyNavbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const items = links.map((link) => (
-    <Link
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      data-active={active === link.link || undefined}
-      onClick={() => {
-        setActive(link.link);
-        opened ? toggle() : null;
-      }}
-      
-    >
-      {link.label}
-    </Link>
-  ));
+  const items = links.map((link) => {
+    return link.active ? (
+      <Link
+        key={link.label}
+        href={link.link}
+        className={`${classes.link} ${link.link === pathname ? classes.currentPage : ''}`}
+        // data-active={true}
+        onClick={() => {
+          // setActive(link.link);
+          opened ? toggle() : null;
+        }}
+      >
+        {link.label}
+      </Link>
+    ) : (
+      <Popover
+        key={`popover_${link.label}`}
+        position="bottom"
+        withArrow
+        shadow="md"
+        opened={popoveropened}
+      >
+        <Popover.Target>
+          <a
+            onMouseEnter={open}
+            onMouseLeave={close}
+            key={link.label}
+            href={'#'}
+            className={classes.linkDisabled}
+            // data-active={false}
+          >
+            {link.label}
+          </a>
+        </Popover.Target>
+        <Popover.Dropdown style={{ pointerEvents: 'none' }}>
+          <Text size="sm">dostepne wkrótce</Text>
+        </Popover.Dropdown>
+      </Popover>
+    );
+  });
+
   const znanyLekarzLink = (
     <Link
       key={'Umów wizytę'}
@@ -56,25 +83,17 @@ export default function StickyNavbar() {
   return (
     <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
       <Container size="md" className={classes.inner}>
-        <Link href={'/'}className={classes.inner}>
-        <Image
-          src="images/Diet_and_Health_logo_bez_tla.png"
-          radius="sm"
-          className={classes.inner}
-        />
+        <Link href={'/'} className={classes.inner}>
+          <Image
+            src="images/Diet_and_Health_logo_bez_tla.png"
+            radius="sm"
+            className={classes.inner}
+          />
         </Link>
-        
+
         <Group gap={50} visibleFrom="xs">
           {items}
           {znanyLekarzLink}
-              {/* <Link
-      key={'Treningi u Krzychulca'}
-      href={'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'}
-      className={classes.disabled}
-      target="_blank"
-    >
-      {'Treningi u Krzychulca'}
-    </Link> */}
         </Group>
         <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>

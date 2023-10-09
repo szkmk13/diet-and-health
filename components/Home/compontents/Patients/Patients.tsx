@@ -15,6 +15,7 @@ import {
 import classes from './Patients.module.css';
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
+import SectionHeader from '../SectionHeader';
 
 export default function Patients() {
   const short = [
@@ -52,11 +53,16 @@ export default function Patients() {
       title: 'Osobom, które mają problem z utratą kontroli nad jedzeniem',
       image: 'images/brand-speedtest.svg',
     },
+    {
+      title:
+        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak: zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty',
+      image: 'images/paper-bag.svg',
+    },
   ];
   const cards = short.map((patient) => (
     <Card key={patient.title} radius="md" className={classes.card}>
       <Center>
-        <Image src={patient.image} style={{height: '125px' }} />
+        <Image src={patient.image}  className={classes.image}  />
       </Center>
       <Center>
         <Text className={classes.title} pt={5}>
@@ -79,22 +85,27 @@ export default function Patients() {
   ));
 
   return (
-    <Group justify="center"  gap={rem(40)} className={classes.group} >
-      {cards}
-      {longCards}
-      <Card key={'jednostki chorobowe'} radius="md" className={classes.longestCard} withBorder>
-        <Center>
-          <Image src={'images/search.svg'} style={{ height: '125px' }} />
-        </Center>
-        <Center>
-          <Text className={classes.title} pt={5}>
-            Osobom z jednostkami chorobowymi takimi jak: Cukrzyca, insulinooporność, zaburzenia
-            lipidowe, refluks pokarmowy, choroba wrzodowa, zaparcia, biegunki, nietolerancje
-            pokarmowe, niedoczynność tarczycy, nadczynność tarczycy, Hashimoto, anemia, wrzodziejące
-            zapalenie jelita grubego, choroba Leśniowskiego-Crohna, dna moczanowa i inne.
-          </Text>
-        </Center>
-      </Card>
-    </Group>
+    <>
+      <div className={classes.wrapper}>
+        <SectionHeader title="Komu pomagam" />
+        <Group justify="center" gap={rem(40)} className={classes.group}>
+          {cards}
+          {longCards}
+          <Card key={'jednostki chorobowe'} radius="md" className={classes.longestCard} withBorder>
+            <Center>
+              <Image src={'images/search.svg'} style={{ height: '125px' }} />
+            </Center>
+            <Center>
+              <Text className={classes.title} pt={5}>
+                Osobom z cukrzycą, insulinoopornością, refluksem żołądkowo-przełykowym, celiakią,
+                SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy,
+                Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą
+                Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/dolegliwościami.
+              </Text>
+            </Center>
+          </Card>
+        </Group>
+      </div>
+    </>
   );
 }
