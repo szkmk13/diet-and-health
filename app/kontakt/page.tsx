@@ -24,7 +24,7 @@ export default function Page() {
     message: ''
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -32,7 +32,7 @@ export default function Page() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log(formData);
   };
