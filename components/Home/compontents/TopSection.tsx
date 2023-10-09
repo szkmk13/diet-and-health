@@ -1,7 +1,4 @@
-'use client';
-import { useState } from 'react';
-import { Container, Group, Burger, Image, Text, BackgroundImage, Box, Center } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { BackgroundImage, Box, Center } from '@mantine/core';
 import Script from 'next/script';
 
 export default function TopSection() {
