@@ -13,7 +13,12 @@
     font-size: xx-large;
 
   }
-  
+  .subtitle{
+    text-transform: uppercase;
+    font-weight: 700;
+    /* font-size: rem(30); */
+    color: $primary-color;
+  }
   .body {
     padding: var(--mantine-spacing-md);
     font-size: x-large;

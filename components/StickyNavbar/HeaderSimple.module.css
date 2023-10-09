@@ -52,7 +52,7 @@
   text-shadow: 1px;
 }
 .currentPage {
-      background-color: rgb(189, 236, 249);
+      background-color:$primary-color;
       /* background-color: red; */
       color: var(--mantine-color-black);
 }

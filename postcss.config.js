@@ -8,6 +8,8 @@ module.exports = {
         'mantine-breakpoint-md': '62em',
         'mantine-breakpoint-lg': '75em',
         'mantine-breakpoint-xl': '88em',
+        'primary-color': '#5CBDC0',
+        'secondary-color':'#4261AA'
       },
     },
   },

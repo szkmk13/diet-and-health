@@ -14,7 +14,7 @@ export default function About() {
             </Text>
           </Center>
           <Center>
-            <Text tt="uppercase" c="dimmed" fw={700} size={rem(30)} mb="md">
+            <Text className={classes.subtitle} size={rem(30)}  mb='sm'>
               Dietetyk kliniczny
             </Text>
           </Center>
