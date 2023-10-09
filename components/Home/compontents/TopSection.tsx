@@ -7,7 +7,7 @@ import Script from 'next/script';
 export default function TopSection() {
   return (
     <Box>
-      <Script src="znanylekarz.js" strategy="afterInteractive" />
+      <Script src="znanylekarz.js" strategy="beforeInteractive" />
 
       <BackgroundImage src="images/1.jpg" radius="lg">
         <Center p="md">

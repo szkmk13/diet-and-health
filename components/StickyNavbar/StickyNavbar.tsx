@@ -56,11 +56,14 @@ export default function StickyNavbar() {
   return (
     <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
       <Container size="md" className={classes.inner}>
+        <Link href={'/'}className={classes.inner}>
         <Image
           src="images/Diet_and_Health_logo_bez_tla.png"
           radius="sm"
           className={classes.inner}
         />
+        </Link>
+        
         <Group gap={50} visibleFrom="xs">
           {items}
           {znanyLekarzLink}

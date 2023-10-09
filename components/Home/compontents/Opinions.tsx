@@ -40,7 +40,7 @@ export default function Opinions() {
     },
     {
       opinion:
-        'ani Monika jest doskonałą specjalistką, ma ogromną wiedzę i potrafi ją w zrozumiały sposób przekazać. Kontrolowała moją dietę podczas ciąży oraz wcześniej, gdy intensywnie trenowałam. Ponadto Pani Monika jest życzliwa, uważna, dokładna i profesjonalna. Polecam serdecznie.',
+        'Pani Monika jest doskonałą specjalistką, ma ogromną wiedzę i potrafi ją w zrozumiały sposób przekazać. Kontrolowała moją dietę podczas ciąży oraz wcześniej, gdy intensywnie trenowałam. Ponadto Pani Monika jest życzliwa, uważna, dokładna i profesjonalna. Polecam serdecznie.',
       name: 'Beata',
     },
     {
