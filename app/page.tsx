@@ -1,13 +1,14 @@
-import { Welcome } from '../components/Welcome/Welcome';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
+'use client'
 
 import Home from '@/components/Home/Home';
-import Script from 'next/script';
+import { Container } from '@mantine/core';
 
 export default function HomePage() {
   return (
     <>
-      <Home />
+      <Container size="xl">
+        <Home />
+      </Container>
     </>
   );
 }

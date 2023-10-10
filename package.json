@@ -18,25 +18,19 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
+    "@babel/core": "^7.22.1",
     "@emailjs/browser": "^3.11.0",
     "@mantine/core": "7.1.1",
     "@mantine/hooks": "^7.1.2",
     "@next/bundle-analyzer": "^13.5.3",
-    "@sendgrid/mail": "^7.7.0",
-    "@tabler/icons-react": "^2.20.0",
-    "axios": "^1.5.1",
-    "next": "13.5.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.22.1",
     "@next/eslint-plugin-next": "^13.5.3",
+    "@sendgrid/mail": "^7.7.0",
     "@storybook/addon-essentials": "^7.4.3",
     "@storybook/addon-styling": "^1.0.8",
     "@storybook/blocks": "^7.4.3",
     "@storybook/nextjs": "^7.4.3",
     "@storybook/react": "^7.4.3",
+    "@tabler/icons-react": "^2.20.0",
     "@testing-library/dom": "^9.3.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -46,6 +40,7 @@
     "@types/react": "18.2.7",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.59.7",
+    "axios": "^1.5.1",
     "babel-loader": "^9.1.2",
     "eslint": "^8.41.0",
     "eslint-config-airbnb": "19.0.4",
@@ -59,13 +54,18 @@
     "eslint-plugin-testing-library": "^5.11.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
+    "next": "13.5.3",
     "postcss": "^8.4.23",
     "postcss-preset-mantine": "1.8.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^2.8.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "storybook": "^7.4.3",
     "storybook-dark-mode": "^3.0.0",
+    "tabler": "^1.0.0-alpha.8",
     "ts-jest": "^29.1.0",
     "typescript": "5.2.2"
-  }
+  },
+  "devDependencies": {}
 }
