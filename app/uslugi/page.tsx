@@ -14,7 +14,8 @@ export default function Page() {
     {
       title: 'Konsultacja online',
       price: '170 zł',
-      description: 'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
+      description:
+        'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
       image: 'images/service1.jpg',
     },
     {
@@ -25,10 +26,33 @@ export default function Page() {
       image: 'images/service2.jpg',
     },
     {
-      title: 'Indywidualny jadłospis 7/14 dni',
-      price: '150/220 zł',
-      description:
-        'Po przeprowadzeniu szczegółowego wywiadu medyczno-żywieniowego układam indywidualny plan żywieniowy. Układając jadłospis uwzględniam wszystkie dolegliwości i wymagania pacjenta. Oprócz tego biorę pod uwagę: preferencje smakowe, ilość czasu na gotowanie, umiejętności kulinarne. Proponowane przeze mnie posiłki są szybkie, łatwe do przygotowania, smaczne i urozmaicone.',
+      title: 'Jadłospis 14 dniowy',
+      price: '220 zł',
+      description: '',
+      image: 'images/service3.jpg',
+    },
+    {
+      title: 'Jadłospis 7 dniowy',
+      price: '150 zł',
+      description: '',
+      image: 'images/service3.jpg',
+    },
+    {
+      title: 'Dieta eliminacyjna Jadłospis 7 dniowy',
+      price: '180 zł',
+      description: '',
+      image: 'images/service3.jpg',
+    },
+    {
+      title: 'Dieta eliminacyjna Jadłospis 14 dniowy',
+      price: '250 zł',
+      description: '(np. faza eliminacyjna diety low FODMAP przy SIBO)',
+      image: 'images/service3.jpg',
+    },
+    {
+      title: 'Analiza składu ciała',
+      price: '80 zł',
+      description: '',
       image: 'images/service3.jpg',
     },
     // {
