@@ -35,9 +35,7 @@ export default function StickyNavbar() {
         key={link.label}
         href={link.link}
         className={`${classes.link} ${link.link === pathname ? classes.currentPage : ''}`}
-        // data-active={true}
         onClick={() => {
-          // setActive(link.link);
           opened ? toggle() : null;
         }}
       >
@@ -58,13 +56,12 @@ export default function StickyNavbar() {
             key={link.label}
             href={'#'}
             className={classes.linkDisabled}
-            // data-active={false}
           >
             {link.label}
           </a>
         </Popover.Target>
         <Popover.Dropdown style={{ pointerEvents: 'none' }}>
-          <Text size="sm">dostepne wkrótce</Text>
+          <Text size="sm">Dostępne wkrótce</Text>
         </Popover.Dropdown>
       </Popover>
     );
@@ -90,7 +87,6 @@ export default function StickyNavbar() {
             className={classes.inner}
           />
         </Link>
-
         <Group gap={50} visibleFrom="xs">
           {items}
           {znanyLekarzLink}

@@ -21,8 +21,24 @@ import classes from './Opinions.module.css';
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader';
+import axios from 'axios';
 
 export default function Opinions() {
+  // axios.get("https://www.znanylekarz.pl/ajax/mobile/doctor-opinions/354112/1").then(response=>{
+  //   const responseData = response.data;
+  //   console.log(responseData)
+
+  //   // Parse the JSON response
+  //   const responseObj = JSON.parse(responseData);
+  //   console.log(responseObj)
+
+  //   // Extract the HTML string
+  //   const htmlString = responseObj.html;
+  //   console.log(htmlString)
+
+  // })
+const newopinions = ''
+
   const short = [
     {
       opinion:
@@ -86,6 +102,7 @@ export default function Opinions() {
         <Center p="md">
           <Group justify="center" gap={rem(40)} className={classes.group}>
             {cards}
+            {newopinions}
           </Group>
         </Center>
       </BackgroundImage>

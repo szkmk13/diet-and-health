@@ -23,3 +23,15 @@
     
       }
     }
+
+.link{
+  display: block;
+  line-height: 1;
+  padding: rem(8px) rem(12px);
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: black;
+  font-size: xx-large;
+  font-weight: 600;
+  background-color: $primary-color;
+}

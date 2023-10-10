@@ -16,6 +16,7 @@ import {
 import classes from './page.module.css';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import ContactForm from '@/components/Contact/ContactForm';
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -24,18 +25,6 @@ export default function Page() {
     message: '',
   });
 
-  const handleChange = (e: { target: { name: any; value: any } }) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    console.log(formData);
-  };
 
   return (
     <>
@@ -66,44 +55,7 @@ export default function Page() {
                   </Link>
                 </Center>
               </div>
-              <div className={classes.form}>
-                <form onSubmit={handleSubmit}>
-                  <TextInput
-                    label="Email"
-                    placeholder="twoj_email@email.com"
-                    required
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    classNames={{ input: classes.input, label: classes.inputLabel }}
-                  />
-                  <TextInput
-                    label="Imię"
-                    placeholder="Jan Kowalski"
-                    required
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    classNames={{ input: classes.input, label: classes.inputLabel }}
-                  />
-                  <Textarea
-                    required
-                    label="Wiadomość"
-                    placeholder="Dzień dobry mam chorom curke kiedy pani mi zrobi diete za darmo"
-                    minRows={5}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    classNames={{ input: classes.input, label: classes.inputLabel }}
-                  />
-
-                  <Group justify="flex-end" mt="md">
-                    <Button className={classes.control} type="submit">
-                      Send message
-                    </Button>
-                  </Group>
-                </form>
-              </div>
+              <ContactForm/>
             </SimpleGrid>
           </div>
         </Box>{' '}

@@ -38,12 +38,6 @@
     line-height: 2;
     font-weight: 700;
   }
-
-  [data-active] {
-    /* background-color: rgb(189, 236, 249); */
-    background-color: red;
-    color: var(--mantine-color-black);
-  }
 }
 .linkDisabled {
   color: #ababab;
