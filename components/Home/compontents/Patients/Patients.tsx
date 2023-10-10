@@ -16,79 +16,88 @@ import classes from './Patients.module.css';
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader';
+import { IconApple, IconBabyCarriage, IconBarbell, IconCookie, IconFriends, IconLeaf, IconPaperBag, IconScaleOutline } from '@tabler/icons-react';
 
 export default function Patients() {
-  const short = [
+  const cardsData = [
     {
-      title: 'Osobom z nadwagą',
-      image: 'images/arrow-up.svg',
-    },
-    {
-      title: 'Osobom z niedowagą',
-      image: 'images/arrow-down.svg',
+      title: 'Osobom z nadwagą oraz niedowagą',
+      description: '',
+      image: <IconScaleOutline color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Kobietom w ciąży',
-      image: 'images/woman.svg',
+      description: '',
+      image: <IconBabyCarriage color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Dzieciom',
-      image: 'images/mood-kid.svg',
+      description: '',
+      image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Sportowcom',
-      image: 'images/bike.svg',
+      description: '',
+      image: <IconBarbell color="#4261AA"stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Osobom na diecie roślinnej',
-      image: 'images/leaf.svg',
+      description: '',
+      image: <IconLeaf color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
-  ];
-  const long = [
     {
       title: 'Osobom, które chcą trwale zmienić swoje nawyki żywieniowe',
-      image: 'images/arrow-back-up.svg',
+      description: '',
+      image: <IconApple color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Osobom, które mają problem z utratą kontroli nad jedzeniem',
-      image: 'images/brand-speedtest.svg',
+      description: '',
+      image: <IconCookie color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title:
         'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak: zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty',
-      image: 'images/paper-bag.svg',
+        description: '',
+        image: <IconPaperBag color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
   ];
-  const cards = short.map((patient) => (
-    <Card key={patient.title} radius="md" className={classes.card}>
-      <Center>
-        <Image src={patient.image}  className={classes.image}  />
-      </Center>
-      <Center>
-        <Text className={classes.title} pt={5}>
-          {patient.title}
-        </Text>
-      </Center>
-    </Card>
-  ));
-  const longCards = long.map((patient) => (
-    <Card key={patient.title} radius="md" className={classes.longcard}>
-      <Center>
-        <Image src={patient.image} style={{ height: '125px' }} />
-      </Center>
-      <Center>
-        <Text className={classes.title} pt={5}>
-          {patient.title}
-        </Text>
-      </Center>
-    </Card>
-  ));
+ 
+  // const cards = short.map((patient) => (
+  //   <Card key={patient.title} radius="md" className={classes.card}>
+  //     <Center>
+  //       <Image src={patient.image}  className={classes.image}  />
+  //     </Center>
+  //     <Center>
+  //       <Text className={classes.title} pt={5}>
+  //         {patient.title}
+  //       </Text>
+  //     </Center>
+  //   </Card>
+  // ));
+  // const longCards = long.map((patient) => (
+  //   <Card key={patient.title} radius="md" className={classes.longcard}>
+  //     <Center>
+  //       <Image src={patient.image} style={{ height: '125px' }} />
+  //     </Center>
+  //     <Center>
+  //       <Text className={classes.title} pt={5}>
+  //         {patient.title}
+  //       </Text>
+  //     </Center>
+  //   </Card>
+  // ));
 
   return (
     <>
-      <div className={classes.wrapper}>
-        <SectionHeader title="Komu pomagam" />
-        <Group justify="center" gap={rem(40)} className={classes.group}>
+   
+      <Center pt={20}>
+        <Text fw={700} className={classes.title2}>
+          Komu pomagam?
+        </Text>
+      </Center>
+      {/* <div className={classes.wrapper}> */}
+        {/* <Group justify="center" gap={rem(40)} className={classes.group}>
           {cards}
           {longCards}
           <Card key={'jednostki chorobowe'} radius="md" className={classes.longestCard} withBorder>
@@ -104,8 +113,28 @@ export default function Patients() {
               </Text>
             </Center>
           </Card>
-        </Group>
-      </div>
+        </Group> */}
+        <Container fluid py={20} my={20} bg={'#e1f1f2'}>
+          <Grid gutter={20}>
+            {cardsData.map((patient, index) => (
+              <Grid.Col span={{lg:3,sm:6}} key={index}>
+                <Card className={classes.centeredCard} radius="xs" h={280}>
+                  <Center>
+                    {patient.image}
+                  </Center>
+                  <Center>
+                    <Text className={classes.title} pt={15} fw={400}>
+                      {patient.title}
+                    </Text>
+                  </Center>
+                </Card>
+              </Grid.Col>
+            ))}
+          </Grid>
+        </Container>
+        
+      {/* </div> */}
+     
     </>
   );
 }

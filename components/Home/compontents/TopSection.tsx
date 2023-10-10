@@ -5,12 +5,8 @@ import classes from './SectionHeader.module.css';
 
 export default function TopSection() {
   return (
-    <Box>
-      {/* <Script src="znanylekarz.js" strategy="afterInteractive" /> */}
-      {/* <ZlWidget /> */}
-      {/* {htmldata} */}
-
-      <BackgroundImage src="images/1.jpg" radius="lg">
+    <div className={classes.bgimage}>
+      
         <Center p="md">
           <div style={{ paddingTop: 100, paddingBottom: 100 }}>
             <Link
@@ -38,7 +34,8 @@ export default function TopSection() {
             </a> */}
           </div>
         </Center>
-      </BackgroundImage>
-    </Box>
+      
+      </div>
+   
   );
 }

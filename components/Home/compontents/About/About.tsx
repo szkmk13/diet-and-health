@@ -1,12 +1,12 @@
 'use client';
-import { Card, Image, Text, Group, Center, rem } from '@mantine/core';
+import { Card, Image, Text, Group, Center, rem, Container, Box } from '@mantine/core';
 import classes from './About.module.css';
 
 export default function About() {
   return (
-    <Card withBorder radius="md" className={classes.card}>
+    <Container fluid my={20}>
       <Group wrap="nowrap" gap={60}>
-        <Image src="images/monia_sport.jpg" height={450} fit="contain" visibleFrom="md" />
+        <Image src="images/monia_sport.jpg" height={450} fit="contain" visibleFrom="md" mt={10}/>
         <div className={classes.body}>
           <Center>
             <Text className={classes.title} mt="xs" mb="md">
@@ -27,7 +27,10 @@ export default function About() {
             sposobu żywienia. Uwzględniam wszystkie dolegliwości, problemy zdrowotne, a także
             preferencje smakowe. Chcę, aby zaproponowane przeze mnie posiłki były nie tylko zdrowe,
             ale przede wszystkim smaczne i łatwe do przygotowania. Najważniejsze dla mnie jest, aby
-            dieta była łatwa do stosowania. Komponując jadłospis wykorzystuje sezonowe warzywa i
+            dieta była łatwa do stosowania. 
+          </Text>
+          <Text size="lg" mt={10}>
+            Komponując jadłospis wykorzystuje sezonowe warzywa i
             owoce oraz produkty, które są dostępne w każdym większym sklepie. Pomagam zbudować
             trwałe nawyki żywieniowe. Zależy mi przede wszystkim na znalezieniu przyczyny problemów
             z jedzeniem. Zaproponuję Ci rozwiązania, które pomogą Ci odzyskać równowagę i kontrolę.
@@ -38,6 +41,6 @@ export default function About() {
           </Text>
         </div>
       </Group>
-    </Card>
+    </Container>
   );
 }
