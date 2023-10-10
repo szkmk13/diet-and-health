@@ -112,7 +112,7 @@ const newopinions = ''
         <Container fluid py={20} my={20}>
           <Grid gutter={20}>
             {comments.map((comment, index) => (
-              <Grid.Col span={4} key={index}>
+              <Grid.Col span={{lg:4,sm:6}} key={index}>
                 <Card radius="xs" h={320} >
                   <Text fw={700} size="lg">
                     {comment.name}

@@ -23,9 +23,11 @@ export default function ContactForm() {
     setTimeout(() => {
       setLoading(false);
     }, 4000)
+    
+    // const service:boolean = !!(process.env.SERVICE_ID && process.env.TEMPLATE_ID &&process.env.MAIL_JS_KEY)
 
     forma.current.reset(); 
-    emailjs.sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, forma.current, process.env.MAIL_JS_KEY).then(
+    process.env.SERVICE_ID && process.env.TEMPLATE_ID &&process.env.MAIL_JS_KEY&& emailjs.sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, forma.current, process.env.MAIL_JS_KEY).then(
       (response) => {
         setLoading(false)
 

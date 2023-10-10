@@ -23,6 +23,14 @@
     "@mantine/core": "7.1.1",
     "@mantine/hooks": "^7.1.2",
     "@next/bundle-analyzer": "^13.5.3",
+    "@tabler/icons-react": "^2.20.0",
+    "axios": "^1.5.1",
+    "next": "13.5.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.1",
     "@next/eslint-plugin-next": "^13.5.3",
     "@sendgrid/mail": "^7.7.0",
     "@storybook/addon-essentials": "^7.4.3",
@@ -66,6 +74,5 @@
     "tabler": "^1.0.0-alpha.8",
     "ts-jest": "^29.1.0",
     "typescript": "5.2.2"
-  },
-  "devDependencies": {}
+  }
 }

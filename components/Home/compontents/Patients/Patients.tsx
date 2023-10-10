@@ -23,43 +23,43 @@ export default function Patients() {
     {
       title: 'Osobom z nadwagą oraz niedowagą',
       description: '',
-      image: <IconScaleOutline color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconScaleOutline color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Kobietom w ciąży',
       description: '',
-      image: <IconBabyCarriage color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconBabyCarriage color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Dzieciom',
       description: '',
-      image: <IconFriends color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Sportowcom',
       description: '',
-      image: <IconBarbell color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconBarbell color="#4261AA"stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Osobom na diecie roślinnej',
       description: '',
-      image: <IconLeaf color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconLeaf color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Osobom, które chcą trwale zmienić swoje nawyki żywieniowe',
       description: '',
-      image: <IconApple color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconApple color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Osobom, które mają problem z utratą kontroli nad jedzeniem',
       description: '',
-      image: <IconCookie color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconCookie color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title:
         'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak: zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty',
         description: '',
-        image: <IconPaperBag color="var(--mantine-color-blue-filled)" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+        image: <IconPaperBag color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
   ];
  
@@ -117,7 +117,7 @@ export default function Patients() {
         <Container fluid py={20} my={20} bg={'#e1f1f2'}>
           <Grid gutter={20}>
             {cardsData.map((patient, index) => (
-              <Grid.Col span={3} key={index}>
+              <Grid.Col span={{lg:3,sm:6}} key={index}>
                 <Card className={classes.centeredCard} radius="xs" h={280}>
                   <Center>
                     {patient.image}
