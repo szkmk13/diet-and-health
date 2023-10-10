@@ -5,6 +5,8 @@ import { theme } from '../theme';
 import { FooterCentered } from '@/components/Footer/Footer';
 import StickyNavbar from '@/components/StickyNavbar/StickyNavbar';
 import Script from 'next/script';
+import '@mantine/notifications/styles.css';
+import { Notifications } from '@mantine/notifications';
 
 export const metadata = {
   title: 'Diet',
@@ -23,8 +25,8 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
+          <Notifications position="top-right" zIndex={1000} />
           <StickyNavbar />
-          {/* <div>{children}</div> */}
           <div style={{ minHeight: '80vh' }}>{children}</div>
           <FooterCentered />
         </MantineProvider>

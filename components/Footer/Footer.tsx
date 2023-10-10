@@ -6,6 +6,7 @@ import {
   IconBrandInstagram,
   IconBrandFacebook,
   IconBrandGoogleMaps,
+  IconMapSearch
 } from '@tabler/icons-react';
 import classes from './FooterCentered.module.css';
 import Link from 'next/link';
@@ -24,14 +25,14 @@ export function FooterCentered() {
       <div className={classes.inner}>
         {/* <Group className={classes.links}>{items}</Group> */}
         <Group>
-          <ActionIcon size="xl" variant="outline" radius="xl" component='a' href="https://www.facebook.com/diet.and.health.dietetyk" target='_blank'>
-            <IconBrandFacebook style={{ width: rem(40), height: rem(40) }} stroke={1.5} />
+          <ActionIcon size="xl" radius="xl" component='a' href="https://www.facebook.com/diet.and.health.dietetyk" target='_blank'>
+            <IconBrandFacebook style={{ width: rem(40), height: rem(40) }} stroke={1.1}/>
           </ActionIcon>
-          <ActionIcon size="xl" variant="outline" radius="xl" color="teal"component='a' href="https://maps.app.goo.gl/mhi7sRzabVzfXxct5"target='_blank' >
-            <IconBrandGoogleMaps style={{ width: rem(40), height: rem(40) }} stroke={1.5} />
+          <ActionIcon size="xl" radius="xl" color="teal"component='a' href="https://maps.app.goo.gl/mhi7sRzabVzfXxct5"target='_blank' >
+            <IconBrandGoogleMaps style={{ width: rem(40), height: rem(40) }} stroke={1} />
           </ActionIcon>
-          <ActionIcon size="xl" variant="outline" radius="xl" color="pink"component='a' href="https://www.instagram.com/diet.and.health_/"target='_blank' >
-            <IconBrandInstagram style={{ width: rem(50), height: rem(50) }} stroke={1.5} />
+          <ActionIcon size="xl" radius="xl" color="pink"component='a' href="https://www.instagram.com/diet.and.health_/"target='_blank' >
+            <IconBrandInstagram style={{ width: rem(50), height: rem(50) }} stroke={2} />
           </ActionIcon>
         </Group>
       </div>
