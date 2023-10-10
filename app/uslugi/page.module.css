@@ -1,5 +1,5 @@
 .box {
-  padding: 0% 10% 5% 10%;
+  /* padding: 0% 20% 5% 20%; */
   @media (max-width: $mantine-breakpoint-sm) {
     padding: 0 0 0 0;
   }
@@ -8,6 +8,7 @@
 .wrapper {
   display: flex;
   align-items: center;
+  /* width: 400px; */
   padding: calc(var(--mantine-spacing-lg));
   margin: calc(var(--mantine-spacing-lg));
   border-radius: var(--mantine-radius-md);

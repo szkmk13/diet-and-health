@@ -1,6 +1,7 @@
 'use client';
-import { Text, Title, Image, Box } from '@mantine/core';
+import { Text, Title, Image, Box, Container } from '@mantine/core';
 import classes from './page.module.css';
+import ServicesToggles from '@/components/Services/ServicesToggles';
 
 export default function Page() {
   const servicesData = [
@@ -92,16 +93,9 @@ export default function Page() {
 
   return (
     <>
-      <Box className={classes.box}>
-        {services}
-        <Text>
-          Po przeprowadzeniu szczegółowego wywiadu medyczno-żywieniowego układam indywidualny plan
-          żywieniowy. Układając jadłospis uwzględniam wszystkie dolegliwości i wymagania pacjenta.
-          Oprócz tego biorę pod uwagę: preferencje smakowe, ilość czasu na gotowanie, umiejętności
-          kulinarne. Proponowane przeze mnie posiłki są szybkie, łatwe do przygotowania, smaczne i
-          urozmaicone. Czas oczekiwania na jadłospis to 7 dni roboczych od konsultacji.
-        </Text>
-      </Box>
+      <Container size={'xl'}>
+        <ServicesToggles/>
+      </Container >
     </>
   );
 }
