@@ -12,7 +12,13 @@ export default function Page() {
       image: 'images/service1.jpg',
     },
     {
-      title: 'Konsultacja dietetyczna (kolejna wizyta)',
+      title: 'Konsultacja online',
+      price: '170 zł',
+      description: 'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
+      image: 'images/service1.jpg',
+    },
+    {
+      title: 'Konsultacja dietetyczna kolejna wizyta (do 2 miesięcy)',
       price: '120 zł',
       description:
         'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
@@ -26,8 +32,8 @@ export default function Page() {
       image: 'images/service3.jpg',
     },
     // {
-    //   title: 'Wizyta dla par',
-    //   price: '69 zł',
+    //   title: 'Pierwsza konsultacja dla dwóch osób',
+    //   price: '250 zł',
     //   description: 'Dla tych co lubią conieco razem z drugą połówką',
     //   image: 'images/service4.jpg',
     // },

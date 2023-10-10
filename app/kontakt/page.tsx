@@ -17,15 +17,9 @@ import classes from './page.module.css';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import ContactForm from '@/components/Contact/ContactForm';
+import Script from 'next/script';
 
 export default function Page() {
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    message: '',
-  });
-
-
   return (
     <>
       <BackgroundImage src="images/6.jpg" style={{height:'80vh'}}>

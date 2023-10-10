@@ -1,74 +1,59 @@
 'use client';
 import {
   Text,
-  Title,
-  SimpleGrid,
   TextInput,
   Textarea,
   Button,
   Group,
-  Box,
-  Image,
-  BackgroundImage,
   Center,
-  Paper,
+  Loader,
 } from '@mantine/core';
 import classes from './ContactForm.module.css';
-import { useRef, useState } from 'react';
-import Link from 'next/link';
-import { sendEmail } from './../../public/sendgrid';
-import axios from 'axios';
-interface Props {
-  title: string;
-}
+import React, { useRef, useState } from 'react';
+import Script from 'next/script';
+import emailjs from '@emailjs/browser';
+
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    message: '',
-  });
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: { target: { name: any; value: any } }) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
+  const forma: any = useRef();
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(formData);
-    axios.post('https://api.sendgrid.com/v3/', formData, {
-      headers: {
-        'Authorization': `Bearer: ${process.env.SENDGRID_API_KEY}`, // Set the headerA
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000)
+
+    forma.current.reset(); 
+    emailjs.sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, forma.current, process.env.MAIL_JS_KEY).then(
+      (response) => {
+        setLoading(false)
+
+        console.log('SUCCESS!', response.status, response.text);
+        forma.current.reset(); 
       },
-    })
-      .then(response => {
-        console.log('Response:', response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });    console.log('sent');
-    // try {
-    //   await sendEmail(email, 'Test Email', 'This is a test email from Next.js!');
-    //   res.status(200).json({ message: 'Email sent successfully' });
-    // } catch (error) {
-    //   console.error(error);
-    //   res.status(500).json({ message: 'Internal Server Error' });
-    // }
+      (error) => {
+        setLoading(false)
+
+        console.error('FAILED...', error);
+      }
+    );
   };
   return (
     <>
+      <Script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" />
+
       <div className={classes.form}>
-        <form onSubmit={handleSubmit}>
+        <Center>
+                  <Text className={classes.title}>Masz pytanie ?</Text>
+
+        </Center>
+        <form ref={forma} onSubmit={handleSubmit}>
           <TextInput
             label="Email"
             placeholder="twoj_email@email.com"
             required
             name="email"
-            value={formData.email}
-            onChange={handleChange}
             classNames={{ input: classes.input, label: classes.inputLabel }}
           />
           <TextInput
@@ -76,8 +61,6 @@ export default function ContactForm() {
             placeholder="Jan Kowalski"
             required
             name="name"
-            value={formData.name}
-            onChange={handleChange}
             classNames={{ input: classes.input, label: classes.inputLabel }}
           />
           <Textarea
@@ -86,14 +69,17 @@ export default function ContactForm() {
             placeholder="Dzień dobry mam chorom curke kiedy pani mi zrobi diete za darmo"
             minRows={5}
             name="message"
-            value={formData.message}
-            onChange={handleChange}
             classNames={{ input: classes.input, label: classes.inputLabel }}
           />
 
           <Group justify="flex-end" mt="md">
-            <Button className={classes.control} type="submit">
-              Send message
+            <Button className={classes.control} type="submit" disabled={loading}>
+            {loading ? (
+          <Loader className={classes.loader} size="sm" />
+          ) : (
+            // <Loader className={classes.loader} size="sm" />
+                  'Wyślij'
+                )}
             </Button>
           </Group>
         </form>
