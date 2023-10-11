@@ -71,7 +71,7 @@ export default function StickyNavbar() {
     <Link
       key={'Umów wizytę'}
       href={'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'}
-      className={classes.link}
+      className={classes.linkZnanyLekarz}
       target="_blank"
     >
       {'Umów wizytę'}

@@ -115,7 +115,7 @@
       background-color: var(--mantine-color-white);
       border-color: var(--mantine-color-gray-4);
       color: var(--mantine-color-black);
-    
+      text-wrap: wrap;
       &::placeholder {
         color: var(--mantine-color-gray-5);
       }

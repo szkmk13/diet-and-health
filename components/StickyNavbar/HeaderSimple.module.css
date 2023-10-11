@@ -19,7 +19,8 @@
 }
 
 .link,
-.linkDisabled {
+.linkDisabled,
+.linkZnanyLekarz {
   display: block;
   line-height: 1;
   padding: rem(8px) rem(12px);
@@ -28,7 +29,6 @@
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
   font-size: var(--mantine-font-size-sm);
   font-weight: 900;
-  
 
   @mixin hover {
     background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-6));
@@ -45,8 +45,14 @@
   outline-width: 3px;
   text-shadow: 1px;
 }
+.linkZnanyLekarz {
+  background-color: #ffdeff;
+  /* f7c9ff */
+  /* ffdeff */
+
+}
 .currentPage {
-      background-color:$primary-color;
+      background-color:$primary-color-faded;
       /* background-color: red; */
       color: var(--mantine-color-black);
 }

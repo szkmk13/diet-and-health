@@ -55,7 +55,10 @@
   white-space: pre-wrap;
   /* font-weight: bold; */
 }
+.description{
+  white-space: pre-wrap;
 
+}
 .title2{
   font-size: rem(70);
   font-family: "Allura";
@@ -74,4 +77,8 @@
 
 .longestCard {
   width: 800px;
+  
+}
+.gridBackground{
+  background-color: #5cbdc03a;
 }
