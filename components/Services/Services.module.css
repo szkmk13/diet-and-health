@@ -1,26 +1,18 @@
 .box {
-    /* padding: 0% 20% 5% 20%; */
     @media (max-width: $mantine-breakpoint-sm) {
       padding: 0 0 0 0;
     }
   }
   .buttonCollapse{
-    /* background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-1)); */
-    /* border-radius: var(--mantine-radius-sm); */
-    /* border: rem(1) solid $secondary-color; */
-    margin: calc(var(--mantine-spacing-lg));
     padding: 10px 0px 10px 0px;
     height: fit-content;
     font-size: x-large;    
-    /* padding: calc(var(--mantine-spacing-lg));
-    margin: calc(var(--mantine-spacing-lg)); */
+    padding: calc(var(--mantine-spacing-xl));
     color: $secondary-color;
-
   }
   .wrapper {
     display: flex;
     align-items: center;
-    /* width: 400px; */
     padding: calc(var(--mantine-spacing-lg));
     margin: calc(var(--mantine-spacing-lg));
     border-radius: var(--mantine-radius-md);

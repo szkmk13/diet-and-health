@@ -52,6 +52,7 @@
 .title {
   text-align: center;
   font-family: 'Greycliff CF', var(--mantine-font-family);
+  white-space: pre-wrap;
   /* font-weight: bold; */
 }
 

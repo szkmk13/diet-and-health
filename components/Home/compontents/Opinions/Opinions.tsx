@@ -105,7 +105,7 @@ const newopinions = ''
     <>
       <Center py={20}>
         <Text fw={700} className={classes.title2}>
-          Opinie klientów
+          Opinie pacjentów
         </Text>
       </Center>
       <div className={classes.bgimage}>

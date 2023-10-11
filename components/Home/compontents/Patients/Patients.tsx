@@ -16,7 +16,7 @@ import classes from './Patients.module.css';
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader';
-import { IconApple, IconBabyCarriage, IconBarbell, IconCookie, IconFriends, IconLeaf, IconPaperBag, IconScaleOutline } from '@tabler/icons-react';
+import { IconApple, IconBabyCarriage, IconBarbell, IconCookie, IconFriends, IconLeaf, IconPaperBag, IconScaleOutline, IconPill } from '@tabler/icons-react';
 
 export default function Patients() {
   const cardsData = [
@@ -26,15 +26,15 @@ export default function Patients() {
       image: <IconScaleOutline color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
-      title: 'Kobietom w ciąży',
+      title: 'Kobietom w ciąży oraz dzieciom',
       description: '',
       image: <IconBabyCarriage color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
-    {
-      title: 'Dzieciom',
-      description: '',
-      image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
-    },
+    // {
+    //   title: 'Dzieciom',
+    //   description: '',
+    //   image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+    // },
     {
       title: 'Sportowcom',
       description: '',
@@ -56,41 +56,22 @@ export default function Patients() {
       image: <IconCookie color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
-      title:
-        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak: zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty',
-        description: '',
+      title:"Osobom z różnymi\ndolegliwościami *",
+      description:
+        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak: zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty, refluksem żołądkowo-przełykowym.',
+        // description: '',
         image: <IconPaperBag color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+    },{
+      title:"Osobom z różnymi jednostkami chorobowymi *",
+      description:
+        'Osobom z cukrzycą, insulinoopornością, celiakią, SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy, Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/ dolegliwościami.',
+        // description: '',
+        image: <IconPill color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
   ];
  
-  // const cards = short.map((patient) => (
-  //   <Card key={patient.title} radius="md" className={classes.card}>
-  //     <Center>
-  //       <Image src={patient.image}  className={classes.image}  />
-  //     </Center>
-  //     <Center>
-  //       <Text className={classes.title} pt={5}>
-  //         {patient.title}
-  //       </Text>
-  //     </Center>
-  //   </Card>
-  // ));
-  // const longCards = long.map((patient) => (
-  //   <Card key={patient.title} radius="md" className={classes.longcard}>
-  //     <Center>
-  //       <Image src={patient.image} style={{ height: '125px' }} />
-  //     </Center>
-  //     <Center>
-  //       <Text className={classes.title} pt={5}>
-  //         {patient.title}
-  //       </Text>
-  //     </Center>
-  //   </Card>
-  // ));
-
   return (
     <>
-   
       <Center pt={20}>
         <Text fw={700} className={classes.title2}>
           Komu pomagam?
@@ -114,6 +95,28 @@ export default function Patients() {
             </Center>
           </Card>
         </Group> */}
+              {/* <Popover
+        key={`popover_${link.label}`}
+        position="bottom"
+        withArrow
+        shadow="md"
+        opened={popoveropened}
+      >
+        <Popover.Target>
+          <a
+            onMouseEnter={open}
+            onMouseLeave={close}
+            key={link.label}
+            href={'#'}
+            className={classes.linkDisabled}
+          >
+            {link.label}
+          </a>
+        </Popover.Target>
+        <Popover.Dropdown style={{ pointerEvents: 'none' }}>
+          <Text size="sm">Dostępne wkrótce</Text>
+        </Popover.Dropdown>
+      </Popover> */}
         <Container fluid py={20} my={20} bg={'#e1f1f2'}>
           <Grid gutter={20}>
             {cardsData.map((patient, index) => (
@@ -124,7 +127,7 @@ export default function Patients() {
                   </Center>
                   <Center>
                     <Text className={classes.title} pt={15} fw={400}>
-                      {patient.title}
+                      {patient.title}{/* {patient.description?patient.description:''}*/}
                     </Text>
                   </Center>
                 </Card>
@@ -132,9 +135,6 @@ export default function Patients() {
             ))}
           </Grid>
         </Container>
-        
-      {/* </div> */}
-     
     </>
   );
 }

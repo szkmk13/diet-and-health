@@ -217,7 +217,9 @@ export default function ServicesToggles() {
   return (
     <>
       <Space h="xl" />
-      <Accordion defaultValue="Oferta Indywidualna" variant="separated">
+      <Accordion 
+      // defaultValue="Oferta Indywidualna" 
+      variant="separated">
         {items}
       </Accordion>
     </>
