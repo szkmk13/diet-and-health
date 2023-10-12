@@ -53,20 +53,17 @@ export default function Page() {
                   </Center>
                 </div>
               </Grid.Col>
+
               <Grid.Col span={{ base: 12, sm: 6 }}>
                 <ContactForm />
-
               </Grid.Col>
 
               <Grid.Col span={{ base: 12, sm: 12 }}>
                 <ContactSurvey />
-
               </Grid.Col>
-
-
             </Grid>
           </div>
-        </Box>{' '}
+        </Box>
       </BackgroundImage>
     </>
   );

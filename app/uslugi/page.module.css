@@ -8,6 +8,7 @@
   height: fit-content;
   font-size: x-large;    
   padding: calc(var(--mantine-spacing-xl));
+  font-style: italic;
   /* color: $primary-color; */
 }
 .wrapper {
@@ -58,5 +59,6 @@
 
 }
 .imageTitle {
+  margin-bottom: 10px;
   /* background-color: $primary-color-faded; */
 }

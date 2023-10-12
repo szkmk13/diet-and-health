@@ -15,12 +15,9 @@ export default function ContactSurvey() {
     const [loading, setLoading] = useState(false);
     const [value, setValue] = useState<Date |null >(null);
     const currentDate = new Date();
-
     // Calculate the date in GMT+1 timezone
     const gmtPlus1Date = new Date(currentDate.getTime() - 3600 * 1000);
-  
     const [selectedDate, setSelectedDate] = useState(gmtPlus1Date);
-
     const forma: any = useRef();
     const handleSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
@@ -28,25 +25,20 @@ export default function ContactSurvey() {
         // setTimeout(() => {
         //   setLoading(false);
         // }, 4000)
-        console.log(forma.current)
+        // console.log(forma.current)
         const formElement = forma.current;
-
-        // // Access and update the form element's values
-        // const inputValue = formElement.elements['date'].value; // Replace 'inputName' with your input's name or ID
-        // console.log('Current input value:', inputValue);
-        
-        // const options = { year: 'numeric', month: 'long', day: '2-digit' };
-        // const formattedDate = inputValue.toLocaleDateString('en-US', options);
-        // console.log(formattedDate);
-
+        const monthNames = [
+            'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+            'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'
+          ];
+        const day = selectedDate.getDate();
+        const month = monthNames[selectedDate.getMonth()];
+        const year = selectedDate.getFullYear();
+        const formattedDate2 = `${day.toString().padStart(2, '0')} ${month} ${year}`;
 
         // // Modify the input value
-        // formElement.elements['date'].value = formattedDate; 
+        formElement.elements['date'].value = formattedDate2; 
         // console.log(formElement.elements['date'].value)
-
-      
-
-        const service:boolean = !!(process.env.SERVICE_ID && process.env.TEMPLATE_ID &&process.env.MAIL_JS_KEY)
 
         setLoading(true);
         process.env.NEXT_PUBLIC_SERVICE_ID &&
@@ -64,7 +56,7 @@ export default function ContactSurvey() {
                         notifications.show({
                             color: 'green',
                             title: 'Wysłano',
-                            message: 'Monika wkrótce odpowie na maila.',
+                            message: 'Dziękuję za wypełnienie ankiety, do zobaczenia na konsultacji.',
                             classNames: notificationclasses,
                         });
                         forma.current.reset();
@@ -108,9 +100,9 @@ export default function ContactSurvey() {
                         label="Data konsultacji"
                         placeholder="Data konsultacji"
                         valueFormat="YYYY MMM DD"
-                        maxDate={new Date()}
-                        minDate={dayjs(new Date()).subtract(1, 'month').toDate()}
-                        value={selectedDate}
+                        minDate={new Date()}
+                        maxDate={dayjs(new Date()).add(2, 'month').toDate()}
+                        // value={selectedDate}
                         onChange={(newDate:Date) => setSelectedDate(newDate)}
                         required
                         name="date"

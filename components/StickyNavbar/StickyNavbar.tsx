@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Container, Group, Burger, Image, Text, Drawer, Button, Popover } from '@mantine/core';
+import { Container, Group, Burger, Image, Text, Drawer, Button, Popover, HoverCard, Menu, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';
 import Link from 'next/link';
@@ -42,28 +42,23 @@ export default function StickyNavbar() {
         {link.label}
       </Link>
     ) : (
-      <Popover
-        key={`popover_${link.label}`}
+      <HoverCard
         position="bottom"
         withArrow
-        shadow="md"
-        opened={popoveropened}
       >
-        <Popover.Target>
+        <HoverCard.Target>
           <a
-            onMouseEnter={open}
-            onMouseLeave={close}
             key={link.label}
             href={'#'}
             className={classes.linkDisabled}
           >
             {link.label}
           </a>
-        </Popover.Target>
-        <Popover.Dropdown style={{ pointerEvents: 'none' }}>
+        </HoverCard.Target>
+        <HoverCard.Dropdown style={{ pointerEvents: 'none' }}>
           <Text size="sm">Dostępne wkrótce</Text>
-        </Popover.Dropdown>
-      </Popover>
+        </HoverCard.Dropdown>
+      </HoverCard>
     );
   });
 

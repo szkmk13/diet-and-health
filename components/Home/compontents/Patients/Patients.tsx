@@ -81,49 +81,8 @@ export default function Patients() {
           Komu pomagam?
         </Text>
       </Center>
-      {/* <div className={classes.wrapper}> */}
-      {/* <Group justify="center" gap={rem(40)} className={classes.group}>
-          {cards}
-          {longCards}
-          <Card key={'jednostki chorobowe'} radius="md" className={classes.longestCard} withBorder>
-            <Center>
-              <Image src={'images/search.svg'} style={{ height: '125px' }} />
-            </Center>
-            <Center>
-              <Text className={classes.title} pt={5}>
-                Osobom z cukrzycą, insulinoopornością, refluksem żołądkowo-przełykowym, celiakią,
-                SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy,
-                Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą
-                Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/dolegliwościami.
-              </Text>
-            </Center>
-          </Card>
-        </Group> */}
-      {/* <Popover
-        key={`popover_${link.label}`}
-        position="bottom"
-        withArrow
-        shadow="md"
-        opened={popoveropened}
-      >
-        <Popover.Target>
-          <a
-            onMouseEnter={open}
-            onMouseLeave={close}
-            key={link.label}
-            href={'#'}
-            className={classes.linkDisabled}
-          >
-            {link.label}
-          </a>
-        </Popover.Target>
-        <Popover.Dropdown style={{ pointerEvents: 'none' }}>
-          <Text size="sm">Dostępne wkrótce</Text>
-        </Popover.Dropdown>
-      </Popover> */}
       <Container fluid py={20} my={20} className={classes.gridBackground}>
         <Grid gutter={20}>
-
           {cardsData.map((patient, index) => (
             patient.description ? (
               <Grid.Col span={{ lg: 3, sm: 6 }} key={index}>
@@ -134,7 +93,6 @@ export default function Patients() {
                   shadow="md"
                   opened={popoveropened}
                 >
-
                   <Card className={classes.centeredCard} radius="xs" h={280} onMouseEnter={open}
                     onMouseLeave={close}>
                     <Center>
@@ -148,20 +106,13 @@ export default function Patients() {
                       </HoverCard.Target>
                     </Center>
                   </Card>
-
                   <HoverCard.Dropdown style={{ pointerEvents: 'none' }}>
                     <Text size='xs' className={classes.title}>
                       {patient.description}
                     </Text>
                   </HoverCard.Dropdown>
                 </HoverCard>
-
               </Grid.Col>
-
-
-
-
-
             ) : (<Grid.Col span={{ lg: 3, sm: 6 }} key={index}>
               <Card className={classes.centeredCard} radius="xs" h={280}>
                 <Center>
@@ -169,15 +120,13 @@ export default function Patients() {
                 </Center>
                 <Center>
                   <Text className={classes.title} pt={15} fw={400}>
-                    {patient.title}{/* {patient.description?patient.description:''}*/}
+                    {patient.title}
                   </Text>
                 </Center>
               </Card>
             </Grid.Col>
             )
-
           ))}
-
         </Grid>
       </Container>
     </>
