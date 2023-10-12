@@ -1,20 +1,26 @@
 .box {
-  /* padding: 0% 20% 5% 20%; */
   @media (max-width: $mantine-breakpoint-sm) {
     padding: 0 0 0 0;
   }
 }
-
+.buttonCollapse{
+  padding: 10px 0px 10px 0px;
+  height: fit-content;
+  font-size: x-large;    
+  padding: calc(var(--mantine-spacing-xl));
+  font-style: italic;
+  /* color: $primary-color; */
+}
 .wrapper {
   display: flex;
   align-items: center;
-  /* width: 400px; */
-  padding: calc(var(--mantine-spacing-lg));
-  margin: calc(var(--mantine-spacing-lg));
+  padding-left: calc(var(--mantine-spacing-md));
+  margin: calc(var(--mantine-spacing-sm));
   border-radius: var(--mantine-radius-md);
   background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
   border: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-8));
   font-family: 'Greycliff CF', var(--mantine-font-family);
+  justify-content: space-between;
   @media (max-width: $mantine-breakpoint-sm) {
     flex-direction: column-reverse;
     padding: var(--mantine-spacing-xl);
@@ -24,7 +30,6 @@
 
 .image {
   max-width: 200px;
-
   @media (max-width: $mantine-breakpoint-sm) {
     max-width: 100%;
   }
@@ -32,18 +37,28 @@
 
 .body {
   padding-right: calc(var(--mantine-spacing-xl) * 4);
-
   @media (max-width: $mantine-breakpoint-sm) {
     padding-right: 0;
   }
 }
 
 .title {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  color: $secondary-color;
   font-family: Greycliff CF, var(--mantine-font-family);
   line-height: 1;
-  margin-bottom: var(--mantine-spacing-md);
+  font-size: large;
+  margin-top: var(--mantine-spacing-sm);
+
+  margin-bottom: var(--mantine-spacing-sm);
   @media (max-width: $mantine-breakpoint-sm) {
     font-size: x-large;
   }
+}
+.description{
+  white-space: pre-wrap;
+
+}
+.imageTitle {
+  margin-bottom: 10px;
+  /* background-color: $primary-color-faded; */
 }

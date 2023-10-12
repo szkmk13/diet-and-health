@@ -11,14 +11,18 @@ import {
   Center,
   Grid,
   rem,
+  Popover,
+  HoverCard,
 } from '@mantine/core';
 import classes from './Patients.module.css';
-import { useHover } from '@mantine/hooks';
+import { useDisclosure, useHover } from '@mantine/hooks';
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader';
-import { IconApple, IconBabyCarriage, IconBarbell, IconCookie, IconFriends, IconLeaf, IconPaperBag, IconScaleOutline } from '@tabler/icons-react';
+import { IconApple, IconBabyCarriage, IconBarbell, IconCookie, IconFriends, IconLeaf, IconPaperBag, IconScaleOutline, IconPill } from '@tabler/icons-react';
 
 export default function Patients() {
+  const [popoveropened, { close, open }] = useDisclosure(false);
+
   const cardsData = [
     {
       title: 'Osobom z nadwagą oraz niedowagą',
@@ -26,19 +30,19 @@ export default function Patients() {
       image: <IconScaleOutline color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
-      title: 'Kobietom w ciąży',
+      title: 'Kobietom w ciąży oraz dzieciom',
       description: '',
       image: <IconBabyCarriage color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
-    {
-      title: 'Dzieciom',
-      description: '',
-      image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
-    },
+    // {
+    //   title: 'Dzieciom',
+    //   description: '',
+    //   image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+    // },
     {
       title: 'Sportowcom',
       description: '',
-      image: <IconBarbell color="#4261AA"stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      image: <IconBarbell color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
       title: 'Osobom na diecie roślinnej',
@@ -56,85 +60,75 @@ export default function Patients() {
       image: <IconCookie color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
     {
-      title:
-        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak: zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty',
-        description: '',
-        image: <IconPaperBag color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+      title: "Osobom z różnymi\ndolegliwościami *",
+      description:
+        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak:\n zaparcia, biegunki, wzdęcia, zgaga, nudności,\n wymioty, refluksem żołądkowo-przełykowym.',
+      // description: '',
+      image: <IconPaperBag color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
+    }, {
+      title: "Osobom z różnymi jednostkami chorobowymi *",
+      description:
+        'Osobom z cukrzycą, insulinoopornością, celiakią, SIBO, \nzespołem jelita drażliwego, niedoczynnością tarczycy,\n nadczynnością tarczycy, Hashimoto, anemią,\n wrzodziejącym zapaleniem jelita grubego, chorobą Leśniowskiego-Crohna,\n dną moczanowa i innymi chorobami/ dolegliwościami.',
+      // description: '',
+      image: <IconPill color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
   ];
- 
-  // const cards = short.map((patient) => (
-  //   <Card key={patient.title} radius="md" className={classes.card}>
-  //     <Center>
-  //       <Image src={patient.image}  className={classes.image}  />
-  //     </Center>
-  //     <Center>
-  //       <Text className={classes.title} pt={5}>
-  //         {patient.title}
-  //       </Text>
-  //     </Center>
-  //   </Card>
-  // ));
-  // const longCards = long.map((patient) => (
-  //   <Card key={patient.title} radius="md" className={classes.longcard}>
-  //     <Center>
-  //       <Image src={patient.image} style={{ height: '125px' }} />
-  //     </Center>
-  //     <Center>
-  //       <Text className={classes.title} pt={5}>
-  //         {patient.title}
-  //       </Text>
-  //     </Center>
-  //   </Card>
-  // ));
 
   return (
     <>
-   
       <Center pt={20}>
         <Text fw={700} className={classes.title2}>
           Komu pomagam?
         </Text>
       </Center>
-      {/* <div className={classes.wrapper}> */}
-        {/* <Group justify="center" gap={rem(40)} className={classes.group}>
-          {cards}
-          {longCards}
-          <Card key={'jednostki chorobowe'} radius="md" className={classes.longestCard} withBorder>
-            <Center>
-              <Image src={'images/search.svg'} style={{ height: '125px' }} />
-            </Center>
-            <Center>
-              <Text className={classes.title} pt={5}>
-                Osobom z cukrzycą, insulinoopornością, refluksem żołądkowo-przełykowym, celiakią,
-                SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy,
-                Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą
-                Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/dolegliwościami.
-              </Text>
-            </Center>
-          </Card>
-        </Group> */}
-        <Container fluid py={20} my={20} bg={'#e1f1f2'}>
-          <Grid gutter={20}>
-            {cardsData.map((patient, index) => (
-              <Grid.Col span={{lg:3,sm:6}} key={index}>
-                <Card className={classes.centeredCard} radius="xs" h={280}>
-                  <Center>
-                    {patient.image}
-                  </Center>
-                  <Center>
-                    <Text className={classes.title} pt={15} fw={400}>
-                      {patient.title}
+      <Container fluid py={20} my={20} className={classes.gridBackground}>
+        <Grid gutter={20}>
+          {cardsData.map((patient, index) => (
+            patient.description ? (
+              <Grid.Col span={{ lg: 3, sm: 6 }} key={index}>
+                <HoverCard
+                  key={`popover_${patient.title}`}
+                  position="bottom"
+                  withArrow
+                  shadow="md"
+                  opened={popoveropened}
+                >
+                  <Card className={classes.centeredCard} radius="xs" h={280} onMouseEnter={open}
+                    onMouseLeave={close}>
+                    <Center>
+                      {patient.image}
+                    </Center>
+                    <Center>
+                      <HoverCard.Target>
+                        <Text className={classes.title} pt={15} fw={400}>
+                          {patient.title}
+                        </Text>
+                      </HoverCard.Target>
+                    </Center>
+                  </Card>
+                  <HoverCard.Dropdown style={{ pointerEvents: 'none' }}>
+                    <Text size='xs' className={classes.title}>
+                      {patient.description}
                     </Text>
-                  </Center>
-                </Card>
+                  </HoverCard.Dropdown>
+                </HoverCard>
               </Grid.Col>
-            ))}
-          </Grid>
-        </Container>
-        
-      {/* </div> */}
-     
+            ) : (<Grid.Col span={{ lg: 3, sm: 6 }} key={index}>
+              <Card className={classes.centeredCard} radius="xs" h={280}>
+                <Center>
+                  {patient.image}
+                </Center>
+                <Center>
+                  <Text className={classes.title} pt={15} fw={400}>
+                    {patient.title}
+                  </Text>
+                </Center>
+              </Card>
+            </Grid.Col>
+            )
+          ))}
+        </Grid>
+      </Container>
     </>
   );
 }
