@@ -1,7 +1,6 @@
 'use client';
-import { Text, Title, Image, Box, Container, Accordion, Space } from '@mantine/core';
+import { Text, Title, Image, Container, Accordion, Space } from '@mantine/core';
 import classes from './page.module.css';
-import { IconDiscount2, IconPercentage } from '@tabler/icons-react';
 export default function Page() {
   const soloServicesData = [
     {
@@ -131,10 +130,9 @@ export default function Page() {
             <Text span td="line-through" inherit>
               630zł
             </Text>{' '}
-            <Text inherit span c='red'>
-
-              500 zł          </Text>
-
+            <Text inherit span c="red">
+              500 zł{' '}
+            </Text>
           </Text>
         </>
       ),
@@ -155,8 +153,8 @@ export default function Page() {
             <Text span td="line-through" inherit>
               460zł
             </Text>{' '}
-            <Text inherit span c='red'>
-            360 zł
+            <Text inherit span c="red">
+              360 zł
             </Text>{' '}
             {/* 360 zł */}
           </Text>
@@ -209,10 +207,8 @@ export default function Page() {
   const pakietServices = pakietServiceData.map((service) => (
     <div key={service.image} className={classes.wrapper}>
       <div className={classes.body}>
-        {/* <Title className={classes.title}> */}
         {service.title}
         {service.price}
-        {/* </Title> */}
         <Text fz="md" c="dimmed" className={classes.description}>
           {service.description}
         </Text>
@@ -232,12 +228,10 @@ export default function Page() {
     <Accordion.Item key={item.name} value={item.name} className={classes.imageTitle}>
       <Accordion.Control className={classes.buttonCollapse}>
         {item.name === 'Pakiety' ? (
-          <>
-            <div style={{ display: 'flex' }}>
-              {item.name}
-              <Image h={50} fit="contain" src={'images/procent.png'} />
-            </div>
-          </>
+          <div style={{ display: 'flex' }}>
+            {item.name}
+            <Image h={50} fit="contain" src={'images/procent.png'} />
+          </div>
         ) : (
           item.name
         )}

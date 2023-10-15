@@ -74,11 +74,11 @@ export default function StickyNavbar() {
             className={classes.inner}
           />
         </Link>
-        <Group gap={50} visibleFrom="xs">
+        <Group gap={50} visibleFrom="sm">
           {items}
           {znanyLekarzLink}
         </Group>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
       </Container>
       <Drawer position="left" size="sm" opened={opened} onClose={toggle}>
         {items}

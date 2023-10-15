@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: any }) {
       <body>
         <MantineProvider theme={theme}>
           <Analytics />
-          <Notifications position="top-right" zIndex={1000} />
+          <Notifications position="top-right" zIndex={100} />
           <StickyNavbar />
           <div style={{ minHeight: '80vh' }}>{children}</div>
           <FooterCentered />
