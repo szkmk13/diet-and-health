@@ -9,6 +9,7 @@ import '@mantine/dates/styles.css';
 import { Notifications } from '@mantine/notifications';
 import 'dayjs/locale/pl'; // Import the Polish locale
 import dayjs from 'dayjs';
+import { Analytics } from '@vercel/analytics/react';
 
 dayjs.locale('pl'); // Set the locale to Polish
 export const metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
+          <Analytics />
           <Notifications position="top-right" zIndex={1000} />
           <StickyNavbar />
           <div style={{ minHeight: '80vh' }}>{children}</div>
