@@ -50,4 +50,25 @@
   flex-direction: column;
   text-align: center;
 }
+.cardtext{
+  text-align: left;
+}
+.wideodescription{
+  display: flex;
+}
+.moniacard{
+  color: $primary-color;
+  fill: $primary-color;
+}
+.buttoncolor{
+  text-decoration: none;
+  border-radius: var(--mantine-radius-sm);
+  display: block;
+  font-weight: 600;
+  padding: rem(4px) rem(6px);
 
+  background-color: $primary-color;
+  color: black;
+  
+  
+}

@@ -43,12 +43,12 @@
 }
 
 .title {
+  font-weight: 800;
   color: $secondary-color;
   font-family: Greycliff CF, var(--mantine-font-family);
   line-height: 1;
   font-size: large;
   margin-top: var(--mantine-spacing-sm);
-
   margin-bottom: var(--mantine-spacing-sm);
   @media (max-width: $mantine-breakpoint-sm) {
     font-size: x-large;

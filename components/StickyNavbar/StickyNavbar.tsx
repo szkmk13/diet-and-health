@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Container, Group, Burger, Image, Text, Drawer, Button, Popover, HoverCard, Menu, rem } from '@mantine/core';
+import { Container, Group, Burger, Image, Text, Drawer, HoverCard } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';
 import Link from 'next/link';
@@ -16,7 +16,6 @@ const links = [
 export default function StickyNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [popoveropened, { close, open }] = useDisclosure(false);
   const pathname = usePathname();
   useEffect(() => {
     const handleScroll = () => {
@@ -42,16 +41,9 @@ export default function StickyNavbar() {
         {link.label}
       </Link>
     ) : (
-      <HoverCard
-        position="bottom"
-        withArrow
-      >
+      <HoverCard position="bottom" withArrow key={`hover_${link.label}`}>
         <HoverCard.Target>
-          <a
-            key={link.label}
-            href={'#'}
-            className={classes.linkDisabled}
-          >
+          <a key={link.label} href={'#'} className={classes.linkDisabled}>
             {link.label}
           </a>
         </HoverCard.Target>

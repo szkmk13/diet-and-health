@@ -1,7 +1,7 @@
 'use client';
 import { Text, Title, Image, Box, Container, Accordion, Space } from '@mantine/core';
 import classes from './page.module.css';
-
+import { IconDiscount2, IconPercentage } from '@tabler/icons-react';
 export default function Page() {
   const soloServicesData = [
     {
@@ -79,7 +79,8 @@ export default function Page() {
     {
       title: 'Pierwsza konsultacja dla dwóch osób',
       price: '250 zł',
-      description: '',
+      description:
+        'WAŻNE\n[Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków\nustalone na podstawie zapotrzebowania kalorycznego pacjentów.]',
       image: 'images/service1.jpg',
     },
     {
@@ -119,15 +120,48 @@ export default function Page() {
   ];
   const pakietServiceData = [
     {
-      title: 'Pakiet Standard trzech spotkań + jadłospis 14 dniowy',
-      price: '500 zł',
+      title: (
+        <Text className={classes.title} span>
+          Pakiet Standard trzech spotkań + jadłospis 14 dniowy -{' '}
+        </Text>
+      ),
+      price: (
+        <>
+          <Text className={classes.title} span>
+            <Text span td="line-through" inherit>
+              630zł
+            </Text>{' '}
+            <Text inherit span c='red'>
+
+              500 zł          </Text>
+
+          </Text>
+        </>
+      ),
+
       description:
-        'W cenie: Pierwsza wizyta, dwie wizyty kontrolne, jadłospis 14dniowy, analiza składu ciała przy każdej z wizyt. \n Uwaga! \n-W przypadku nie pojawienia się na wizycie kontrolnej, wizyta ta przepada (Dotyczy wizyt niepotwierdzonych przez pacjenta i/lub wizyt nieodwołanych we wcześniejszym terminie).\n-Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od pierwszej konsultacji.',
+        'W cenie: Pierwsza wizyta, dwie wizyty kontrolne, jadłospis 14dniowy, analiza składu ciała przy każdej z wizyt. \n Uwaga! \n- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta ta przepada (Dotyczy wizyt niepotwierdzonych przez pacjenta i/lub wizyt nieodwołanych we wcześniejszym terminie).\n- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od pierwszej konsultacji.',
       image: 'images/service1.jpg',
     },
     {
-      title: 'Pakiet dietetyczny kolejny',
-      price: '360 zł',
+      title: (
+        <Text className={classes.title} span>
+          Pakiet dietetyczny kolejny -{' '}
+        </Text>
+      ),
+      price: (
+        <>
+          <Text className={classes.title} span>
+            <Text span td="line-through" inherit>
+              460zł
+            </Text>{' '}
+            <Text inherit span c='red'>
+            360 zł
+            </Text>{' '}
+            {/* 360 zł */}
+          </Text>
+        </>
+      ),
       description:
         'W cenie:\nDwie kontrolne wizyty+ jadłospis 14 dniowy + analiza składu ciała.\nW cenie pakietu nie ma pierwszej konsultacji',
       image: 'images/service1.jpg',
@@ -139,7 +173,7 @@ export default function Page() {
         <Title className={classes.title}>
           {service.title} - {service.price}
         </Title>
-        <Text fz="md" c="dimmed">
+        <Text fz="md" c="dimmed" className={classes.description}>
           {service.description}
         </Text>
       </div>
@@ -152,7 +186,7 @@ export default function Page() {
         <Title className={classes.title}>
           {service.title} - {service.price}
         </Title>
-        <Text fz="md" c="dimmed">
+        <Text fz="md" c="dimmed" className={classes.description}>
           {service.description}
         </Text>
       </div>
@@ -173,11 +207,12 @@ export default function Page() {
     </div>
   ));
   const pakietServices = pakietServiceData.map((service) => (
-    <div key={service.title} className={classes.wrapper}>
+    <div key={service.image} className={classes.wrapper}>
       <div className={classes.body}>
-        <Title className={classes.title}>
-          {service.title} - {service.price}
-        </Title>
+        {/* <Title className={classes.title}> */}
+        {service.title}
+        {service.price}
+        {/* </Title> */}
         <Text fz="md" c="dimmed" className={classes.description}>
           {service.description}
         </Text>
@@ -190,22 +225,34 @@ export default function Page() {
     { name: 'Oferta Indywidualna', list: soloServices },
     { name: 'Oferta dla par/dwóch osób', list: duoServices },
     { name: 'Psychodietetyka', list: psychoServices },
-    { name: 'Pakiety $', list: pakietServices },
+    { name: 'Pakiety', list: pakietServices },
   ];
 
   const items = servicesData.map((item) => (
     <Accordion.Item key={item.name} value={item.name} className={classes.imageTitle}>
-      <Accordion.Control className={classes.buttonCollapse}>{item.name}</Accordion.Control>
+      <Accordion.Control className={classes.buttonCollapse}>
+        {item.name === 'Pakiety' ? (
+          <>
+            <div style={{ display: 'flex' }}>
+              {item.name}
+              <Image h={50} fit="contain" src={'images/procent.png'} />
+            </div>
+          </>
+        ) : (
+          item.name
+        )}
+      </Accordion.Control>
       <Accordion.Panel>{item.list}</Accordion.Panel>
     </Accordion.Item>
   ));
   return (
     <>
       <Container size={'xl'}>
-        <Space h="xl" />
+        <Space h="lg" />
         <Accordion
-          // defaultValue="Oferta Indywidualna" 
-          variant="separated">
+          // defaultValue="Oferta Indywidualna"
+          variant="separated"
+        >
           {items}
         </Accordion>
       </Container>
