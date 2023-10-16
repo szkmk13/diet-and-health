@@ -74,7 +74,7 @@ export default function StickyNavbar() {
             className={classes.inner}
           />
         </Link>
-        <Group gap={50} visibleFrom="sm">
+        <Group gap={20} visibleFrom="sm" >
           {items}
           {znanyLekarzLink}
         </Group>
