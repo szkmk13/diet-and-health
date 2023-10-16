@@ -113,7 +113,7 @@ export default function Page() {
       title: 'Konsultacja psychodietetyczna (kolejna wizyta)',
       price: '160 zł',
       description:
-        'Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie.Na każdej konsultacji wykonywana jest analiza składu i masy ciała',
+        'Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy ciała.',
       image: 'images/service1.jpg',
     },
   ];

@@ -66,7 +66,7 @@ export default function StickyNavbar() {
   );
   return (
     <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
-      <Container size="md" className={classes.inner}>
+      <Container size="lg" className={classes.inner}>
         <Link href={'/'} className={classes.inner}>
           <Image
             src="images/Diet_and_Health_logo_bez_tla.png"
