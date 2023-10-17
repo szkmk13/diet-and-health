@@ -111,13 +111,27 @@
       }
     }
     
-    .input {
+    .input,
+    .mediuminput,
+    .biginput {
       background-color: var(--mantine-color-white);
       border-color: var(--mantine-color-gray-4);
       color: var(--mantine-color-black);
       text-wrap: wrap;
       &::placeholder {
         color: var(--mantine-color-gray-5);
+      }
+    }
+    .mediuminput{
+      @media (max-width: $mantine-breakpoint-sm) {
+        height: 125px;
+      }
+    }
+    .biginput{
+      height: 100px;
+      white-space: pre-wrap;
+      @media (max-width: $mantine-breakpoint-sm) {
+        height: 300px;
       }
     }
     

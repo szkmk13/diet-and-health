@@ -14,13 +14,6 @@ export default function ContactForm() {
   const forma: any = useRef();
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    // setLoading(true)
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 4000)
-
-    // const service:boolean = !!(process.env.SERVICE_ID && process.env.TEMPLATE_ID &&process.env.MAIL_JS_KEY)
-
     setLoading(true);
     process.env.NEXT_PUBLIC_SERVICE_ID &&
       process.env.NEXT_PUBLIC_TEMPLATE_ID &&
@@ -57,6 +50,8 @@ export default function ContactForm() {
   };
   return (
     <>
+      {/* <Script src="https://www.google.com/recaptcha/api.js" async defer/> */}
+
       <Script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" />
       <div className={classes.form}>
         <Center>
@@ -80,11 +75,12 @@ export default function ContactForm() {
           <Textarea
             required
             label="Wiadomość"
-            placeholder="Dzień dobry mam chorom curke kiedy pani mi zrobi diete za darmo"
+            placeholder="Dzień dobry, czy na konsultację potrzebne są wyniki badań?"
             minRows={5}
             name="message"
             classNames={{ input: classes.input, label: classes.inputLabel }}
           />
+          {/* <div className="g-recaptcha" data-sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY} data-size="compact"></div> */}
 
           <Group justify="flex-end" mt="md">
             <Button className={classes.control} type="submit" disabled={loading}>

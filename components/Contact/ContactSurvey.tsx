@@ -123,7 +123,7 @@ export default function ContactSurvey() {
                 tętnicze, zespół jelita drażliwego, anemia)"
                         minRows={5}
                         name="problems"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
+                        classNames={{ input: classes.mediuminput, label: classes.inputLabel }}
                     />
                     <TextInput
                         label="Leki"
@@ -149,7 +149,7 @@ export default function ContactSurvey() {
         biegunki, zaparcia, zgaga, nudności)"
                         required
                         name="ailments"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
+                        classNames={{ input: classes.mediuminput, label: classes.inputLabel }}
                     /><TextInput
                         label="Płyny"
                         placeholder="Jakie płyny Pani/ Pan wypija w ciągu dnia i w jakich ilościach?"
@@ -159,13 +159,18 @@ export default function ContactSurvey() {
                     /><Textarea
                         required
                         label="Obecna dieta"
-                        placeholder="Proszę opisać jak najdokładniej jak obecnie wygląda Pani/ Pana dieta."
+                        placeholder="Śniadanie 8:00 2 jajka smażone na łyżce oleju rzepakowego + 1 pomidor + 1 kromka chleba
+                        pszennego
+                        lub serek wiejski (1 opakowanie) z pomidorem i szczypiorkiem + 2 kromki chleba pszennego +
+                        do picia czarna kawa
+                        Śniadanie II 12:00
+                        jabłko + garść orzechów włoskich + 2 kostki gorzkiej czekolady
+                        lub bułka grahamka posmarowana masłem + 2 plastry sera żółtego + pół papryki
+                        Obiad 15:00 pierś pieczona + 3 gotowane ziemniaki + tarta marchewka itd."
                         minRows={10}
-
                         name="diet"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
+                        classNames={{ input: classes.biginput, label: classes.inputLabel }}
                     />
-
                     <Group justify="flex-end" mt="md">
                         <Button className={classes.control} type="submit" disabled={loading}>
                             {loading ? (
