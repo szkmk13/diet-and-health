@@ -15,7 +15,7 @@ export default function Page() {
       price: '170 zł',
       description:
         'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
-      image: 'images/service1.jpg',
+      image: 'images/service10.jpg',
     },
     {
       title: 'Konsultacja dietetyczna kolejna wizyta (do 2 miesięcy)',
@@ -28,31 +28,31 @@ export default function Page() {
       title: 'Jadłospis 14 dniowy',
       price: '220 zł',
       description: '',
-      image: 'images/service3.jpg',
+      image: 'images/service4.jpg',
     },
     {
       title: 'Jadłospis 7 dniowy',
       price: '150 zł',
       description: '',
-      image: 'images/service3.jpg',
+      image: 'images/service5.jpg',
     },
     {
       title: 'Dieta eliminacyjna Jadłospis 7 dniowy',
       price: '180 zł',
       description: '',
-      image: 'images/service3.jpg',
+      image: 'images/service6.jpg',
     },
     {
       title: 'Dieta eliminacyjna Jadłospis 14 dniowy',
       price: '250 zł',
       description: '(np. faza eliminacyjna diety low FODMAP przy SIBO)',
-      image: 'images/service3.jpg',
+      image: 'images/service7.jpg',
     },
     {
       title: 'Analiza składu ciała',
       price: '80 zł',
       description: '',
-      image: 'images/service3.jpg',
+      image: 'images/service8.jpg',
     },
     // {
     //   title: 'Pierwsza konsultacja dla dwóch osób',
@@ -80,25 +80,25 @@ export default function Page() {
       price: '250 zł',
       description:
         'WAŻNE\n[Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków\nustalone na podstawie zapotrzebowania kalorycznego pacjentów.]',
-      image: 'images/service1.jpg',
+      image: 'images/service9.jpg',
     },
     {
       title: 'Jadłospis 7 dniowy dla dwóch osób',
       price: '230 zł',
       description: '',
-      image: 'images/service1.jpg',
+      image: 'images/service10.jpg',
     },
     {
       title: 'Jadłospis 14 dniowy dla dwóch osób',
       price: '320 zł',
       description: '',
-      image: 'images/service2.jpg',
+      image: 'images/service11.jpg',
     },
     {
       title: 'Wizyta kontrolna dla dwóch osób/pary',
       price: '170 zł',
       description: '',
-      image: 'images/service3.jpg',
+      image: 'images/service7.jpg',
     },
   ];
   const psychoServicesData = [
@@ -107,7 +107,7 @@ export default function Page() {
       price: '230 zł',
       description:
         'Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy. Wykonuję analizę składu i masy ciała, rozmawiamy o zdrowiu, o tym jak wygląda Twój plan dnia, analizujemy dotychczasowe nawyki żywieniowe, szukamy przyczyny problemów z jedzeniem. Wspólnie ustalamy plan działania.\n\nZapraszam jeśli:\n- chcesz zmienić swoje nawyki żywieniowe\n- mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z nadmierną masą ciała\n- masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego efektu\n- masz problem z utratą kontroli nad jedzeniem\n\nIstnieje możliwość dokupienia planu żywieniowego, który może pomóc Ci w zmianie nawyków żywieniowych. Nauczy Cię jakie porcje są odpowiednie dla Ciebie, jak komponować posiłki aby dłużej odczuwać sytość i nie mieć spadków energii. Zawiera indywidualne zalecenia i wskazówki oraz informacje o zamiennikach poszczególnych produktów.\nPlan przygotowuję na podstawie wywiadu zdrowotno-żywieniowego. Nauczę Cię jak go modyfikować. Pokażę Ci, że nie ma produktów „zakazanych”, a najbardziej skuteczna dieta to ta, którą jesteśmy w stanie utrzymać.',
-      image: 'images/service1.jpg',
+      image: 'images/service4.jpg',
     },
     {
       title: 'Konsultacja psychodietetyczna (kolejna wizyta)',
@@ -139,7 +139,7 @@ export default function Page() {
 
       description:
         'W cenie: Pierwsza wizyta, dwie wizyty kontrolne, jadłospis 14dniowy, analiza składu ciała przy każdej z wizyt. \n Uwaga! \n- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta ta przepada (Dotyczy wizyt niepotwierdzonych przez pacjenta i/lub wizyt nieodwołanych we wcześniejszym terminie).\n- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od pierwszej konsultacji.',
-      image: 'images/service1.jpg',
+      image: 'images/service6.jpg',
     },
     {
       title: (
@@ -162,7 +162,7 @@ export default function Page() {
       ),
       description:
         'W cenie:\nDwie kontrolne wizyty+ jadłospis 14 dniowy + analiza składu ciała.\nW cenie pakietu nie ma pierwszej konsultacji',
-      image: 'images/service1.jpg',
+      image: 'images/service5.jpg',
     },
   ];
   const soloServices = soloServicesData.map((service) => (
