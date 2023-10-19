@@ -78,20 +78,23 @@ export default function Page() {
     {
       title: 'Pierwsza konsultacja dla dwóch osób',
       price: '250 zł',
-      description:
-        'WAŻNE\n[Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków\nustalone na podstawie zapotrzebowania kalorycznego pacjentów.]',
+      description: '',
       image: 'images/service9.jpg',
     },
     {
       title: 'Jadłospis 7 dniowy dla dwóch osób',
       price: '230 zł',
-      description: '',
+      description:
+        'WAŻNE\nPotrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków\nustalone na podstawie zapotrzebowania kalorycznego pacjentów.',
+
       image: 'images/service10.jpg',
     },
     {
       title: 'Jadłospis 14 dniowy dla dwóch osób',
       price: '320 zł',
-      description: '',
+      description:
+        'WAŻNE\nPotrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków\nustalone na podstawie zapotrzebowania kalorycznego pacjentów.',
+
       image: 'images/service11.jpg',
     },
     {
