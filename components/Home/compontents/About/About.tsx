@@ -40,13 +40,13 @@ export default function About() {
             Komponując jadłospis wykorzystuje sezonowe warzywa i owoce oraz produkty, które są
             dostępne w każdym większym sklepie. Pomagam zbudować trwałe nawyki żywieniowe.{' '}
             <Text span inherit fw={700}>
-              Zależy mi przede wszystkim na znalezieniu przyczyny problemów z jedzeniem.
+              Zależy mi przede wszystkim na znalezieniu przyczyny problemów z jedzeniem.{' '}
             </Text>
             Zaproponuję Ci rozwiązania, które pomogą Ci odzyskać równowagę i kontrolę. Zawsze staram
             się znaleźć najlepsze metody dopasowane do osób, którym pomagam. Nie jestem zwolenniczką
             systemu zero jedynkowego -{' '}
             <Text span inherit fw={700}>
-              najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.
+              najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.{' '}
             </Text>
             Najbardziej skuteczna dieta to ta,{' '}
             <Text span inherit td="underline">

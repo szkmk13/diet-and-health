@@ -1,5 +1,5 @@
 'use client';
-import { Text, Title, Image, Container, Accordion, Space } from '@mantine/core';
+import { Text, Title, Image, Container, Accordion, Space, Divider } from '@mantine/core';
 import classes from './page.module.css';
 export default function Page() {
   const test = <strong>test</strong>;
@@ -77,31 +77,34 @@ export default function Page() {
     },
   ];
   const soloServices = soloServicesData.map((service) => (
-    <div key={service.title} className={classes.wrapper}>
-      <div className={classes.body}>
-        <Title className={classes.title}>
-          {service.title} {service.price}
-        </Title>
-        <Text fz="md" c="dimmed" className={classes.description}>
-          {service.description}
-          {service.description2 ? (
-            <Text inherit span fs="italic" c="dimmed">
-              {service.description2}
+    <>
+      <div key={service.title} className={classes.wrapper}>
+        <div className={classes.body}>
+          <Title className={classes.title}>
+            {service.title} {service.price}
+          </Title>
+          <Text fz="md" c="dimmed" className={classes.description}>
+            {service.description}
+            {service.description2 ? (
+              <Text inherit span fs="italic" c="dimmed">
+                {service.description2}
+              </Text>
+            ) : null}
+          </Text>
+          {service.disclaimer ? (
+            <Text inherit span fs="italic" c="dimmed" fw={500}>
+              {service.disclaimer}
             </Text>
           ) : null}
-        </Text>
-
-        {service.disclaimer ? (
-          <Text inherit span fs="italic" c="dimmed" fw={500}>
-            {service.disclaimer}
-          </Text>
-        ) : null}
+        </div>
+        <Image src={service.image} className={classes.image} visibleFrom="sm" />
       </div>
-      <Image src={service.image} className={classes.image} visibleFrom="sm" />
-    </div>
+      <Divider my="sm" className={classes.divider} />
+    </>
   ));
   const duoServices = duoServicesData.map((service) => (
-    <div key={service.title} className={classes.wrapper}>
+    <>
+        <div key={service.title} className={classes.wrapper}>
       <div className={classes.body}>
         <Title className={classes.title}>
           {service.title} {service.price}
@@ -112,6 +115,9 @@ export default function Page() {
       </div>
       <Image src={service.image} className={classes.image} visibleFrom="sm" />
     </div>
+          <Divider my="sm" className={classes.divider} />
+    </>
+
   ));
   const psychoServices = (
     <>
@@ -152,6 +158,7 @@ export default function Page() {
         </div>
         <Image src="images/service10.jpg" className={classes.image} visibleFrom="sm" />
       </div>
+      <Divider my="sm" className={classes.divider} />
       <div key="psychoservice2" className={classes.wrapper}>
         <div className={classes.body}>
           <Title className={classes.title}>
@@ -204,6 +211,7 @@ export default function Page() {
         </div>
         <Image src="images/service4.jpg" className={classes.image} visibleFrom="sm" />
       </div>
+      <Divider my="sm" className={classes.divider} />
       <div key="pakiet2" className={classes.wrapper}>
         <div className={classes.body}>
           <Title className={classes.title}>
@@ -242,7 +250,7 @@ export default function Page() {
 
   const servicesData = [
     { name: 'Oferta Indywidualna', list: soloServices },
-    { name: 'Oferta dla par/dwóch osób', list: duoServices },
+    { name: 'Oferta dla dwóch osób', list: duoServices },
     { name: 'Psychodietetyka', list: psychoServices },
     { name: 'Pakiety', list: pakietServices },
   ];
@@ -252,11 +260,15 @@ export default function Page() {
       <Accordion.Control className={classes.buttonCollapse}>
         {item.name === 'Pakiety' ? (
           <div style={{ display: 'flex' }}>
-            {item.name}
+            <Text className={classes.title2} fw={700}>
+              {item.name}
+            </Text>
             <Image h={50} fit="contain" src={'images/procent.png'} />
           </div>
         ) : (
-          item.name
+          <Text className={classes.title2} fw={700}>
+            {item.name}
+          </Text>
         )}
       </Accordion.Control>
       <Accordion.Panel>{item.list}</Accordion.Panel>
