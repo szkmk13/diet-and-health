@@ -15,19 +15,8 @@ const links = [
 
 export default function StickyNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
-  const [isSticky, setIsSticky] = useState(false);
   const pathname = usePathname();
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 0);
-    };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
   const items = links.map((link) => {
     return link.active ? (
       <Link
@@ -65,7 +54,7 @@ export default function StickyNavbar() {
     </Link>
   );
   return (
-    <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
+    <header className={`${classes.header}`}>
       <Container size="lg" className={classes.inner}>
         <Link href={'/'} className={classes.inner}>
           <Image

@@ -1,5 +1,9 @@
 .footer {
-    height: 10vh;
+    height: '12vh';
+    padding: 10px;
+    /* position: absolute; */
+    /* bottom: 0; */
+    width: 100%;
     /* margin-top: rem(120px); */
     background-color: rgb(188, 183, 177);
     /* border-top: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5)); */
@@ -11,15 +15,19 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--mantine-spacing-md) var(--mantine-spacing-md);
+    /* height: 200px; */
+    /* padding: 10px; */
   
     @media (max-width: $mantine-breakpoint-sm) {
       flex-direction: column;
+      padding: 0px;
+      /* padding-top: 5px; */
     }
   }
   .group{
     margin-left: rem(140);
     @media (max-width: $mantine-breakpoint-sm) {
-      margin-left:0
+      margin-left:0;
     }
   }
   .links {

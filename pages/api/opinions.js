@@ -23,7 +23,15 @@ export default async function handler(req, res) {
         opinion,
       });
     });
-    res.status(200).json({ comments: opinionsListValues.slice(0, 6) }); // Return the selected element
+    // Here add new fitlers for bad opinions 
+    function filterBadOpinions(dict) {
+      
+      return dict.name != "Nie Polecam";
+
+    };
+    const filtered = opinionsListValues.filter(filterBadOpinions).slice(0, 6);
+
+    res.status(200).json({ comments: filtered });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });

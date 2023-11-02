@@ -28,7 +28,7 @@ export default function Page() {
         <Box className={classes.box}>
           <div className={classes.wrapper}>
             <Grid gutter={30}>
-              <Grid.Col span={{ base: 12, sm: 6 }}>
+              <Grid.Col span={{ base: 12, sm: 12 }}>
                 <div>
                   <Center>
                     <Link
@@ -54,7 +54,7 @@ export default function Page() {
                 </div>
               </Grid.Col>
 
-              <Grid.Col span={{ base: 12, sm: 6 }}>
+              <Grid.Col span={{ base: 12, sm: 12 }}>
                 <ContactForm />
               </Grid.Col>
 

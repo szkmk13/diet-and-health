@@ -1,28 +1,20 @@
 'use client';
 import {
-  SimpleGrid,
   Card,
-  Image,
   Text,
   Container,
-  AspectRatio,
-  ThemeIcon,
-  Group,
   Center,
   Grid,
   rem,
-  Popover,
   HoverCard,
-} from '@mantine/core';
+  } from '@mantine/core';
 import classes from './Patients.module.css';
-import { useDisclosure, useHover } from '@mantine/hooks';
-import { useState } from 'react';
-import SectionHeader from '../SectionHeader';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { IconApple, IconBabyCarriage, IconBarbell, IconCookie, IconFriends, IconLeaf, IconPaperBag, IconScaleOutline, IconPill } from '@tabler/icons-react';
 
 export default function Patients() {
   const [popoveropened, { close, open }] = useDisclosure(false);
-
+  const matches = useMediaQuery('(max-width: mantine-breakpoint-xs)')
   const cardsData = [
     {
       title: 'Osobom z nadwagą oraz niedowagą',
@@ -34,11 +26,6 @@ export default function Patients() {
       description: '',
       image: <IconBabyCarriage color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
-    // {
-    //   title: 'Dzieciom',
-    //   description: '',
-    //   image: <IconFriends color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
-    // },
     {
       title: 'Sportowcom',
       description: '',
@@ -62,13 +49,13 @@ export default function Patients() {
     {
       title: "Osobom z różnymi\ndolegliwościami *",
       description:
-        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak:\n zaparcia, biegunki, wzdęcia, zgaga, nudności,\n wymioty, refluksem żołądkowo-przełykowym.',
+        'Osobom z dolegliwościami ze strony układu pokarmowego takimi jak:\n zaparcia, biegunki, wzdęcia, zgaga, nudności, wymioty, refluksem żołądkowo-przełykowym.',
       // description: '',
       image: <IconPaperBag color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     }, {
       title: "Osobom z różnymi jednostkami chorobowymi *",
       description:
-        'Osobom z cukrzycą, insulinoopornością, celiakią, SIBO, \nzespołem jelita drażliwego, niedoczynnością tarczycy,\n nadczynnością tarczycy, Hashimoto, anemią,\n wrzodziejącym zapaleniem jelita grubego, chorobą Leśniowskiego-Crohna,\n dną moczanowa i innymi chorobami/ dolegliwościami.',
+        'Osobom z cukrzycą, insulinoopornością, celiakią, SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy, Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/ dolegliwościami.',
       // description: '',
       image: <IconPill color="#4261AA" stroke={0.5} style={{ width: rem(80), height: rem(80) }} />,
     },
@@ -92,6 +79,7 @@ export default function Patients() {
                   withArrow
                   shadow="md"
                   opened={popoveropened}
+                  width={matches?270:320}
                 >
                   <Card className={classes.centeredCard} radius="xs" h={280} onMouseEnter={open}
                     onMouseLeave={close}>
