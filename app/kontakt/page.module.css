@@ -11,7 +11,8 @@
     /* min-height: rem(400px); */
     border-radius: var(--mantine-radius-md);
     padding: calc(var(--mantine-spacing-xl) * 2.5);
-  
+    padding-top: 50px;
+    
     @media (max-width: $mantine-breakpoint-sm) {
       padding: 20px;
     }

@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 const links = [
   { link: '/', label: 'Strona Główna', active: true },
   { link: '/uslugi', label: 'Usługi', active: true },
+  { link: '/przedwizyta', label: 'Przed wizytą', active: true },
   { link: '/kontakt', label: 'Kontakt', active: true },
   { link: '/treningi', label: 'Treningi', active: false },
 ];

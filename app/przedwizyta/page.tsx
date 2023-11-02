@@ -27,8 +27,8 @@ export default function Page() {
       <BackgroundImage src="images/6.jpg" >
         <Box className={classes.box}>
           <div className={classes.wrapper}>
-            <Grid gutter={20}>
-              <Grid.Col span={{ base: 12, sm: 12 }}>
+            <Grid gutter={30}>
+              {/* <Grid.Col span={{ base: 12, sm: 6 }}>
                 <div>
                   <Center>
                     <Link
@@ -52,15 +52,19 @@ export default function Page() {
                     </Link>
                   </Center>
                 </div>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, sm: 12 }}>
-                <ContactForm />
-              </Grid.Col>
-
-              {/* <Grid.Col span={{ base: 12, sm: 12 }}>
-                <ContactSurvey />
               </Grid.Col> */}
+
+              <Grid.Col>
+                <div className={classes.textbox}> 
+
+                <Text>Jak przygotować się do wizyty</Text>
+                <Text>1. UMYJ STOPY</Text>  
+                </div>
+             </Grid.Col>
+
+              <Grid.Col>
+                <ContactSurvey />
+              </Grid.Col>
             </Grid>
           </div>
         </Box>
