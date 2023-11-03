@@ -57,8 +57,13 @@ export default function Page() {
               <Grid.Col>
                 <div className={classes.textbox}> 
 
-                <Text>Jak przygotować się do wizyty</Text>
-                <Text>1. UMYJ STOPY</Text>  
+                <Text fw={600} size='xl'>Jak przygotować się do wizyty:</Text>
+                <Text>1. Na pierwszą konsultację zarezerwuj sobie około 60 minut. </Text>  
+                <Text>2. Zabierz ze sobą ostatnio wykonywane wyniki badań (jeśli takie posiadasz).</Text>  
+                <Text>3. Na konsultacji wykonuję analizę składu ciała. Bezpośrednio przed badaniem składu ciała nie zaleca się wykonywać intensywnego treningu, korzystać z sauny. Dobrze wykonać badanie 2-3 godziny po posiłku i po wcześniejszym opróżnieniu pęcherza.</Text>
+                <Text>4. Na analizator składu ciała wchodzi się gołymi stopami, dlatego wygodniej ubrać skarpety zamiast rajstop.</Text>  
+                <Text>5. Przez 3 dni na bieżąco opisuj spożywane posiłki. Uwzględnij godzinę, miejsce spożycia posiłku, wielkość porcji. Możesz dodatkowo opisać swoje samopoczucie po posiłku (np. senność, ból brzucha, wzdęcia, biegunka).</Text>  
+                <Text>6. Zachęcam do wypełnienia wstępnej ankiety, która znajduje się poniżej 😊</Text>  
                 </div>
              </Grid.Col>
 

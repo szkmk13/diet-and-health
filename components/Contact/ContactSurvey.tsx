@@ -21,11 +21,6 @@ export default function ContactSurvey() {
     const forma: any = useRef();
     const handleSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        // setLoading(true)
-        // setTimeout(() => {
-        //   setLoading(false);
-        // }, 4000)
-        // console.log(forma.current)
         const formElement = forma.current;
         const monthNames = [
             'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
@@ -35,10 +30,7 @@ export default function ContactSurvey() {
         const month = monthNames[selectedDate.getMonth()];
         const year = selectedDate.getFullYear();
         const formattedDate2 = `${day.toString().padStart(2, '0')} ${month} ${year}`;
-
-        // // Modify the input value
         formElement.elements['date'].value = formattedDate2; 
-        // console.log(formElement.elements['date'].value)
 
         setLoading(true);
         process.env.NEXT_PUBLIC_SERVICE_ID &&
