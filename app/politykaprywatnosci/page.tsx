@@ -1,6 +1,5 @@
 'use client';
-import { Text, Title, Image, Container, Accordion, Space } from '@mantine/core';
-import classes from './page.module.css';
+import { Text, Container, Space } from '@mantine/core';
 export default function Page() {
   return (
     <>

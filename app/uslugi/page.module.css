@@ -1,8 +1,4 @@
-.box {
-  @media (max-width: $mantine-breakpoint-sm) {
-    padding: 0 0 0 0;
-  }
-}
+
 .buttonCollapse{
   padding: 10px 0px 10px 0px;
   height: fit-content;

@@ -1,5 +1,5 @@
 'use client';
-import { Card, Text, Container, Center, Grid, Avatar, Flex } from '@mantine/core';
+import { Card, Text, Container, Center, Grid, Avatar, Flex, Loader } from '@mantine/core';
 import classes from './Opinions.module.css';
 import { Key } from 'react';
 import { useQuery } from 'react-query';
@@ -65,7 +65,9 @@ export default function Opinions() {
       <>
         {OpinionsTitle}
         <div className={classes.bgimage}>
-          <Container fluid py={20} my={20}></Container>
+          <Container fluid py={20} my={20}>
+          <Loader size={150} color="yellow" type="dots" />
+          </Container>
         </div>
       </>
     );
@@ -135,7 +137,7 @@ export default function Opinions() {
             {data.comments.map(
               (comment: { name: string; opinion: string; date: string }, index: Key) => (
                 <Grid.Col span={{ lg: 4, sm: 6 }} key={index}>
-                  <Card radius="xs" h={320}>
+                  <Card radius="xs" h={320} >
                     <Flex
                       mih={50}
                       gap="lg"

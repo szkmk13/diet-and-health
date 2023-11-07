@@ -1,5 +1,4 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { Container, Group, Burger, Image, Text, Drawer, HoverCard } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';

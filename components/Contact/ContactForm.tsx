@@ -50,8 +50,6 @@ export default function ContactForm() {
   };
   return (
     <>
-      {/* <Script src="https://www.google.com/recaptcha/api.js" async defer/> */}
-
       <Script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" />
       <div className={classes.form}>
         <Center>
@@ -80,14 +78,11 @@ export default function ContactForm() {
             name="message"
             classNames={{ input: classes.input, label: classes.inputLabel }}
           />
-          {/* <div className="g-recaptcha" data-sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY} data-size="compact"></div> */}
-
           <Group justify="flex-end" mt="md">
             <Button className={classes.control} type="submit" disabled={loading}>
               {loading ? (
                 <Loader className={classes.loader} size="sm" />
               ) : (
-                // <Loader className={classes.loader} size="sm" />
                 'Wyślij'
               )}
             </Button>

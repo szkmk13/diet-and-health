@@ -1,34 +1,17 @@
 'use client';
-import {
-  Text,
-  Title,
-  SimpleGrid,
-  TextInput,
-  Textarea,
-  Button,
-  Group,
-  Box,
-  Image,
-  BackgroundImage,
-  Center,
-  Paper,
-  Grid,
-} from '@mantine/core';
+import { Text, Title, Box, BackgroundImage, Center, Grid } from '@mantine/core';
 import classes from './page.module.css';
-import { useRef, useState } from 'react';
 import Link from 'next/link';
 import ContactForm from '@/components/Contact/ContactForm';
-import Script from 'next/script';
-import ContactSurvey from '@/components/Contact/ContactSurvey';
 
 export default function Page() {
   return (
     <>
-      <BackgroundImage src="images/6.jpg" >
+      <BackgroundImage src="images/6.jpg">
         <Box className={classes.box}>
           <div className={classes.wrapper}>
             <Grid gutter={20}>
-              <Grid.Col span={{ base: 12, sm: 12 }}>
+              <Grid.Col>
                 <div>
                   <Center>
                     <Link
@@ -54,13 +37,9 @@ export default function Page() {
                 </div>
               </Grid.Col>
 
-              <Grid.Col span={{ base: 12, sm: 12 }}>
+              <Grid.Col>
                 <ContactForm />
               </Grid.Col>
-
-              {/* <Grid.Col span={{ base: 12, sm: 12 }}>
-                <ContactSurvey />
-              </Grid.Col> */}
             </Grid>
           </div>
         </Box>

@@ -74,7 +74,6 @@
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "storybook": "^7.4.3",
     "storybook-dark-mode": "^3.0.0",
     "tabler": "^1.0.0-alpha.8",
     "ts-jest": "^29.1.0",

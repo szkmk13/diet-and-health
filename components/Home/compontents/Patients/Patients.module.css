@@ -1,41 +1,3 @@
-/* .wrapper {
-  background-color: #f0f9fa;
-} */
-.group {
-  min-height: auto;
-  padding: 30px;
-  @media (max-width: $mantine-breakpoint-sm) {
-    padding: 10px;
-    /* min-height: 100px; */
-  }
-}
-
-.card,
-.longcard,
-.longestCard {
-  transition: transform 150ms ease, box-shadow 150ms ease;
-  background-color: rgb(231, 228, 225);
-  &:hover {
-    transform: scale(1.005);
-    box-shadow: var(--mantine-shadow-md);
-    background-color: rgb(183, 226, 237);
-  }
-
-
-}
-.hoverwidth{
-  
-}
-.card {
-  width: 200px;
-  height: 200px;
-  @media (max-width: $mantine-breakpoint-sm) {
-    height: 150px;
-    width: 150px;
-
-  }
-}
-
 .centeredCard {
   display: flex;
   flex-direction: column;
@@ -45,42 +7,23 @@
   padding: 20px;
 }
 
-.image {
-  height: 125px;
-  @media (max-width: $mantine-breakpoint-sm) {
-    height: 75px;
-  }
-}
 .title {
   text-align: center;
   font-family: 'Greycliff CF', var(--mantine-font-family);
   white-space: pre-wrap;
   /* font-weight: bold; */
 }
-.description{
-  white-space: pre-wrap;
 
-}
-.title2{
+.title2 {
   font-size: rem(70);
-  font-family: "Allura";
+  font-family: 'Allura';
   color: rgb(132, 132, 132);
   @media (max-width: $mantine-breakpoint-sm) {
     font-size: rem(50);
     text-align: center; /* Center the text */
-
   }
 }
 
-
-.longcard {
-  width: 500px;
-}
-
-.longestCard {
-  width: 800px;
-  
-}
-.gridBackground{
+.gridBackground {
   background-color: #5cbdc03a;
 }

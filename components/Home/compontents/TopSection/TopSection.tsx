@@ -1,7 +1,7 @@
 import { Center, Grid, Text, Image, Paper, Flex, Loader } from '@mantine/core';
 import Link from 'next/link';
 
-import classes from './SectionHeader.module.css';
+import classes from './TopSection.module.css';
 import React from 'react';
 import { IconStarFilled, IconDiscountCheckFilled, IconVideo } from '@tabler/icons-react';
 

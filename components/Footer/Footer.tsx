@@ -8,7 +8,7 @@ export function FooterCentered() {
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>
-      <Link href={'/'}></Link>
+        <Link href={'/'}></Link>
         <Group className={classes.group}>
           <ActionIcon
             size="xl"
@@ -40,9 +40,10 @@ export function FooterCentered() {
             <IconBrandInstagram style={{ width: rem(50), height: rem(50) }} stroke={2} />
           </ActionIcon>
         </Group>
-        <Link href={'/politykaprywatnosci'} className={classes.politics}>Polityka Prywatności</Link>
+        <Link href={'/politykaprywatnosci'} className={classes.politics}>
+          Polityka Prywatności
+        </Link>
       </div>{' '}
-      
     </div>
   );
 }

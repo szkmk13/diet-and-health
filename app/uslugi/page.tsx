@@ -2,7 +2,6 @@
 import { Text, Title, Image, Container, Accordion, Space, Divider } from '@mantine/core';
 import classes from './page.module.css';
 export default function Page() {
-  const test = <strong>test</strong>;
   const soloServicesData = [
     {
       title: 'Konsultacja dietetyczna (pierwsza wizyta) -',
