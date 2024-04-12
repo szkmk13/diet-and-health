@@ -27,3 +27,15 @@
 .gridBackground {
   background-color: #5cbdc03a;
 }
+.kontakt {
+  line-height: 1;
+  padding: rem(8px) rem(12px);
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  background-color: #5cbdc03a;
+  font-size: var(--mantine-font-size-xl);
+  display: flex;
+  font-weight: 900;
+  justify-content: center;
+}

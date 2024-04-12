@@ -1,5 +1,5 @@
 'use client';
-import { Card, Text, Container, Center, Grid, rem, HoverCard } from '@mantine/core';
+import { Card, Text, Container, Center, Grid, rem, HoverCard, Button } from '@mantine/core';
 import classes from './Patients.module.css';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import {
@@ -12,10 +12,12 @@ import {
   IconScaleOutline,
   IconPill,
 } from '@tabler/icons-react';
+import Link from 'next/link';
 
 export default function Patients() {
   const [popoveropened, { close, open }] = useDisclosure(false);
   const matches = useMediaQuery('(max-width: mantine-breakpoint-xs)');
+  const mobileTreshhold = window.innerWidth < 500;
   const cardsData = [
     {
       title: 'Osobom z nadwagą oraz niedowagą',
@@ -137,6 +139,13 @@ export default function Patients() {
           )}
         </Grid>
       </Container>
+      {mobileTreshhold ? (
+        <Link key="kontakt" href="/kontakt" className={classes.kontakt}>
+          Kontakt
+        </Link>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

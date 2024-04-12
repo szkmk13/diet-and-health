@@ -13,7 +13,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 dayjs.locale('pl'); // Set the locale to Polish
 export const metadata = {
-  title: 'Diet',
+  title: 'Diet and health',
   description: 'Dietetyka',
 };
 
