@@ -17,7 +17,6 @@ import Link from 'next/link';
 export default function Patients() {
   const [popoveropened, { close, open }] = useDisclosure(false);
   const matches = useMediaQuery('(max-width: mantine-breakpoint-xs)');
-  const mobileTreshhold = window.innerWidth < 500;
   const cardsData = [
     {
       title: 'Osobom z nadwagą oraz niedowagą',
@@ -139,13 +138,9 @@ export default function Patients() {
           )}
         </Grid>
       </Container>
-      {mobileTreshhold ? (
-        <Link key="kontakt" href="/kontakt" className={classes.kontakt}>
-          Kontakt
-        </Link>
-      ) : (
-        <></>
-      )}
+      <Button component={Link} href="/kontakt" className={classes.kontakt}>
+        Kontakt
+      </Button>
     </>
   );
 }

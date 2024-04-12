@@ -38,4 +38,8 @@
   display: flex;
   font-weight: 900;
   justify-content: center;
+  display:none;
+  @media (max-width: $mantine-breakpoint-sm) {
+    display: block;
+  }
 }
