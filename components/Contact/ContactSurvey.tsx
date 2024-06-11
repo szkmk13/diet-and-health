@@ -35,7 +35,7 @@ export default function ContactSurvey() {
       'Listopad',
       'Grudzień',
     ];
-    const day = selectedDate.getDate();
+    const day = selectedDate.getDate(); 
     const month = monthNames[selectedDate.getMonth()];
     const year = selectedDate.getFullYear();
     const formattedDate2 = `${day.toString().padStart(2, '0')} ${month} ${year}`;
@@ -150,8 +150,7 @@ export default function ContactSurvey() {
           />
           <Textarea
             label="Dolegliwości"
-            placeholder="Czy ma Pani/ Pan dolegliwości ze strony układu pokarmowego? (np. bóle brzucha, wzdęcia,
-        biegunki, zaparcia, zgaga, nudności)"
+            placeholder="Czy ma Pani/ Pan dolegliwości ze strony układu pokarmowego? (np. bóle brzucha, wzdęcia, biegunki, zaparcia, zgaga, nudności)"
             required
             name="ailments"
             classNames={{ input: classes.mediuminput, label: classes.inputLabel }}
@@ -166,17 +165,16 @@ export default function ContactSurvey() {
           <Textarea
             required
             label="Obecna dieta"
-            placeholder="Śniadanie 8:00 2 jajka smażone na łyżce oleju rzepakowego + 1 pomidor + 1 kromka chleba
-                        pszennego
-                        lub serek wiejski (1 opakowanie) z pomidorem i szczypiorkiem + 2 kromki chleba pszennego +
-                        do picia czarna kawa
-                        Śniadanie II 12:00
-                        jabłko + garść orzechów włoskich + 2 kostki gorzkiej czekolady
-                        lub bułka grahamka posmarowana masłem + 2 plastry sera żółtego + pół papryki
-                        Obiad 15:00 pierś pieczona + 3 gotowane ziemniaki + tarta marchewka itd."
-            minRows={10}
+            placeholder="Opisz jak do tej pory wyglądały Twoje posiłki. Wypisz kilka przykładowych śniadań, drugich śniadań, obiadów itd."
             name="diet"
-            classNames={{ input: classes.biginput, label: classes.inputLabel }}
+            classNames={{ input: classes.mediuminput, label: classes.inputLabel }}
+          />
+          <Textarea
+            required
+            label="Produkty lub dania których nie lubisz"
+            placeholder="Jarmuż ..."
+            name="not_liked"
+            classNames={{ input: classes.mediuminput, label: classes.inputLabel }}
           />
           <Group justify="flex-end" mt="md">
             <Button className={classes.control} type="submit" disabled={loading}>
