@@ -40,7 +40,8 @@ export default function TopSection() {
                   <IconStarFilled key={index} size={14} className={classes.moniacard} />
                 ))}
                 <Text span inherit ml={4}>
-                  {isLoading ? <Loader size={14} /> : error ? 87 : data.opinionsCount} Opinii
+                  {isLoading ? <Loader size={14} />:data.opinionsCount}
+                  {error? "100+":null}
                 </Text>
               </Text>
             </Grid.Col>
