@@ -5,27 +5,27 @@ export default function Page() {
   const soloServicesData = [
     {
       title: 'Konsultacja dietetyczna (pierwsza wizyta) -',
-      price: '170 zł',
+      price: '190 zł',
       description:
         'Podczas wizyty uważnie słucham potrzeb pacjenta. Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjenta. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
       image: 'images/service1.jpg',
     },
     {
       title: 'Konsultacja online -',
-      price: '170 zł',
+      price: '190 zł',
       description:
         'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
       image: 'images/service8.jpg',
     },
     {
       title: 'Konsultacja dietetyczna kolejna wizyta (do 2 miesięcy) -',
-      price: '120 zł',
+      price: '130 zł',
       description:
         'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
       image: 'images/service2.jpg',
     },
     {
-      title: 'Jadłospis 7 dniowy - 150 zł\nJadłospis 14 dniowy - 220 zł',
+      title: 'Jadłospis 7 dniowy - 170 zł\nJadłospis 14 dniowy - 250 zł',
       price: '',
       description:
         'Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego sposobu żywienia. Uwzględniam wszystkie dolegliwości, problemy zdrowotne, a także preferencje smakowe.\n\n',
@@ -34,7 +34,7 @@ export default function Page() {
     },
     {
       title:
-        'Dieta eliminacyjna Jadłospis 7 dniowy - 180 zł\nDieta eliminacyjna Jadłospis 14 dniowy - 250 zł',
+        'Dieta eliminacyjna Jadłospis 7 dniowy - 200 zł\nDieta eliminacyjna Jadłospis 14 dniowy - 280 zł',
       price: '',
       description: 'W przypadku wielu eliminacji w diecie ',
       description2: '(np. faza eliminacyjna diety low FODMAP przy SIBO)',
@@ -42,7 +42,7 @@ export default function Page() {
     },
     {
       title: 'Analiza składu ciała',
-      price: '80 zł',
+      price: '90 zł',
       description:
         'Urządzenie umożliwia pomiar wszystkich najważniejszych komponentów m.in.: tkanka tłuszczowa, masa mięśniowa, zawartość wody w organizmie.\n\nSkład ciała jest obliczany za pomocą Analizy Bioimpedancji Elektrycznej (BIA). Bezpieczne sygnały elektryczne o niskim natężeniu są przesyłane przez ciało za pomocą elektrod znajdujących się na platformie pomiarowej. Ułatwia to przesyłanie sygnału przez płyny znajdujące się w mięśniach i innych tkankach, ale napotyka opór w tkance tłuszczowej, ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją. Odczyty są następne wprowadzone do medycznie zbadanych formuł matematycznych, aby obliczyć skład ciała.\n\n',
       disclaimer:
@@ -61,14 +61,14 @@ export default function Page() {
 
     {
       title: 'Wizyta kontrolna dla dwóch osób/pary -',
-      price: '170 zł',
+      price: '190 zł',
       description:
         'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
       image: 'images/service2.jpg',
     },
     {
       title:
-        'Jadłospis 7 dniowy dla dwóch osób - 230zł \nJadłospis 14 dniowy dla dwóch osób - 320 zł',
+        'Jadłospis 7 dniowy dla dwóch osób - 250 zł \nJadłospis 14 dniowy dla dwóch osób - 350 zł',
       price: '',
       description:
         '- Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków ustalone na podstawie zapotrzebowania kalorycznego pacjentów.\n\n- W przypadku odmiennych preferencji żywieniowych i/lub jednostek chorobowych przygotowanie wspólnego jadłospisu jest niemożliwe.',
@@ -123,7 +123,7 @@ export default function Page() {
       <div key="psychoservice1" className={classes.wrapper}>
         <div className={classes.body}>
           <Title className={classes.title}>
-            Konsultacja psychodietetyczna (pierwsza wizyta) - 230zł
+            Konsultacja psychodietetyczna (pierwsza wizyta) - 250zł
           </Title>
           <Text fz="md" c="dimmed" className={classes.description}>
             Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy. Wykonuję analizę
@@ -161,7 +161,7 @@ export default function Page() {
       <div key="psychoservice2" className={classes.wrapper}>
         <div className={classes.body}>
           <Title className={classes.title}>
-            Konsultacja psychodietetyczna (kolejna wizyta) - 160 zł
+            Konsultacja psychodietetyczna (kolejna wizyta) - 170 zł
           </Title>
           <Text fz="md" c="dimmed" className={classes.description}>
             Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy
@@ -180,10 +180,10 @@ export default function Page() {
           <Title className={classes.title}>
             Pakiet Standard trzech spotkań + jadłospis 14 dniowy -{' '}
             <Text span td="line-through" inherit>
-              630zł
+              640zł
             </Text>{' '}
             <Text inherit span c="red">
-              500 zł{' '}
+              550 zł{' '}
             </Text>
           </Title>
 
@@ -219,10 +219,10 @@ export default function Page() {
               kolejny
             </Text>{' '}
             <Text span td="line-through" inherit>
-              460 zł
+              510 zł
             </Text>{' '}
             <Text inherit span c="red">
-              360 zł{' '}
+              400 zł{' '}
             </Text>
           </Title>
 
