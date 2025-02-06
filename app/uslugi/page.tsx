@@ -53,7 +53,7 @@ export default function Page() {
   const duoServicesData = [
     {
       title: 'Pierwsza konsultacja dla dwóch osób -',
-      price: '250 zł',
+      price: '280 zł',
       description:
         'Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjentów. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
       image: 'images/service1.jpg',
