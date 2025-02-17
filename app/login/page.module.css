@@ -1,0 +1,18 @@
+.input {
+  background-color: var(--mantine-color-white);
+  border-color: var(--mantine-color-gray-4);
+  color: var(--mantine-color-black);
+
+  &::placeholder {
+    color: var(--mantine-color-gray-5);
+  }
+}
+.passwordInput {
+  width: 20rem;
+}
+.inputLabel {
+  color: var(--mantine-color-black);
+}
+.button {
+  margin-top:20px
+}

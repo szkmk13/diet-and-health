@@ -103,20 +103,19 @@ export default function Page() {
   ));
   const duoServices = duoServicesData.map((service) => (
     <>
-        <div key={service.title} className={classes.wrapper}>
-      <div className={classes.body}>
-        <Title className={classes.title}>
-          {service.title} {service.price}
-        </Title>
-        <Text fz="md" c="dimmed" className={classes.description}>
-          {service.description}
-        </Text>
+      <div key={service.title} className={classes.wrapper}>
+        <div className={classes.body}>
+          <Title className={classes.title}>
+            {service.title} {service.price}
+          </Title>
+          <Text fz="md" c="dimmed" className={classes.description}>
+            {service.description}
+          </Text>
+        </div>
+        <Image src={service.image} className={classes.image} visibleFrom="sm" />
       </div>
-      <Image src={service.image} className={classes.image} visibleFrom="sm" />
-    </div>
-          <Divider my="sm" className={classes.divider} />
+      <Divider my="sm" className={classes.divider} />
     </>
-
   ));
   const psychoServices = (
     <>
@@ -277,12 +276,7 @@ export default function Page() {
     <>
       <Container size={'xl'}>
         <Space h="lg" />
-        <Accordion
-          // defaultValue="Oferta Indywidualna"
-          variant="separated"
-        >
-          {items}
-        </Accordion>
+        <Accordion variant="separated">{items}</Accordion>
       </Container>
     </>
   );

@@ -8,6 +8,7 @@ module.exports = withBundleAnalyzer({
     ignoreDuringBuilds: true,
   },
   experimental: {
+    appDir: true, // ✅ Enables the App Router (`app/` directory)
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
 });
