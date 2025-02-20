@@ -25,7 +25,7 @@ export default function Page() {
       image: 'images/service2.jpg',
     },
     {
-      title: 'Jadłospis 7 dniowy - 170 zł\nJadłospis 14 dniowy - 250 zł',
+      title: 'Jadłospis 7/14 dniowy - 170/250 zł',
       price: '',
       description:
         'Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego sposobu żywienia. Uwzględniam wszystkie dolegliwości, problemy zdrowotne, a także preferencje smakowe.\n\n',
