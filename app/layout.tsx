@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <SessionProvider>
-          <MantineProvider theme={theme}>
+          <MantineProvider>
             <Analytics />
             <Notifications position="top-right" zIndex={100} />
             <StickyNavbar />

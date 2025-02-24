@@ -1,6 +1,6 @@
 'use client';
 
-import { Stack, TextInput, Divider, Group, Button, Text, NumberInput } from '@mantine/core';
+import { Stack, TextInput, Divider, Group, Button, Text, NumberInput, Center } from '@mantine/core';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -61,8 +61,14 @@ export default function ProtectedPage() {
     fetchOffers();
   }, []);
 
-  if (!isClient || status === 'loading' || loading) return <p>Loading...</p>;
-
+  if (!isClient || status === 'loading' || loading)
+    return (
+      <Center style={{ height: '40vh' }}>
+        <Text fz="3rem" fw={500} c="gray.7">
+          Ładowanie...
+        </Text>
+      </Center>
+    );
   const handleInputChange = (
     id: number,
     value: string,
