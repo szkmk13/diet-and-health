@@ -1,4 +1,4 @@
-import TopSection from './compontents/TopSection/TopSection';
+import TopSection from './compontents/TopSection';
 import About from './compontents/About/About';
 import Patients from './compontents/Patients/Patients';
 import Opinions from './compontents/Opinions/Opinions';
@@ -16,8 +16,8 @@ export default function Home() {
       <QueryClientProvider client={queryClient}>
         <TopSection />
         <About />
-        <Patients />
-        <Opinions />
+        {/* <Patients /> */}
+        {/* <Opinions /> */} 
       </QueryClientProvider>
     </>
   );

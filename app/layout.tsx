@@ -1,17 +1,13 @@
-'use client'; // ✅ Add this at the top
-import '@mantine/core/styles.css';
+'use client'
 import React from 'react';
-import { MantineProvider } from '@mantine/core';
-import { theme } from '../theme';
-import { FooterCentered } from '@/components/Footer/Footer';
-import StickyNavbar from '@/components/StickyNavbar/StickyNavbar';
-import '@mantine/notifications/styles.css';
-import '@mantine/dates/styles.css';
-import { Notifications } from '@mantine/notifications';
+import { FooterCentered } from '@/components/Footer';
+import StickyNavbar from '@/components/StickyNavbar';
 import 'dayjs/locale/pl';
 import dayjs from 'dayjs';
 import { Analytics } from '@vercel/analytics/react';
 import { SessionProvider } from 'next-auth/react';
+import "./globals.css"
+import { QueryProvider } from "@/components/query-provider";
 
 dayjs.locale('pl');
 
@@ -27,13 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <SessionProvider>
-          <MantineProvider>
             <Analytics />
-            <Notifications position="top-right" zIndex={100} />
+            {/* <Notifications position="top-right" zIndex={100} /> */}
             <StickyNavbar />
-            <div style={{ paddingTop: '10vh', minHeight: '90vh' }}>{children}</div>
+            
+                 <QueryProvider>{children}</QueryProvider>
             <FooterCentered />
-          </MantineProvider>
         </SessionProvider>
       </body>
     </html>

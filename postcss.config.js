@@ -1,19 +1,9 @@
-module.exports = {
+const config = {
   plugins: {
-    'postcss-preset-mantine': {},
-    'postcss-simple-vars': {
-      variables: {
-        'mantine-color-scheme': 'light',
-        'mantine-breakpoint-xs': '36em',
-        'mantine-breakpoint-sm': '48em',
-        'mantine-breakpoint-md': '62em',
-        'mantine-breakpoint-lg': '75em',
-        'mantine-breakpoint-xl': '88em',
-        'primary-color': '#5CBDC0',
-        'primary-color-faded' : '#5cbdc05e',
-        'secondary-color':'#4261AA',
-        'pink-color':"#ffdeff"
-      },
-    },
+    // Changed from 'tailwindcss': {} to '@tailwindcss/postcss': {}
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
   },
 };
+
+module.exports = config;
