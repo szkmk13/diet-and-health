@@ -9,7 +9,7 @@ export function FooterCentered() {
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4">
         {/* Placeholder for your logo or site name */}
         <Link href={"/"} className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Your Brand
+          Diet & Health
         </Link>
 
         <div className="flex items-center gap-4">
@@ -32,7 +32,7 @@ export function FooterCentered() {
             <IconBrandGoogleMaps style={{ width: "24px", height: "24px" }} stroke={1.5} />
           </a>
           <a
-            href="https://www.instagram.com/diet.and.health_/"
+            href="https://www.instagram.com/monikaskibicka.dietetyk"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors"

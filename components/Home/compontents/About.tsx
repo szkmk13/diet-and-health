@@ -13,12 +13,12 @@ export default function About() {
             alt="Monika Skibicka Sport"
             width={450} // Set a fixed width for the image
             height={450} // Set a fixed height for the image
-            // className="h-[450px] w-[450px] object-contain" // Ensure image scales responsively
+            className="h-[450px] w-[450px] object-contain" // Ensure image scales responsively
             priority // Load image with high priority
           />
         </div>
         <div className="flex-1 text-center md:text-left">
-          <h2 className="text-3xl md:text-lg font-bold text-gray-800 dark:text-gray-100 mt-1 mb-4 text-center">mgr Monika Skibicka</h2>
+          <h2 className="text-lg md:text-3xl font-bold text-gray-800 dark:text-gray-100 mt-1 mb-4 text-center">mgr Monika Skibicka</h2>
           <h3 className="text-[30px] md:text-md font-bold text-primary2 dark:text-gray-200 mb-2 text-center">DIETETYK KLINICZNY</h3>
           <p className="text-base text-gray-700 dark:text-gray-300">
             Jestem <span className="font-bold">dietetykiem klinicznym i psychodietetykiem.</span> Ukończyłam studia

@@ -1,17 +1,12 @@
 'use client';
 
-import About from '@/components/Home/compontents/About/About';
-import Opinions from '@/components/Home/compontents/Opinions/Opinions';
-import Patients from '@/components/Home/compontents/Patients/Patients';
+import About from '@/components/Home/compontents/About';
+import Opinions from '@/components/Home/compontents/Opinions';
+import Patients from '@/components/Home/compontents/Patients';
 import TopSection from '@/components/Home/compontents/TopSection';
-import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 export default function HomePage() {
-  const [childCount, setChildCount] = useState(0);
-  const [firstFive, setFirstFive] = useState([]);
-
-  // Fix query function by calling the fetch function properly
   const { data, error, isLoading } = useQuery('fetch-data', fetchElementData, {
     staleTime: 1000 * 60 * 60, // 1 hour cache
     cacheTime: 1000 * 60 * 600, // 10 minutes cache before garbage collected
@@ -23,7 +18,7 @@ export default function HomePage() {
         <TopSection isLoading={isLoading} error={false} opinionsCount={'0'}/>
         <About />
         <Patients />
-        {/* <Opinions /> */}
+        <Opinions isLoading={isLoading} error={false} opinions={[]} />
       </div>
   }
   if (error){
@@ -31,7 +26,7 @@ export default function HomePage() {
         <TopSection isLoading={false} error={true} opinionsCount={'+100'}/>
         <About />
         <Patients />
-        {/* <Opinions /> */}
+        <Opinions isLoading={false} error={true} opinions={null} />
       </div>
   }
   return (
@@ -40,7 +35,7 @@ export default function HomePage() {
         <TopSection isLoading={isLoading} error={false} opinionsCount={data.opinionsCount}/>
         <About />
         <Patients />
-        {/* <Opinions /> */}
+        <Opinions isLoading={isLoading} error={false} opinions={data.opinions} />
       </div>
     </>
   );

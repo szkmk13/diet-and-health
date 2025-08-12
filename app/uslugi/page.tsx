@@ -1,100 +1,159 @@
 'use client';
-import { Text, Title, Image, Container, Accordion, Space, Divider } from '@mantine/core';
-import classes from './page.module.css';
-import supabase from '@/pages/api/supabase';
 
-// Definicje typów
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Loader2 } from 'lucide-react';
+import { BadgePercent } from 'lucide-react';
+
+// Type definitions
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
 
 interface Service {
   name: string;
   price: string;
-  description: string | React.ReactNode; // Pozwalamy na string lub React.ReactNode
+  description: string | React.ReactNode;
   description2?: string;
   image: string;
   type: ServiceType;
 }
 
-// Komponent dla wyświetlania opisu
+// Component for displaying description
 const Description = ({ content }: { content: string | React.ReactNode }) => {
   if (typeof content === 'string') {
     return (
-      <Text fz="md" c="dimmed" className={classes.description}>
-        {content}
-      </Text>
+      <p className="text-base text-gray-600 dark:text-gray-400">{content}</p>
     );
   }
   return <>{content}</>;
 };
 
-// Komponent dla pojedynczej usługi
+// Component for individual service
 const ServiceItem = ({ service }: { service: Service }) => {
   const isPakiet = service.type === 'pakiet';
-  const [oldPrice, newPrice] = isPakiet ? service.price.split('/') : [service.price, null];
+  const [oldPrice, newPrice] = isPakiet
+    ? service.price.split('/')
+    : [service.price, null];
 
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.body}>
-        <Title className={classes.title}>
-          {service.name}
-          {isPakiet ? (
-            <>
-              {' '}
-              <Text span td="line-through" inherit>
-                {oldPrice} zł
-              </Text>{' '}
-              <Text inherit span c="red">
-                {newPrice} zł
-              </Text>
-            </>
-          ) : (
-            ` ${service.price} zł`
+    <div className="mb-6 last:mb-0">
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+        <div className="flex-1">
+          <h3 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-100">
+            {service.name}
+            {isPakiet ? (
+              <>
+                {' '}
+                <span className="line-through">{oldPrice} zł</span>{' '}
+                <span className="text-red-600 dark:text-red-400">
+                  {newPrice} zł
+                </span>
+              </>
+            ) : (
+              ` ${service.price} zł`
+            )}
+          </h3>
+
+          {/* Description */}
+          <Description content={service.description} />
+
+          {/* Additional description if exists */}
+          {service.description2 && (
+            <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
+              {service.description2}
+            </p>
           )}
-        </Title>
-        <Description content={service.description} />
-        {service.description2 && (
-          <Text fz="md" c="dimmed" className={classes.description}>
-            {service.description2}
-          </Text>
-        )}
+        </div>
+
+        {/* Image - visible from sm breakpoint */}
+        <div className="hidden sm:block sm:w-48 lg:w-64">
+          <Image
+            src={`/${service.image}`}
+            alt={service.name}
+            width={256}
+            height={192}
+            className="h-48 w-full rounded-lg object-cover"
+            priority
+          />
+        </div>
       </div>
-      <Image src={service.image} className={classes.image} visibleFrom="sm" />
-      <Divider my="sm" className={classes.divider} />
+
+      {/* Divider */}
+      <hr className="mt-6 border-gray-200 dark:border-gray-700" />
     </div>
   );
 };
 
-// Komponent dla sekcji usług
-const ServiceSection = ({ title, services }: { title: string; services: Service[] }) => (
-  <Accordion.Item value={title} className={classes.imageTitle}>
-    <Accordion.Control className={classes.buttonCollapse}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Text className={classes.title2} fw={700}>
+// Component for service sections
+const ServiceSection = ({
+  title,
+  services,
+}: {
+  title: string;
+  services: Service[];
+}) => (
+  <AccordionItem
+    value={title}
+    className="border border-gray-200 dark:border-gray-700 rounded-lg"
+  >
+    <AccordionTrigger className="px-6 py-4 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
+      <div className="flex items-center gap-4">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
           {title}
-        </Text>
-        {title === 'Pakiety' && <Image h={50} fit="contain" src={'images/procent.png'} />}
+        </h2>
+        {title === 'Pakiety' && <BadgePercent size={24} color="#5cbdc0" />}
       </div>
-    </Accordion.Control>
-    <Accordion.Panel>
+    </AccordionTrigger>
+    <AccordionContent className="px-6 pb-6 pt-2">
       {services.map((service, index) => (
         <ServiceItem key={`${service.type}-${index}`} service={service} />
       ))}
-    </Accordion.Panel>
-  </Accordion.Item>
+    </AccordionContent>
+  </AccordionItem>
 );
 
-// Główny komponent strony
-export default async function Page() {
-  // Pobranie danych z Supabase
-  const { data: supabaseData } = await supabase.from('offers').select();
+// Main page component
+export default function Page() {
+  const [servicesData, setServicesData] =
+    useState<Service[]>(defaultServicesData);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Przygotowanie danych usług
-  const servicesData = defaultServicesData.map((service) => ({
-    ...service,
-    ...(supabaseData?.find((item) => item.name === service.name) || {}),
-  }));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Only fetch from Supabase if you actually need dynamic data
+        // For now, let's just use the default data to avoid the infinite loop
+        setServicesData(defaultServicesData);
+        setIsLoading(false);
 
-  // Konfiguracja sekcji
+        // Uncomment this if you want to fetch from Supabase:
+        // const response = await fetch('/api/offers')
+        // if (response.ok) {
+        //   const supabaseData = await response.json()
+        //   const updatedServices = defaultServicesData.map((service) => ({
+        //     ...service,
+        //     ...(supabaseData?.find((item: any) => item.name === service.name) || {}),
+        //   }))
+        //   setServicesData(updatedServices)
+        // }
+      } catch (error) {
+        console.error('Error fetching services:', error);
+        setServicesData(defaultServicesData);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Section configuration
   const sections = [
     { title: 'Oferta Indywidualna', type: 'solo' },
     { title: 'Oferta dla dwóch osób', type: 'duo' },
@@ -102,23 +161,36 @@ export default async function Page() {
     { title: 'Pakiety', type: 'pakiet' },
   ] as const;
 
+  if (isLoading) {
+    return (
+      <div className="container mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <Loader2 className="h-8 w-8 animate-spin" />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Container size="xl">
-      <Space h="lg" />
-      <Accordion variant="separated">
+    <div className="container mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mb-8" />
+      <Accordion type="multiple" className="space-y-4 pb-4">
         {sections.map((section) => (
           <ServiceSection
             key={section.title}
             title={section.title}
-            services={servicesData.filter((service) => service.type === section.type)}
+            services={servicesData.filter(
+              (service) => service.type === section.type
+            )}
           />
         ))}
       </Accordion>
-    </Container>
+      <div className="mb-8" />
+    </div>
   );
 }
 
-// Dane domyślne przeniesione do osobnego pliku
+// Default services data
 const defaultServicesData: Service[] = [
   {
     name: 'Konsultacja dietetyczna (pierwsza wizyta)',
@@ -148,15 +220,17 @@ const defaultServicesData: Service[] = [
     name: 'Jadłospis 7/14 dniowy',
     price: '170/250',
     description: (
-      <Text fz="md" c="dimmed" className={classes.description}>
-        Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego sposobu żywienia.
-        Uwzględniam wszystkie dolegliwości, problemy zdrowotne, a także preferencje smakowe.
+      <div className="text-base text-gray-600 dark:text-gray-400">
+        Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego
+        sposobu żywienia. Uwzględniam wszystkie dolegliwości, problemy
+        zdrowotne, a także preferencje smakowe.
         <br />
         <br />
-        <Text inherit span fs="italic" c="dimmed">
-          Jadłospis otrzymasz drogą mailową w ciągu 7 dni roboczych od konsultacji.
-        </Text>
-      </Text>
+        <span className="italic text-gray-500 dark:text-gray-500">
+          Jadłospis otrzymasz drogą mailową w ciągu 7 dni roboczych od
+          konsultacji.
+        </span>
+      </div>
     ),
     image: 'images/service6.jpg',
     type: 'solo',
@@ -165,17 +239,13 @@ const defaultServicesData: Service[] = [
     name: 'Dieta eliminacyjna Jadłospis 7/14 dniowy',
     price: '200/280',
     description: (
-      <>
-        {' '}
-        <Text fz="md" c="dimmed" className={classes.description}>
-          W przypadku wielu eliminacji w diecie{' '}
-          <Text inherit span fs="italic" c="dimmed">
-            (np. faza eliminacyjna diety low FODMAP przy SIBO)
-          </Text>{' '}
-        </Text>
-      </>
+      <div className="text-base text-gray-600 dark:text-gray-400">
+        W przypadku wielu eliminacji w diecie{' '}
+        <span className="italic text-gray-500 dark:text-gray-500">
+          (np. faza eliminacyjna diety low FODMAP przy SIBO)
+        </span>
+      </div>
     ),
-
     image: 'images/service7.jpg',
     type: 'solo',
   },
@@ -183,31 +253,34 @@ const defaultServicesData: Service[] = [
     name: 'Analiza składu ciała',
     price: '90',
     description: (
-      <Text fz="md" c="dimmed" className={classes.description}>
-        Urządzenie umożliwia pomiar wszystkich najważniejszych komponentów m.in.: tkanka tłuszczowa,
-        masa mięśniowa, zawartość wody w organizmie.
+      <div className="text-base text-gray-600 dark:text-gray-400">
+        Urządzenie umożliwia pomiar wszystkich najważniejszych komponentów
+        m.in.: tkanka tłuszczowa, masa mięśniowa, zawartość wody w organizmie.
         <br />
         <br />
-        Skład ciała jest obliczany za pomocą Analizy Bioimpedancji Elektrycznej (BIA). Bezpieczne
-        sygnały elektryczne o niskim natężeniu są przesyłane przez ciało za pomocą elektrod
-        znajdujących się na platformie pomiarowej. Ułatwia to przesyłanie sygnału przez płyny
-        znajdujące się w mięśniach i innych tkankach, ale napotyka opór w tkance tłuszczowej,
-        ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją. Odczyty są następne
-        wprowadzone do medycznie zbadanych formuł matematycznych, aby obliczyć skład ciała.
+        Skład ciała jest obliczany za pomocą Analizy Bioimpedancji Elektrycznej
+        (BIA). Bezpieczne sygnały elektryczne o niskim natężeniu są przesyłane
+        przez ciało za pomocą elektrod znajdujących się na platformie
+        pomiarowej. Ułatwia to przesyłanie sygnału przez płyny znajdujące się w
+        mięśniach i innych tkankach, ale napotyka opór w tkance tłuszczowej,
+        ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją.
+        Odczyty są następne wprowadzone do medycznie zbadanych formuł
+        matematycznych, aby obliczyć skład ciała.
         <br />
         <br />
-        <Text inherit span fs="italic" c="dimmed" fw={500}>
-          Przeciwskazania do badania metodą bioimpedancji: wszczepiony defibrylator lub rozrusznik
-          serca, wszczepione inne metalowe elementy, epilepsja, ciąża.
-        </Text>
-      </Text>
+        <span className="font-medium italic text-gray-500 dark:text-gray-500">
+          Przeciwskazania do badania metodą bioimpedancji: wszczepiony
+          defibrylator lub rozrusznik serca, wszczepione inne metalowe elementy,
+          epilepsja, ciąża.
+        </span>
+      </div>
     ),
     image: 'images/service5.jpg',
     type: 'solo',
   },
   {
     name: 'Pierwsza konsultacja dla dwóch osób',
-    price: '280 zł',
+    price: '280',
     description:
       'Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjentów. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
     image: 'images/service1.jpg',
@@ -215,7 +288,7 @@ const defaultServicesData: Service[] = [
   },
   {
     name: 'Wizyta kontrolna dla dwóch osób/pary',
-    price: '190 zł',
+    price: '190',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
     image: 'images/service2.jpg',
@@ -233,35 +306,34 @@ const defaultServicesData: Service[] = [
     name: 'Konsultacja psychodietetyczna (pierwsza wizyta)',
     price: '250',
     description: (
-      <Text fz="md" c="dimmed" className={classes.description}>
-        Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy. Wykonuję analizę
-        składu i masy ciała, rozmawiamy o zdrowiu, o tym jak wygląda Twój plan dnia, analizujemy
-        dotychczasowe nawyki żywieniowe, szukamy przyczyny problemów z jedzeniem. Wspólnie ustalamy
-        plan działania.
+      <div className="text-base text-gray-600 dark:text-gray-400">
+        Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy.
+        Wykonuję analizę składu i masy ciała, rozmawiamy o zdrowiu, o tym jak
+        wygląda Twój plan dnia, analizujemy dotychczasowe nawyki żywieniowe,
+        szukamy przyczyny problemów z jedzeniem. Wspólnie ustalamy plan
+        działania.
         <br />
         <br />
         Zapraszam jeśli:
         <br />- chcesz zmienić swoje nawyki żywieniowe
-        <br />- mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z
-        nadmierną masą ciała
-        <br />- masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego
-        efektu
+        <br />- mimo znajomości zasad prawidłowego odżywiania nie potrafisz
+        sobie poradzić z nadmierną masą ciała
+        <br />- masz za sobą wiele prób redukcji masy ciała, które nie
+        przyniosły oczekiwanego efektu
         <br />- masz problem z utratą kontroli nad jedzeniem
         <br />
         <br />
         Istnieje możliwość dokupienia{' '}
-        <Text inherit span fw={700}>
-          planu żywieniowego
-        </Text>
-        , który może pomóc Ci w zmianie nawyków żywieniowych. Nauczy Cię jakie porcje są odpowiednie
-        dla Ciebie, jak komponować posiłki, aby dłużej odczuwać sytość i nie mieć spadków energii.
-        Zawiera indywidualne zalecenia i wskazówki oraz informacje o zamiennikach poszczególnych
-        produktów.
+        <span className="font-bold">planu żywieniowego</span>, który może pomóc
+        Ci w zmianie nawyków żywieniowych. Nauczy Cię jakie porcje są
+        odpowiednie dla Ciebie, jak komponować posiłki, aby dłużej odczuwać
+        sytość i nie mieć spadków energii. Zawiera indywidualne zalecenia i
+        wskazówki oraz informacje o zamiennikach poszczególnych produktów.
         <br />
-        Plan przygotowuję na podstawie wywiadu zdrowotno-żywieniowego. Nauczę Cię jak go
-        modyfikować. Pokażę Ci, że nie ma produktów „zakazanych”, a najbardziej skuteczna dieta to
-        ta, którą jesteśmy w stanie utrzymać.
-      </Text>
+        Plan przygotowuję na podstawie wywiadu zdrowotno-żywieniowego. Nauczę
+        Cię jak go modyfikować. Pokażę Ci, że nie ma produktów „zakazanych", a
+        najbardziej skuteczna dieta to ta, którą jesteśmy w stanie utrzymać.
+      </div>
     ),
     image: 'images/service10.jpg',
     type: 'psycho',
@@ -270,20 +342,21 @@ const defaultServicesData: Service[] = [
     name: 'Konsultacja psychodietetyczna (kolejna wizyta)',
     price: '170',
     description: (
-      <Text fz="md" c="dimmed" className={classes.description}>
-        Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na
-        przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej
-        konsultacji wykonywana jest analiza składu i masy ciała.
-      </Text>
+      <div className="text-base text-gray-600 dark:text-gray-400">
+        Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się
+        trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak
+        jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza
+        składu i masy ciała.
+      </div>
     ),
     image: 'images/service11.jpg',
     type: 'psycho',
   },
   {
     name: 'Pakiet standard trzech spotkań + jadłospis 14 dniowy',
-    price: '640/550', // Cena jako string
+    price: '640/550',
     description: (
-      <Text fz="md" c="dimmed" className={classes.description}>
+      <div className="text-base text-gray-600 dark:text-gray-400">
         W cenie:
         <br />
         Pierwsza wizyta
@@ -295,23 +368,24 @@ const defaultServicesData: Service[] = [
         Analiza składu ciała przy każdej z wizyt.
         <br />
         <br />
-        <Text inherit span fs="italic">
+        <span className="italic">
           Uwaga!
-          <br />- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta ta przepada (Dotyczy
-          wizyt niepotwierdzonych przez pacjenta i/lub wizyt nieodwołanych we wcześniejszym
-          terminie).
-          <br />- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od pierwszej konsultacji.
-        </Text>
-      </Text>
+          <br />- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta
+          ta przepada (Dotyczy wizyt niepotwierdzonych przez pacjenta i/lub
+          wizyt nieodwołanych we wcześniejszym terminie).
+          <br />- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od
+          pierwszej konsultacji.
+        </span>
+      </div>
     ),
     image: 'images/service4.jpg',
     type: 'pakiet',
   },
   {
     name: 'Pakiet dietetyczny kolejny',
-    price: '510/400', // Cena jako string
+    price: '510/400',
     description: (
-      <Text fz="md" c="dimmed" className={classes.description}>
+      <div className="text-base text-gray-600 dark:text-gray-400">
         W cenie:
         <br />
         Dwie wizyty kontrolne
@@ -321,11 +395,11 @@ const defaultServicesData: Service[] = [
         Analiza składu ciała
         <br />
         <br />
-        <Text inherit span fs="italic">
+        <span className="italic">
           Uwaga!
           <br />W cenie pakietu nie ma pierwszej konsultacji
-        </Text>
-      </Text>
+        </span>
+      </div>
     ),
     image: 'images/service9.jpg',
     type: 'pakiet',

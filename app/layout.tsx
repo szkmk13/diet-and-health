@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import { FooterCentered } from '@/components/Footer';
 import StickyNavbar from '@/components/StickyNavbar';
@@ -6,8 +6,9 @@ import 'dayjs/locale/pl';
 import dayjs from 'dayjs';
 import { Analytics } from '@vercel/analytics/react';
 import { SessionProvider } from 'next-auth/react';
-import "./globals.css"
+import './globals.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Toaster } from '@/components/ui/sonner';
 
 dayjs.locale('pl');
 const queryClient = new QueryClient({
@@ -17,7 +18,11 @@ const queryClient = new QueryClient({
     },
   },
 });
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -29,12 +34,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <SessionProvider>
-            <Analytics />
-            {/* <Notifications position="top-right" zIndex={100} /> */}
-            <StickyNavbar />
-            
-                 <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-            <FooterCentered />
+          <Analytics />
+          {/* <Notifications position="top-right" zIndex={100} /> */}
+          <StickyNavbar />
+          <Toaster />
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+          <FooterCentered />
         </SessionProvider>
       </body>
     </html>

@@ -11,12 +11,12 @@ export default async function handler(req, res) {
         const opinionsCount = opinieElement.text().trim()
 
         const opinionsUl = $("ul.standard-opinions-container.list-unstyled.mb-0");
-        const firstFiveLis = opinionsUl.children('li').slice(0, 5);
+        const firstFiveLis = opinionsUl.children('li').slice(0, 6);
         const opinions = firstFiveLis.map((i, child) => {
             const el = $(child);
             return {
                 name: el.find('[itemprop="author"]').text().trim() || null,
-                text: el.find('[itemprop="reviewBody"]').text().trim() || null,
+                opinion: el.find('[itemprop="reviewBody"]').text().trim() || null,
                 date: el.find('[itemprop="datePublished"]').text().trim() || null,
             };
         }).get(); 
