@@ -7,10 +7,16 @@ import dayjs from 'dayjs';
 import { Analytics } from '@vercel/analytics/react';
 import { SessionProvider } from 'next-auth/react';
 import "./globals.css"
-import { QueryProvider } from "@/components/query-provider";
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 dayjs.locale('pl');
-
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+});
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -27,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* <Notifications position="top-right" zIndex={100} /> */}
             <StickyNavbar />
             
-                 <QueryProvider>{children}</QueryProvider>
+                 <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
             <FooterCentered />
         </SessionProvider>
       </body>

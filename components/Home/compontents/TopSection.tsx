@@ -6,31 +6,24 @@ import { useQuery } from "@tanstack/react-query" // Using @tanstack/react-query
 import { Star, BadgeCheck, Video, Loader2 } from "lucide-react" // Using Lucide for icons
 import { Card } from "@/components/ui/card" // Using shadcn/ui Card
 import { Button } from "@/components/ui/button" // Using shadcn/ui Button
-
-export default function TopSection() {
-  const fetchData = async () => {
-    const response = await fetch("/api/znanylekarz")
-    if (!response.ok) {
-      throw new Error("Network response was not ok")
-    }
-    return response.json()
-  }
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["opinionsNumber"],
-    queryFn: fetchData,
-  })
-
+interface TopSectionProps {
+  isLoading: boolean;
+  error: boolean;
+  opinionsCount: string;
+}
+export default function TopSection({ isLoading, error, opinionsCount }: TopSectionProps) {
+  console.log("w elemencie",isLoading,error,opinionsCount)
   return (
-    <div
-      className="relative flex min-h-[40vh] items-center justify-center bg-cover bg-center py-16 md:py-24"
-      style={{ backgroundImage: 'url("/images/1.jpg")' }}
-    >
-      <div className="absolute inset-0 " />
-
-
-
-      <Card className="bottom-[-50px] z-20 w-[calc(100%-2rem)] max-w-sm rounded-lg p-4 shadow-lg md:bottom-[-75px] md:p-6 bg-white dark:bg-gray-800">
+<div className="relative flex min-h-[40vh] items-center justify-center py-16 md:py-24">
+  <Image
+    src="/images/1.jpg"
+    alt="Background"
+    fill
+    className="object-cover object-center z-0"
+    priority // ładuje od razu przy renderze
+  />
+  <div className="relative z-10">
+      <Card className="bottom-[-50px] z-20 w-[calc(100%-1rem)] max-w-sm rounded-lg p-4 shadow-lg md:bottom-[-75px] md:p-6 bg-white dark:bg-gray-800">
         <div className="grid grid-cols-[auto_1fr] items-center gap-4">
           <div>
             <Image
@@ -54,15 +47,16 @@ export default function TopSection() {
                 <Star key={index} className="h-4 w-4" fill="currentColor" />
               ))}
               <span className="ml-1 text-sm text-gray-600 dark:text-gray-300">
-                {isLoading ? (
-                  <Loader2 className="inline-block h-4 w-4 animate-spin" />
-                ) : data?.opinionsCount ? (
-                  data.opinionsCount
-                ) : error ? (
-                  "100+"
-                ) : (
-                  "N/A"
-                )}
+{isLoading ? (
+  <Loader2 className="inline-block h-4 w-4 animate-spin" />
+) : error ? (
+  "100+"
+) : opinionsCount !== undefined ? (
+ opinionsCount
+) : (
+  "N/A"
+)}
+
               </span>
             </div>
           </div>
@@ -83,7 +77,7 @@ export default function TopSection() {
             </Link>
           </Button>
         </div>
-      </Card>
-    </div>
+      </Card>  </div>
+</div>
   )
 }

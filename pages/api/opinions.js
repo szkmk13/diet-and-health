@@ -2,6 +2,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 export default async function handler(req, res) {
+  console.log("calling",req)
     res.status(200).json({ comments: [] });
 }
 
