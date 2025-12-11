@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/accordion';
 import { Loader2 } from 'lucide-react';
 import { BadgePercent } from 'lucide-react';
+import supabase from '@/pages/api/supabase';
 
 // Type definitions
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
@@ -100,13 +101,13 @@ const ServiceSection = ({
 }) => (
   <AccordionItem
     value={title}
-    className="border border-gray-200 dark:border-gray-700 rounded-lg"
+    className="border last:border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden "
   >
-    <AccordionTrigger className="px-6 py-4 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
+    <AccordionTrigger className="px-6 py-8 md:py-12 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
       <div className="flex items-center gap-4">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+        <h1 className=" text-gray-800 dark:text-gray-100 font-bold text-2xl">
           {title}
-        </h2>
+        </h1>
         {title === 'Pakiety' && <BadgePercent size={24} color="#5cbdc0" />}
       </div>
     </AccordionTrigger>
@@ -129,19 +130,21 @@ export default function Page() {
       try {
         // Only fetch from Supabase if you actually need dynamic data
         // For now, let's just use the default data to avoid the infinite loop
-        setServicesData(defaultServicesData);
-        setIsLoading(false);
+        // setServicesData(defaultServicesData);
+        // setIsLoading(false);
 
         // Uncomment this if you want to fetch from Supabase:
-        // const response = await fetch('/api/offers')
-        // if (response.ok) {
-        //   const supabaseData = await response.json()
-        //   const updatedServices = defaultServicesData.map((service) => ({
-        //     ...service,
-        //     ...(supabaseData?.find((item: any) => item.name === service.name) || {}),
-        //   }))
-        //   setServicesData(updatedServices)
-        // }
+        const { data, error } = await supabase.from('offersa').select();
+        if (error) {
+          console.log('Error fetching offers:', error);
+          setServicesData(defaultServicesData);
+        }
+        const updatedServices = defaultServicesData.map((service) => ({
+          ...service,
+          ...(data?.find((item: any) => item.name === service.name) || {}),
+        }));
+        setServicesData(updatedServices);
+
       } catch (error) {
         console.error('Error fetching services:', error);
         setServicesData(defaultServicesData);
@@ -172,9 +175,9 @@ export default function Page() {
   }
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-8" />
-      <Accordion type="multiple" className="space-y-4 pb-4">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mb-4 sm:mb-8" />
+      <Accordion type="multiple" className="sm:space-y-8 space-y-4">
         {sections.map((section) => (
           <ServiceSection
             key={section.title}
@@ -185,7 +188,6 @@ export default function Page() {
           />
         ))}
       </Accordion>
-      <div className="mb-8" />
     </div>
   );
 }
