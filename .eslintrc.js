@@ -1,18 +1,23 @@
 module.exports = {
-  extends: ['mantine', 'plugin:@next/next/recommended', 'plugin:jest/recommended'],
-  plugins: ['testing-library', 'jest'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  extends: [
+    'plugin:@next/next/recommended',
+  ],
+  plugins: ['testing-library', '@typescript-eslint'],
   overrides: [
     {
-      files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+      files: ['**/*.{spec,test}.{js,jsx,ts,tsx}'],
       extends: ['plugin:testing-library/react'],
     },
   ],
-  parserOptions: {
-    project: './tsconfig.json',
-  },
   rules: {
-    'react/react-in-jsx-scope': 'off',
-    'import/extensions': 'off',
-    'linebreak-style': '0'
+    'linebreak-style': 'off',
   },
 };

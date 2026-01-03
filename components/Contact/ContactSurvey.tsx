@@ -25,8 +25,8 @@ export default function ContactSurvey() {
   const [loading, setLoading] = useState(false);
   const currentDate = new Date();
   // Calculate the date in GMT+1 timezone
-  const gmtPlus1Date = new Date(currentDate.getTime() - 3600 * 1000);
-  const [selectedDate, setSelectedDate] = useState<Date>(null);
+  const consultationDate = new Date(currentDate.getTime() + 14*24*60*60*1000);
+  const [selectedDate, setSelectedDate] = useState<Date>(consultationDate);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const forma = useRef<HTMLFormElement>(null);
 
