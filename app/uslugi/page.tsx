@@ -134,7 +134,7 @@ export default function Page() {
         // setIsLoading(false);
 
         // Uncomment this if you want to fetch from Supabase:
-        const { data, error } = await supabase.from('offersa').select();
+        const { data, error } = await supabase.from('offers').select();
         if (error) {
           console.log('Error fetching offers:', error);
           setServicesData(defaultServicesData);
@@ -144,6 +144,7 @@ export default function Page() {
           ...(data?.find((item: any) => item.name === service.name) || {}),
         }));
         setServicesData(updatedServices);
+        console.log(updatedServices)
 
       } catch (error) {
         console.error('Error fetching services:', error);
