@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/accordion';
 import { Loader2 } from 'lucide-react';
 import { BadgePercent } from 'lucide-react';
-import supabase from '@/pages/api/supabase';
+import supabase from '@/app/api/supabase';
 
 // Type definitions
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
