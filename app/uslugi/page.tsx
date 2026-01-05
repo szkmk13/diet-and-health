@@ -3,15 +3,9 @@
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Loader2 } from 'lucide-react';
 import { BadgePercent } from 'lucide-react';
-import supabase from '@/app/api/supabase';
 
 // Type definitions
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
@@ -28,9 +22,7 @@ interface Service {
 // Component for displaying description
 const Description = ({ content }: { content: string | React.ReactNode }) => {
   if (typeof content === 'string') {
-    return (
-      <p className="text-base text-gray-600 dark:text-gray-400">{content}</p>
-    );
+    return <p className="text-base text-gray-600 dark:text-gray-400">{content}</p>;
   }
   return <>{content}</>;
 };
@@ -38,9 +30,7 @@ const Description = ({ content }: { content: string | React.ReactNode }) => {
 // Component for individual service
 const ServiceItem = ({ service }: { service: Service }) => {
   const isPakiet = service.type === 'pakiet';
-  const [oldPrice, newPrice] = isPakiet
-    ? service.price.split('/')
-    : [service.price, null];
+  const [oldPrice, newPrice] = isPakiet ? service.price.split('/') : [service.price, null];
 
   return (
     <div className="mb-6 last:mb-0">
@@ -52,9 +42,7 @@ const ServiceItem = ({ service }: { service: Service }) => {
               <>
                 {' '}
                 <span className="line-through">{oldPrice} zł</span>{' '}
-                <span className="text-red-600 dark:text-red-400">
-                  {newPrice} zł
-                </span>
+                <span className="text-red-600 dark:text-red-400">{newPrice} zł</span>
               </>
             ) : (
               ` ${service.price} zł`
@@ -66,9 +54,7 @@ const ServiceItem = ({ service }: { service: Service }) => {
 
           {/* Additional description if exists */}
           {service.description2 && (
-            <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
-              {service.description2}
-            </p>
+            <p className="mt-4 text-base text-gray-600 dark:text-gray-400">{service.description2}</p>
           )}
         </div>
 
@@ -92,22 +78,14 @@ const ServiceItem = ({ service }: { service: Service }) => {
 };
 
 // Component for service sections
-const ServiceSection = ({
-  title,
-  services,
-}: {
-  title: string;
-  services: Service[];
-}) => (
+const ServiceSection = ({ title, services }: { title: string; services: Service[] }) => (
   <AccordionItem
     value={title}
     className="border last:border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden "
   >
     <AccordionTrigger className="px-6 py-8 md:py-12 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
       <div className="flex items-center gap-4">
-        <h1 className=" text-gray-800 dark:text-gray-100 font-bold text-2xl">
-          {title}
-        </h1>
+        <h1 className=" text-gray-800 dark:text-gray-100 font-bold text-2xl">{title}</h1>
         {title === 'Pakiety' && <BadgePercent size={24} color="#5cbdc0" />}
       </div>
     </AccordionTrigger>
@@ -121,31 +99,29 @@ const ServiceSection = ({
 
 // Main page component
 export default function Page() {
-  const [servicesData, setServicesData] =
-    useState<Service[]>(defaultServicesData);
+  const [servicesData, setServicesData] = useState<Service[]>(defaultServicesData);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Only fetch from Supabase if you actually need dynamic data
-        // For now, let's just use the default data to avoid the infinite loop
-        // setServicesData(defaultServicesData);
-        // setIsLoading(false);
-
-        // Uncomment this if you want to fetch from Supabase:
-        const { data, error } = await supabase.from('offers').select();
-        if (error) {
-          console.log('Error fetching offers:', error);
+        const res = await fetch('/api/offers');
+        if (!res.ok) {
+          console.log('Error fetching offers from API:', res.statusText);
           setServicesData(defaultServicesData);
+          return;
         }
+
+        const data = await res.json();
+
+        // Merge default services with fetched data
         const updatedServices = defaultServicesData.map((service) => ({
           ...service,
           ...(data?.find((item: any) => item.name === service.name) || {}),
         }));
-        setServicesData(updatedServices);
-        console.log(updatedServices)
 
+        setServicesData(updatedServices);
+        console.log(updatedServices);
       } catch (error) {
         console.error('Error fetching services:', error);
         setServicesData(defaultServicesData);
@@ -183,9 +159,7 @@ export default function Page() {
           <ServiceSection
             key={section.title}
             title={section.title}
-            services={servicesData.filter(
-              (service) => service.type === section.type
-            )}
+            services={servicesData.filter((service) => service.type === section.type)}
           />
         ))}
       </Accordion>
@@ -206,8 +180,7 @@ const defaultServicesData: Service[] = [
   {
     name: 'Konsultacja online',
     price: '190',
-    description:
-      'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
+    description: 'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
     image: 'images/service8.jpg',
     type: 'solo',
   },
@@ -224,14 +197,12 @@ const defaultServicesData: Service[] = [
     price: '170/250',
     description: (
       <div className="text-base text-gray-600 dark:text-gray-400">
-        Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego
-        sposobu żywienia. Uwzględniam wszystkie dolegliwości, problemy
-        zdrowotne, a także preferencje smakowe.
+        Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego sposobu żywienia. Uwzględniam wszystkie
+        dolegliwości, problemy zdrowotne, a także preferencje smakowe.
         <br />
         <br />
         <span className="italic text-gray-500 dark:text-gray-500">
-          Jadłospis otrzymasz drogą mailową w ciągu 7 dni roboczych od
-          konsultacji.
+          Jadłospis otrzymasz drogą mailową w ciągu 7 dni roboczych od konsultacji.
         </span>
       </div>
     ),
@@ -257,24 +228,20 @@ const defaultServicesData: Service[] = [
     price: '90',
     description: (
       <div className="text-base text-gray-600 dark:text-gray-400">
-        Urządzenie umożliwia pomiar wszystkich najważniejszych komponentów
-        m.in.: tkanka tłuszczowa, masa mięśniowa, zawartość wody w organizmie.
+        Urządzenie umożliwia pomiar wszystkich najważniejszych komponentów m.in.: tkanka tłuszczowa, masa mięśniowa,
+        zawartość wody w organizmie.
         <br />
         <br />
-        Skład ciała jest obliczany za pomocą Analizy Bioimpedancji Elektrycznej
-        (BIA). Bezpieczne sygnały elektryczne o niskim natężeniu są przesyłane
-        przez ciało za pomocą elektrod znajdujących się na platformie
-        pomiarowej. Ułatwia to przesyłanie sygnału przez płyny znajdujące się w
-        mięśniach i innych tkankach, ale napotyka opór w tkance tłuszczowej,
-        ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją.
-        Odczyty są następne wprowadzone do medycznie zbadanych formuł
-        matematycznych, aby obliczyć skład ciała.
+        Skład ciała jest obliczany za pomocą Analizy Bioimpedancji Elektrycznej (BIA). Bezpieczne sygnały elektryczne o
+        niskim natężeniu są przesyłane przez ciało za pomocą elektrod znajdujących się na platformie pomiarowej. Ułatwia
+        to przesyłanie sygnału przez płyny znajdujące się w mięśniach i innych tkankach, ale napotyka opór w tkance
+        tłuszczowej, ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją. Odczyty są następne
+        wprowadzone do medycznie zbadanych formuł matematycznych, aby obliczyć skład ciała.
         <br />
         <br />
         <span className="font-medium italic text-gray-500 dark:text-gray-500">
-          Przeciwskazania do badania metodą bioimpedancji: wszczepiony
-          defibrylator lub rozrusznik serca, wszczepione inne metalowe elementy,
-          epilepsja, ciąża.
+          Przeciwskazania do badania metodą bioimpedancji: wszczepiony defibrylator lub rozrusznik serca, wszczepione
+          inne metalowe elementy, epilepsja, ciąża.
         </span>
       </div>
     ),
@@ -310,32 +277,25 @@ const defaultServicesData: Service[] = [
     price: '250',
     description: (
       <div className="text-base text-gray-600 dark:text-gray-400">
-        Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy.
-        Wykonuję analizę składu i masy ciała, rozmawiamy o zdrowiu, o tym jak
-        wygląda Twój plan dnia, analizujemy dotychczasowe nawyki żywieniowe,
-        szukamy przyczyny problemów z jedzeniem. Wspólnie ustalamy plan
-        działania.
+        Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy. Wykonuję analizę składu i masy ciała,
+        rozmawiamy o zdrowiu, o tym jak wygląda Twój plan dnia, analizujemy dotychczasowe nawyki żywieniowe, szukamy
+        przyczyny problemów z jedzeniem. Wspólnie ustalamy plan działania.
         <br />
         <br />
         Zapraszam jeśli:
         <br />- chcesz zmienić swoje nawyki żywieniowe
-        <br />- mimo znajomości zasad prawidłowego odżywiania nie potrafisz
-        sobie poradzić z nadmierną masą ciała
-        <br />- masz za sobą wiele prób redukcji masy ciała, które nie
-        przyniosły oczekiwanego efektu
+        <br />- mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z nadmierną masą ciała
+        <br />- masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego efektu
         <br />- masz problem z utratą kontroli nad jedzeniem
         <br />
         <br />
-        Istnieje możliwość dokupienia{' '}
-        <span className="font-bold">planu żywieniowego</span>, który może pomóc
-        Ci w zmianie nawyków żywieniowych. Nauczy Cię jakie porcje są
-        odpowiednie dla Ciebie, jak komponować posiłki, aby dłużej odczuwać
-        sytość i nie mieć spadków energii. Zawiera indywidualne zalecenia i
-        wskazówki oraz informacje o zamiennikach poszczególnych produktów.
+        Istnieje możliwość dokupienia <span className="font-bold">planu żywieniowego</span>, który może pomóc Ci w
+        zmianie nawyków żywieniowych. Nauczy Cię jakie porcje są odpowiednie dla Ciebie, jak komponować posiłki, aby
+        dłużej odczuwać sytość i nie mieć spadków energii. Zawiera indywidualne zalecenia i wskazówki oraz informacje o
+        zamiennikach poszczególnych produktów.
         <br />
-        Plan przygotowuję na podstawie wywiadu zdrowotno-żywieniowego. Nauczę
-        Cię jak go modyfikować. Pokażę Ci, że nie ma produktów „zakazanych", a
-        najbardziej skuteczna dieta to ta, którą jesteśmy w stanie utrzymać.
+        Plan przygotowuję na podstawie wywiadu zdrowotno-żywieniowego. Nauczę Cię jak go modyfikować. Pokażę Ci, że nie
+        ma produktów „zakazanych", a najbardziej skuteczna dieta to ta, którą jesteśmy w stanie utrzymać.
       </div>
     ),
     image: 'images/service10.jpg',
@@ -346,10 +306,9 @@ const defaultServicesData: Service[] = [
     price: '170',
     description: (
       <div className="text-base text-gray-600 dark:text-gray-400">
-        Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się
-        trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak
-        jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza
-        składu i masy ciała.
+        Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów
+        z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy
+        ciała.
       </div>
     ),
     image: 'images/service11.jpg',
@@ -373,11 +332,9 @@ const defaultServicesData: Service[] = [
         <br />
         <span className="italic">
           Uwaga!
-          <br />- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta
-          ta przepada (Dotyczy wizyt niepotwierdzonych przez pacjenta i/lub
-          wizyt nieodwołanych we wcześniejszym terminie).
-          <br />- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od
-          pierwszej konsultacji.
+          <br />- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta ta przepada (Dotyczy wizyt
+          niepotwierdzonych przez pacjenta i/lub wizyt nieodwołanych we wcześniejszym terminie).
+          <br />- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od pierwszej konsultacji.
         </span>
       </div>
     ),
