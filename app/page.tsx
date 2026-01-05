@@ -13,29 +13,39 @@ export default function HomePage() {
   });
 
   console.log(data, error, isLoading);
-  if (isLoading){
-    return       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <TopSection isLoading={isLoading} error={false} opinionsCount={'0'}/>
+  if (isLoading) {
+    return (
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <TopSection isLoading={isLoading} error={false} opinionsCount={'0'} />
         <About />
         <Patients />
         <Opinions isLoading={isLoading} error={false} opinions={[]} />
       </div>
+    );
   }
-  if (error){
-          <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <TopSection isLoading={false} error={true} opinionsCount={'+100'}/>
-        <About />
-        <Patients />
-        <Opinions isLoading={false} error={true} opinions={null} />
-      </div>
+  if (error) {
+    <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <TopSection isLoading={false} error={true} opinionsCount={'+100'} />
+      <About />
+      <Patients />
+      <Opinions isLoading={false} error={true} opinions={null} />
+    </div>;
   }
   return (
     <>
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <TopSection isLoading={isLoading} error={false} opinionsCount={data.opinionsCount}/>
+        <TopSection
+          isLoading={isLoading}
+          error={false}
+          opinionsCount={data.opinionsCount}
+        />
         <About />
         <Patients />
-        <Opinions isLoading={isLoading} error={false} opinions={data.opinions} />
+        <Opinions
+          isLoading={isLoading}
+          error={false}
+          opinions={data.opinions}
+        />
       </div>
     </>
   );

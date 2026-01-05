@@ -3,7 +3,6 @@
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { createClient } from "@supabase/supabase-js"
 import { Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -11,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "sonner"
+import supabase from "@/pages/api/supabase"
 
 interface Offer {
   id: number
@@ -19,10 +19,6 @@ interface Offer {
   price: string
 }
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
-)
 
 // OfferCard component
 function OfferCard({
