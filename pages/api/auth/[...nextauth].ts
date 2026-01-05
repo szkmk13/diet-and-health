@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export default NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -10,9 +12,13 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Read the credentials from env variables
         const envUsername = process.env.AUTH_USERNAME;
         const envPassword = process.env.AUTH_PASSWORD;
+
+        if (!envUsername || !envPassword) {
+          console.error("Missing AUTH_USERNAME or AUTH_PASSWORD");
+          return null;
+        }
 
         if (
           credentials?.username === envUsername &&
@@ -21,11 +27,11 @@ export default NextAuth({
           return { id: "1", name: envUsername };
         }
 
-        throw new Error("Invalid username or password");
+        return null;
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+
   pages: {
     signIn: "/login",
   },
