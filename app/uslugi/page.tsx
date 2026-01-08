@@ -267,8 +267,14 @@ const defaultServicesData: Service[] = [
   {
     name: 'Jadłospis 7/14 dniowy dla dwóch osób',
     price: '250/350',
-    description:
-      '- Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków ustalone na podstawie zapotrzebowania kalorycznego pacjentów.\n\n- W przypadku odmiennych preferencji żywieniowych i/lub jednostek chorobowych przygotowanie wspólnego jadłospisu jest niemożliwe.',
+    description: (
+      <div className="text-base text-gray-600 dark:text-gray-400">
+        - Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków ustalone na podstawie
+        zapotrzebowania kalorycznego pacjentów.
+        <br />- W przypadku odmiennych preferencji żywieniowych i/lub jednostek chorobowych przygotowanie wspólnego
+        jadłospisu jest niemożliwe.
+      </div>
+    ),
     image: 'images/service6.jpg',
     type: 'duo',
   },

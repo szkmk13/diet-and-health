@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
-import ContactSurvey from "@/components/Contact/ContactSurvey"
-import Image from "next/image"
+import ContactSurvey from '@/components/Contact/ContactSurvey';
+import Image from 'next/image';
 
 export default function Page() {
   return (
@@ -60,5 +60,5 @@ export default function Page() {
         </div>
       </div>
     </div>
-  )
+  );
 }
