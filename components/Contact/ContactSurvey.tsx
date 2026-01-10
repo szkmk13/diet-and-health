@@ -31,6 +31,27 @@ export default function ContactSurvey() {
     const formElement = forma.current;
     if (!formElement) return;
 
+    // Check honeypot field
+    const honeypot = formElement.querySelector('input[name="website"]') as HTMLInputElement;
+    if (honeypot && honeypot.value !== '') {
+      // Bot detected - silently reject
+      setLoading(true);
+      console.log('Bot submission detected. Ignoring.');
+      setTimeout(() => {
+        toast.success('Wysłano', {
+          description: 'Dziękuję za wypełnienie ankiety, do zobaczenia na konsultacji.',
+          style: {
+            background: '#10b981',
+            color: 'white',
+            border: '1px solid #059669',
+          },
+        });
+        formElement.reset();
+        setLoading(false);
+      }, 1000);
+      return;
+    }
+
     const monthNames = [
       'Styczeń',
       'Luty',
@@ -113,6 +134,19 @@ export default function ContactSurvey() {
         </div>
 
         <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
+          {/* Honeypot field - hidden from users but visible to bots */}
+          <div className="absolute -left-2499.75" aria-hidden="true">
+            <Label htmlFor="website">Website</Label>
+            <Input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              placeholder="Leave this field empty"
+            />
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Imię i nazwisko
