@@ -19,8 +19,8 @@ export default function TopSection({
   return (
     <div className="relative flex min-h-[40vh] items-center justify-center py-16 md:py-24">
       <Image
-        src="/images/1.jpg"
-        alt="Background"
+        src="/images/zupa-krem-z-grzankami.jpg"
+        alt="Dietetyk Monika Skibicka — gabinet w Gdyni"
         fill
         className="object-cover object-center z-0"
         priority // ładuje od razu przy renderze

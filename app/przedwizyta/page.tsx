@@ -7,8 +7,8 @@ export default function Page() {
   return (
     <div className="relative min-h-screen">
       <Image
-        src="/images/6.jpg"
-        alt="Background image for consultation preparation"
+        src="/images/salatka-z-rukola.jpg"
+        alt="Sałatka z rukolą"
         fill
         className="object-cover"
         priority

@@ -18,8 +18,8 @@ export default function About() {
           />
         </div>
         <div className="flex-1 text-center md:text-left">
-          <h2 className="text-lg md:text-3xl font-bold text-gray-800 dark:text-gray-100 mt-1 mb-4 text-center">mgr Monika Skibicka</h2>
-          <h3 className="text-[30px] md:text-md font-bold text-primary2 dark:text-gray-200 mb-2 text-center">DIETETYK KLINICZNY</h3>
+          <h1 className="text-lg md:text-3xl font-bold text-gray-800 dark:text-gray-100 mt-1 mb-4 text-center">mgr Monika Skibicka</h1>
+          <h2 className="text-[30px] md:text-md font-bold text-primary2 dark:text-gray-200 mb-2 text-center">DIETETYK KLINICZNY</h2>
           <p className="text-base text-gray-700 dark:text-gray-300">
             Jestem <span className="font-bold">dietetykiem klinicznym i psychodietetykiem.</span> Ukończyłam studia
             magisterskie na Gdańskim Uniwersytecie Medycznym na kierunku Dietetyka oraz studia podyplomowe z
