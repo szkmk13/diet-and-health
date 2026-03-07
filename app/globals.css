@@ -43,6 +43,11 @@
   --color-primary: #5cbdc05e;
   --color-primary2: #5cbdc0;
   --color-pink: #ffdeff;
+  --trainer-primary: #1a1a1a;
+  --trainer-accent: #5cbdc0;
+  --trainer-secondary: #f3f4f6;
+  --trainer-text: #374151;
+  --trainer-text-light: #6b7280;
 }
 
 :root {

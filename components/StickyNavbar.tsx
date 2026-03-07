@@ -14,7 +14,7 @@ const links = [
   { link: "/uslugi", label: "Usługi", active: true },
   { link: "/przedwizyta", label: "Przed wizytą", active: true },
   { link: "/kontakt", label: "Kontakt", active: true },
-  { link: "/treningi", label: "Treningi", active: false },
+  { link: "/treningi", label: "Treningi", active: true },
 ]
 
 export default function StickyNavbar() {
