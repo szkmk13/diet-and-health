@@ -1,7 +1,6 @@
 "use client"
 
 import type { Key } from "react"
-import { useQuery } from "@tanstack/react-query"
 import { Loader2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -58,7 +57,6 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
   )
 
 
-  console.log(opinions, error, isLoading)
   const renderComments = (comments: Array<Opinion>) => (
     <div className="container mx-auto py-5 my-5 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -113,7 +111,7 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
             </>
           ) : (
             <>
-              {opinions ? renderComments(opinions) : renderComments(predefinedComments)}
+              {opinions && opinions.length > 0 ? renderComments(opinions) : renderComments(predefinedComments)}
             </>
           )}
         </div>

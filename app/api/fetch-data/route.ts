@@ -6,7 +6,7 @@ export async function GET() {
     '#profile-reviews > div > div.card-body.pb-0 > div > div.w-100 > div';
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { next: { revalidate: 3600 } });
     const html = await response.text();
     const $ = cheerio.load(html);
 
