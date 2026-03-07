@@ -7,9 +7,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Image from "next/image";
 
 interface Opinion {
-  name: string,
-  date: string,
-  opinion: string
+  name: string | null,
+  date: string | null,
+  opinion: string | null
 }
 interface OpinionsProps {
   isLoading: boolean;
@@ -65,19 +65,19 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
             <Card className="relative flex h-[320px] flex-col rounded-sm p-4 shadow-sm dark:bg-gray-700">
               <div className="mb-4 flex min-h-[50px] items-center gap-4 flex-wrap">
                 <Avatar className="h-12 w-12 ">
-                  <AvatarFallback className="text-black text-lg font-semibold bg-pink">{comment.name.charAt(0)}</AvatarFallback>
+                  <AvatarFallback className="text-black text-lg font-semibold bg-pink">{comment.name?.charAt(0) ?? '?'}</AvatarFallback>
                 </Avatar>
 
 
                 <div className="flex items-center">
-                  <p className="text-lg font-bold text-gray-800 dark:text-gray-200">{comment.name}</p>
+                  <p className="text-lg font-bold text-gray-800 dark:text-gray-200">{comment.name ?? ''}</p>
                 </div>
               </div>
               <div className="flex-1">
-                <p className="line-clamp-7 italic text-gray-700 dark:text-gray-300">"{comment.opinion}"</p>
+                <p className="line-clamp-7 italic text-gray-700 dark:text-gray-300">"{comment.opinion ?? ''}"</p>
               </div>
               <p className="absolute bottom-5 right-5 text-xs font-bold text-gray-600 dark:text-gray-400">
-                {comment.date}
+                {comment.date ?? ''}
               </p>
             </Card>
           </div>
