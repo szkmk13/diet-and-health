@@ -7,43 +7,43 @@ import { Button } from "@/components/ui/button"
 
 const cardsData = [
   {
-    title: "Nadwaga i niedowaga",
+    title: "Osobom z nadwagą i niedowagą",
     description: null,
     icon: <Scale className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Kobiety w ciąży i dzieci",
+    title: "Kobietom w ciąży i dzieciom",
     description: null,
     icon: <Baby className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Sportowcy",
+    title: "Sportowcom",
     description: null,
     icon: <Dumbbell className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Dieta roślinna",
+    title: "Osobom na diecie roślinnej",
     description: null,
     icon: <Leaf className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Zmiana nawyków żywieniowych",
+    title: "Osobom chcącym zmienić nawyki żywieniowe",
     description: null,
     icon: <Apple className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Zaburzenia relacji z jedzeniem",
+    title: "Osobom, które mają problem z utratą kontroli nad jedzeniem",
     description: null,
     icon: <Cookie className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Dolegliwości układu pokarmowego",
+    title: "Osobom z dolegliwościami układu pokarmowego",
     description: "Zaparcia, biegunki, wzdęcia, zgaga, nudności, refluks żołądkowo-przełykowy.",
     icon: <HeartPulse className="h-10 w-10 text-primary2" />,
   },
   {
-    title: "Choroby i jednostki chorobowe",
-    description: "Cukrzyca, insulinooporność, celiakia, SIBO, IBS, Hashimoto, niedoczynność i nadczynność tarczycy, anemia, choroba Leśniowskiego-Crohna i inne.",
+    title: "Osobom z chorobami przewlekłymi",
+    description: "cukrzycą, insulinoopornością, celiakią, SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy, Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/ dolegliwościami.",
     icon: <Pill className="h-10 w-10 text-primary2" />,
   },
 ]
