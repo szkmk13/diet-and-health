@@ -89,7 +89,7 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
   return (
     <>
       {OpinionsTitle}
-      <div className="relative py-10 min-h-[300px]">
+      <div className="relative py-10 min-h-[300px] rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         <Image
           src="/images/opinions_background.jpg"
           alt="Opinions Background"

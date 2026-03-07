@@ -1,4 +1,5 @@
 import About from '@/components/Home/compontents/About';
+import CtaSection from '@/components/Home/compontents/CtaSection';
 import Opinions from '@/components/Home/compontents/Opinions';
 import Patients from '@/components/Home/compontents/Patients';
 import TopSection from '@/components/Home/compontents/TopSection';
@@ -23,6 +24,7 @@ export default async function HomePage() {
       <About />
       <Patients />
       <Opinions isLoading={false} error={!data} opinions={data?.opinions ?? null} />
+      <CtaSection />
     </div>
   );
 }

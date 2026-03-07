@@ -74,15 +74,21 @@ export default function TopSection({
               />
               <span className="ml-2 text-sm">Oferuje konsultacje online</span>
             </div>
-            <Button asChild className="w-full bg-primary2 ">
+            <p className="mb-3 text-xs text-center text-gray-500 dark:text-gray-400">
+              Skuteczna dieta to taka, którą jesteś w stanie utrzymać.
+            </p>
+            <Button asChild className="w-full bg-primary2 mb-2">
               <Link
-                href={
-                  'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'
-                }
+                href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Umów wizytę
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/uslugi">
+                Zobacz ofertę i cennik
               </Link>
             </Button>
           </div>
