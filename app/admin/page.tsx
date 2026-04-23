@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "sonner"
-import supabase from "@/app/api/supabase"
 
 interface Offer {
   id: number
@@ -72,17 +71,16 @@ export default function ProtectedPage() {
 
   useEffect(() => {
     const fetchOffers = async () => {
-      const { data, error } = await supabase.from("offers").select()
-      if (error) {
-        console.error("Error fetching offers:", error)
+      const res = await fetch('/api/offers')
+      if (!res.ok) {
+        console.error("Error fetching offers")
         return
       }
-      console.log(supabase)
-      console.log(data)
-      setSoloOffers(data.filter((offer: Offer) => offer.type === "solo"))
-      setDuoOffers(data.filter((offer: Offer) => offer.type === "duo"))
-      setPsychoOffers(data.filter((offer: Offer) => offer.type === "psycho"))
-      setPakietOffers(data.filter((offer: Offer) => offer.type === "pakiet"))
+      const data: Offer[] = await res.json()
+      setSoloOffers(data.filter((offer) => offer.type === "solo"))
+      setDuoOffers(data.filter((offer) => offer.type === "duo"))
+      setPsychoOffers(data.filter((offer) => offer.type === "psycho"))
+      setPakietOffers(data.filter((offer) => offer.type === "pakiet"))
       setLoading(false)
     }
 
@@ -119,12 +117,18 @@ export default function ProtectedPage() {
     setSaveLoading(true)
     const updatedOffers = [...soloOffers, ...duoOffers, ...psychoOffers, ...pakietOffers]
 
-    for (const offer of updatedOffers) {
-      const { error } = await supabase.from("offers").update({ price: offer.price }).eq("id", offer.id)
-      if (error) {
-        console.error("Error updating offer:", error)
-      }
+    const res = await fetch('/api/admin/update-offers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ offers: updatedOffers }),
+    })
+
+    if (!res.ok) {
+      toast.error("Błąd", { description: "Nie udało się zapisać cen." })
+      setSaveLoading(false)
+      return
     }
+
     toast.success("Sukces", {
       description: "Ceny zostały zmienione.",
       style: {

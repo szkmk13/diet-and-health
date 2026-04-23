@@ -62,7 +62,7 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {comments.map((comment, index: Key) => (
           <div key={index} className="col-span-1 sm:col-span-1 lg:col-span-1">
-            <Card className="relative flex h-[320px] flex-col rounded-sm p-4 shadow-sm dark:bg-gray-700">
+            <Card className="relative flex h-[320px] flex-col rounded-sm p-4 shadow-sm bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm">
               <div className="mb-4 flex min-h-[50px] items-center gap-4 flex-wrap">
                 <Avatar className="h-12 w-12 ">
                   <AvatarFallback className="text-black text-lg font-semibold bg-pink">{comment.name?.charAt(0) ?? '?'}</AvatarFallback>
@@ -91,7 +91,7 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
       {OpinionsTitle}
       <div className="relative py-10 min-h-[300px] rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         <Image
-          src="/images/opinions_background.jpg"
+          src="/images/dynie.jpeg"
           alt="Opinions Background"
           fill
           className="object-cover object-center z-0"
