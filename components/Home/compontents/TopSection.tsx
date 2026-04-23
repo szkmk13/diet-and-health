@@ -15,7 +15,6 @@ export default function TopSection({
   error,
   opinionsCount,
 }: TopSectionProps) {
-  console.log('w elemencie', isLoading, error, opinionsCount);
   return (
     <div className="relative flex min-h-[40vh] items-center justify-center py-16 md:py-24">
       <Image
