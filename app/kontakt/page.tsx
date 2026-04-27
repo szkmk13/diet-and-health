@@ -7,7 +7,7 @@ import ContactForm from "@/components/Contact/ContactForm"
 export default function Page() {
   return (
     <div className="relative min-h-screen">
-      <Image src="/images/6.jpg" alt="Background image for contact page" fill className="object-cover" priority />
+      <Image src="/images/salatka-z-rukola.jpg" alt="Sałatka z rukolą" fill className="object-cover" priority />
       {/* Overlay for better text readability */}
       <div className="relative z-10 min-h-screen bg-black/20">
         <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">

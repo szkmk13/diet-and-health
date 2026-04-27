@@ -1,16 +1,15 @@
 "use client"
 
 import type { Key } from "react"
-import { useQuery } from "@tanstack/react-query"
 import { Loader2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Image from "next/image";
 
 interface Opinion {
-  name: string,
-  date: string,
-  opinion: string
+  name: string | null,
+  date: string | null,
+  opinion: string | null
 }
 interface OpinionsProps {
   isLoading: boolean;
@@ -58,28 +57,27 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
   )
 
 
-  console.log(opinions, error, isLoading)
   const renderComments = (comments: Array<Opinion>) => (
     <div className="container mx-auto py-5 my-5 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {comments.map((comment, index: Key) => (
           <div key={index} className="col-span-1 sm:col-span-1 lg:col-span-1">
-            <Card className="relative flex h-[320px] flex-col rounded-sm p-4 shadow-sm dark:bg-gray-700">
+            <Card className="relative flex h-[320px] flex-col rounded-sm p-4 shadow-sm bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm">
               <div className="mb-4 flex min-h-[50px] items-center gap-4 flex-wrap">
                 <Avatar className="h-12 w-12 ">
-                  <AvatarFallback className="text-black text-lg font-semibold bg-pink">{comment.name.charAt(0)}</AvatarFallback>
+                  <AvatarFallback className="text-black text-lg font-semibold bg-pink">{comment.name?.charAt(0) ?? '?'}</AvatarFallback>
                 </Avatar>
 
 
                 <div className="flex items-center">
-                  <p className="text-lg font-bold text-gray-800 dark:text-gray-200">{comment.name}</p>
+                  <p className="text-lg font-bold text-gray-800 dark:text-gray-200">{comment.name ?? ''}</p>
                 </div>
               </div>
               <div className="flex-1">
-                <p className="line-clamp-7 italic text-gray-700 dark:text-gray-300">"{comment.opinion}"</p>
+                <p className="line-clamp-7 italic text-gray-700 dark:text-gray-300">"{comment.opinion ?? ''}"</p>
               </div>
               <p className="absolute bottom-5 right-5 text-xs font-bold text-gray-600 dark:text-gray-400">
-                {comment.date}
+                {comment.date ?? ''}
               </p>
             </Card>
           </div>
@@ -91,9 +89,9 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
   return (
     <>
       {OpinionsTitle}
-      <div className="relative py-10 min-h-[300px]">
+      <div className="relative py-10 min-h-[300px] rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         <Image
-          src="/images/opinions_background.jpg"
+          src="/images/dynie.jpeg"
           alt="Opinions Background"
           fill
           className="object-cover object-center z-0"
@@ -113,7 +111,7 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
             </>
           ) : (
             <>
-              {opinions ? renderComments(opinions) : renderComments(predefinedComments)}
+              {opinions && opinions.length > 0 ? renderComments(opinions) : renderComments(predefinedComments)}
             </>
           )}
         </div>

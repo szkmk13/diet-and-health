@@ -15,12 +15,11 @@ export default function TopSection({
   error,
   opinionsCount,
 }: TopSectionProps) {
-  console.log('w elemencie', isLoading, error, opinionsCount);
   return (
     <div className="relative flex min-h-[40vh] items-center justify-center py-16 md:py-24">
       <Image
-        src="/images/1.jpg"
-        alt="Background"
+        src="/images/zupa-krem-z-grzankami.jpg"
+        alt="Dietetyk Monika Skibicka — gabinet w Gdyni"
         fill
         className="object-cover object-center z-0"
         priority // ładuje od razu przy renderze
@@ -74,15 +73,21 @@ export default function TopSection({
               />
               <span className="ml-2 text-sm">Oferuje konsultacje online</span>
             </div>
-            <Button asChild className="w-full bg-primary2 ">
+            <p className="mb-3 text-xs text-center text-gray-500 dark:text-gray-400">
+              Skuteczna dieta to taka, którą jesteś w stanie utrzymać.
+            </p>
+            <Button asChild className="w-full bg-primary2 mb-2">
               <Link
-                href={
-                  'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#'
-                }
+                href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Umów wizytę
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/uslugi">
+                Zobacz ofertę i cennik
               </Link>
             </Button>
           </div>
