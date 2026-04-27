@@ -2,8 +2,7 @@
 
 import type React from 'react';
 import { useRef, useState } from 'react';
-import Script from 'next/script';
-import emailjs from '@emailjs/browser';
+import { Turnstile } from '@marsidev/react-turnstile';
 import dayjs from 'dayjs';
 import { CalendarDays } from 'lucide-react';
 
@@ -19,32 +18,25 @@ import { toast } from 'sonner';
 
 export default function ContactSurvey() {
   const [loading, setLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const currentDate = new Date();
-  // Calculate the date in GMT+1 timezone
   const consultationDate = new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000);
   const [selectedDate, setSelectedDate] = useState<Date>(consultationDate);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const forma = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formElement = forma.current;
     if (!formElement) return;
 
-    // Check honeypot field
     const honeypot = formElement.querySelector('input[name="website"]') as HTMLInputElement;
     if (honeypot && honeypot.value !== '') {
-      // Bot detected - silently reject
       setLoading(true);
-      console.log('Bot submission detected. Ignoring.');
       setTimeout(() => {
         toast.success('Wysłano', {
           description: 'Dziękuję za wypełnienie ankiety, do zobaczenia na konsultacji.',
-          style: {
-            background: '#10b981',
-            color: 'white',
-            border: '1px solid #059669',
-          },
+          style: { background: '#10b981', color: 'white', border: '1px solid #059669' },
         });
         formElement.reset();
         setLoading(false);
@@ -53,69 +45,54 @@ export default function ContactSurvey() {
     }
 
     const monthNames = [
-      'Styczeń',
-      'Luty',
-      'Marzec',
-      'Kwiecień',
-      'Maj',
-      'Czerwiec',
-      'Lipiec',
-      'Sierpień',
-      'Wrzesień',
-      'Październik',
-      'Listopad',
-      'Grudzień',
+      'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+      'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień',
     ];
     const day = selectedDate.getDate();
     const month = monthNames[selectedDate.getMonth()];
     const year = selectedDate.getFullYear();
-    const formattedDate2 = `${day.toString().padStart(2, '0')} ${month} ${year}`;
+    const formattedDate = `${day.toString().padStart(2, '0')} ${month} ${year}`;
 
-    // Set the formatted date in a hidden input
-    const dateInput = formElement.querySelector('input[name="date"]') as HTMLInputElement;
-    if (dateInput) {
-      dateInput.value = formattedDate2;
-    }
-
+    const fd = new FormData(formElement);
     setLoading(true);
 
-    if (
-      process.env.NEXT_PUBLIC_SERVICE_ID &&
-      process.env.NEXT_PUBLIC_TEMPLATE_SURVEY_ID &&
-      process.env.NEXT_PUBLIC_MAIL_JS_KEY
-    ) {
-      emailjs
-        .sendForm(
-          process.env.NEXT_PUBLIC_SERVICE_ID,
-          process.env.NEXT_PUBLIC_TEMPLATE_SURVEY_ID,
-          formElement,
-          process.env.NEXT_PUBLIC_MAIL_JS_KEY
-        )
-        .then(
-          (response) => {
-            toast.success('Wysłano', {
-              description: 'Dziękuję za wypełnienie ankiety, do zobaczenia na konsultacji.',
-              style: {
-                background: '#10b981',
-                color: 'white',
-                border: '1px solid #059669',
-              },
-            });
-            formElement.reset();
-            setLoading(false);
-          },
-          (error) => {
-            toast.error('Coś poszło nie tak.', {
-              description: 'Proszę o kontakt z administratorem.',
-              style: {
-                background: '#ef4444',
-                color: 'white',
-                border: '1px solid #dc2626',
-              },
-            });
-            setLoading(false);
-          }
-        );
+    try {
+      const res = await fetch('/api/survey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fd.get('name'),
+          email: fd.get('email'),
+          date: formattedDate,
+          purpose: fd.get('purpose'),
+          problems: fd.get('problems'),
+          drugs: fd.get('drugs'),
+          supplements: fd.get('supplements'),
+          intolerances: fd.get('intolerances'),
+          ailments: fd.get('ailments'),
+          liquids: fd.get('liquids'),
+          diet: fd.get('diet'),
+          not_liked: fd.get('not_liked'),
+          turnstileToken,
+        }),
+      });
+
+      if (res.ok) {
+        toast.success('Wysłano', {
+          description: 'Dziękuję za wypełnienie ankiety, do zobaczenia na konsultacji.',
+          style: { background: '#10b981', color: 'white', border: '1px solid #059669' },
+        });
+        formElement.reset();
+      } else {
+        throw new Error();
+      }
+    } catch {
+      toast.error('Coś poszło nie tak.', {
+        description: 'Proszę o kontakt z administratorem.',
+        style: { background: '#ef4444', color: 'white', border: '1px solid #dc2626' },
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,210 +101,213 @@ export default function ContactSurvey() {
   };
 
   return (
-    <>
-      <Script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" />
-      <div className="rounded-lg bg-white/95 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-900/95 sm:p-8">
-        <div className="mb-6 text-center">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-            Jesteś umówiony na konsultację? Wypełnij wstępną ankietę:
-          </h2>
+    <div className="rounded-lg bg-white/95 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-900/95 sm:p-8">
+      <div className="mb-6 text-center">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+          Jesteś umówiony na konsultację? Wypełnij wstępną ankietę:
+        </h2>
+      </div>
+
+      <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
+        {/* Honeypot field - hidden from users but visible to bots */}
+        <div className="absolute -left-2499.75" aria-hidden="true">
+          <Label htmlFor="website">Website</Label>
+          <Input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            placeholder="Leave this field empty"
+          />
         </div>
 
-        <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
-          {/* Honeypot field - hidden from users but visible to bots */}
-          <div className="absolute -left-2499.75" aria-hidden="true">
-            <Label htmlFor="website">Website</Label>
-            <Input
-              id="website"
-              name="website"
-              type="text"
-              tabIndex={-1}
-              autoComplete="off"
-              placeholder="Leave this field empty"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Imię i nazwisko
+          </Label>
+          <Input id="name" name="name" placeholder="Jan Kowalski" required className="w-full" />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Imię i nazwisko
-            </Label>
-            <Input id="name" name="name" placeholder="Jan Kowalski" required className="w-full" />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Email
+          </Label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="twoj_email@email.com"
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Email
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="twoj_email@email.com"
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Data konsultacji</Label>
+          <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className={cn('w-full justify-start text-left font-normal', !selectedDate && 'text-muted-foreground')}
+              >
+                <CalendarDays className="mr-2 h-4 w-4" />
+                {selectedDate ? formatDate(selectedDate) : 'Wybierz datę'}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <CalendarComponent
+                mode="single"
+                selected={selectedDate}
+                onSelect={(date) => {
+                  if (date) {
+                    setSelectedDate(date);
+                    setIsCalendarOpen(false);
+                  }
+                }}
+                disabled={(date) => {
+                  const today = dayjs().startOf('day').toDate();
+                  const maxDate = dayjs().add(2, 'month').endOf('day').toDate();
+                  return date < today || date > maxDate;
+                }}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
 
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Data konsultacji</Label>
-            <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={cn('w-full justify-start text-left font-normal', !selectedDate && 'text-muted-foreground')}
-                >
-                  <CalendarDays className="mr-2 h-4 w-4" />
-                  {selectedDate ? formatDate(selectedDate) : 'Wybierz datę'}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <CalendarComponent
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={(date) => {
-                    if (date) {
-                      setSelectedDate(date);
-                      setIsCalendarOpen(false);
-                    }
-                  }}
-                  disabled={(date) => {
-                    const today = dayjs().startOf('day').toDate();
-                    const maxDate = dayjs().add(2, 'month').endOf('day').toDate();
-                    return date < today || date > maxDate;
-                  }}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-            <input type="hidden" name="date" />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="purpose" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Cel porady
+          </Label>
+          <Input
+            id="purpose"
+            name="purpose"
+            placeholder="Jaki jest powód/cel porady dietetycznej?"
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="purpose" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Cel porady
-            </Label>
-            <Input
-              id="purpose"
-              name="purpose"
-              placeholder="Jaki jest powód/cel porady dietetycznej?"
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="problems" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Problemy
+          </Label>
+          <Textarea
+            id="problems"
+            name="problems"
+            placeholder="Proszę wypisać problemy zdrowotne/choroby (np. cukrzyca, insulinooporność, nadciśnienie tętnicze, zespół jelita drażliwego, anemia)"
+            required
+            rows={5}
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="problems" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Problemy
-            </Label>
-            <Textarea
-              id="problems"
-              name="problems"
-              placeholder="Proszę wypisać problemy zdrowotne/choroby (np. cukrzyca, insulinooporność, nadciśnienie tętnicze, zespół jelita drażliwego, anemia)"
-              required
-              rows={5}
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="drugs" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Leki
+          </Label>
+          <Input
+            id="drugs"
+            name="drugs"
+            placeholder="Proszę wymienić przyjmowane leki."
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="drugs" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Leki
-            </Label>
-            <Input
-              id="drugs"
-              name="drugs"
-              placeholder="Proszę wymienić przyjmowane leki."
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="supplements" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Suplementy diety
+          </Label>
+          <Input
+            id="supplements"
+            name="supplements"
+            placeholder="Proszę wymienić przyjmowane suplementy diety."
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="supplements" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Suplementy diety
-            </Label>
-            <Input
-              id="supplements"
-              name="supplements"
-              placeholder="Proszę wymienić przyjmowane suplementy diety."
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="intolerances" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Nietolerancje
+          </Label>
+          <Input
+            id="intolerances"
+            name="intolerances"
+            placeholder="Czy ma Pani/Pan stwierdzone alergie lub nietolerancje pokarmowe?"
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="intolerances" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Nietolerancje
-            </Label>
-            <Input
-              id="intolerances"
-              name="intolerances"
-              placeholder="Czy ma Pani/Pan stwierdzone alergie lub nietolerancje pokarmowe?"
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="ailments" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Dolegliwości
+          </Label>
+          <Textarea
+            id="ailments"
+            name="ailments"
+            placeholder="Czy ma Pani/Pan dolegliwości ze strony układu pokarmowego? (np. bóle brzucha, wzdęcia, biegunki, zaparcia, zgaga, nudności)"
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="ailments" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Dolegliwości
-            </Label>
-            <Textarea
-              id="ailments"
-              name="ailments"
-              placeholder="Czy ma Pani/Pan dolegliwości ze strony układu pokarmowego? (np. bóle brzucha, wzdęcia, biegunki, zaparcia, zgaga, nudności)"
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="liquids" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Płyny
+          </Label>
+          <Input
+            id="liquids"
+            name="liquids"
+            placeholder="Jakie płyny Pani/Pan wypija w ciągu dnia i w jakich ilościach?"
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="liquids" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Płyny
-            </Label>
-            <Input
-              id="liquids"
-              name="liquids"
-              placeholder="Jakie płyny Pani/Pan wypija w ciągu dnia i w jakich ilościach?"
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="diet" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Obecna dieta
+          </Label>
+          <Textarea
+            id="diet"
+            name="diet"
+            placeholder="Proszę opisać, jak do tej pory wyglądały Pani/Pana posiłki. Proszę wymienić kilka przykładowych śniadań, drugich śniadań, obiadów itd."
+            required
+            className="w-full"
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="diet" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Obecna dieta
-            </Label>
-            <Textarea
-              id="diet"
-              name="diet"
-              placeholder="Proszę opisać, jak do tej pory wyglądały Pani/Pana posiłki. Proszę wymienić kilka przykładowych śniadań, drugich śniadań, obiadów itd."
-              required
-              className="w-full"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="not_liked" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Produkty lub dania których nie lubisz
+          </Label>
+          <Textarea id="not_liked" name="not_liked" placeholder="Jarmuż ..." required className="w-full" />
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="not_liked" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Produkty lub dania których nie lubisz
-            </Label>
-            <Textarea id="not_liked" name="not_liked" placeholder="Jarmuż ..." required className="w-full" />
-          </div>
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+            onSuccess={setTurnstileToken}
+            onExpire={() => setTurnstileToken(null)}
+            options={{ theme: 'light' }}
+          />
 
-          <div className="flex justify-end pt-4">
-            <Button type="submit" disabled={loading} className="w-full">
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Wysyłanie...
-                </>
-              ) : (
-                'Wyślij'
-              )}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </>
+        <div className="flex justify-end pt-4">
+          <Button type="submit" disabled={loading || !turnstileToken} className="w-full">
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Wysyłanie...
+              </>
+            ) : (
+              'Wyślij'
+            )}
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

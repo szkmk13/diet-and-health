@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -132,7 +133,6 @@ export function TrainingTable() {
                     {trainingDay.exercises.map((exercise, idx) => (
                       <tr
                         key={idx}
-                        className={idx % 2 === 0 ? '' : ''}
                         style={{
                           backgroundColor: idx % 2 === 0 ? '#ffffff' : 'var(--trainer-secondary)',
                         }}
