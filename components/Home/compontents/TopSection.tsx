@@ -1,98 +1,62 @@
-'use client';
-
 import Link from 'next/link';
-import Image from 'next/image';
-import { Star, BadgeCheck, Video, Loader2 } from 'lucide-react'; // Using Lucide for icons
-import { Card } from '@/components/ui/card'; // Using shadcn/ui Card
-import { Button } from '@/components/ui/button'; // Using shadcn/ui Button
+import { Star, BadgeCheck } from 'lucide-react';
+
 interface TopSectionProps {
-  isLoading: boolean;
-  error: boolean;
   opinionsCount: string;
 }
-export default function TopSection({
-  isLoading,
-  error,
-  opinionsCount,
-}: TopSectionProps) {
+
+export default function TopSection({ opinionsCount }: TopSectionProps) {
   return (
-    <div className="relative flex min-h-[40vh] items-center justify-center py-16 md:py-24">
-      <Image
-        src="/images/zupa-krem-z-grzankami.jpg"
-        alt="Dietetyk Monika Skibicka — gabinet w Gdyni"
-        fill
-        className="object-cover object-center z-0"
-        priority // ładuje od razu przy renderze
-      />
-      <div className="relative z-10">
-        <Card className="bottom-[-50px] z-20 w-auto max-w-sm rounded-lg p-4 shadow-lg md:bottom-[-75px] md:p-6 bg-white dark:bg-gray-800">
-          <div className="grid grid-cols-[auto_1fr] items-center gap-4">
-            <div>
-              <Image
-                src="/images/monia_kontakt.jpeg"
-                alt="Monika Skibicka"
-                width={80}
-                height={80}
-                className="h-20 w-20 rounded-md object-cover"
-                priority
-              />
-            </div>
+    <section className="py-20 md:py-28 px-6 text-center">
+      <div className="max-w-2xl mx-auto space-y-6">
+        <h1 className="text-5xl md:text-6xl" style={{ color: 'var(--trainer-primary)' }}>
+          Monika Skibicka
+        </h1>
+        <div className="h-1 w-20 mx-auto" style={{ backgroundColor: 'var(--trainer-accent)' }} />
+        <p className="text-xl" style={{ color: 'var(--trainer-text)' }}>
+          Dietetyk Kliniczny{' '}
+          <BadgeCheck className="inline-block h-5 w-5 ml-1" style={{ color: 'var(--trainer-accent)' }} />
+        </p>
+        <p className="text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
+          Skuteczna dieta to ta, którą jesteś w stanie utrzymać — bez zakazów, bez systemu zero-jedynkowego.
+        </p>
 
-            <div className="flex flex-col justify-center">
-              <p className="text-base font-medium text-gray-800 dark:text-gray-200">
-                mgr Monika Skibicka
-                <BadgeCheck className="inline-block h-5 w-5 text-primary2" />
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Dietetyk
-              </p>
-              <div className="flex items-center text-primary2">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="h-4 w-4" fill="currentColor" />
-                ))}
-                <span className="ml-1 text-sm text-gray-600 dark:text-gray-300">
-                  {isLoading ? (
-                    <Loader2 className="inline-block h-4 w-4 animate-spin" />
-                  ) : error ? (
-                    '100+'
-                  ) : opinionsCount !== undefined ? (
-                    opinionsCount
-                  ) : (
-                    'N/A'
-                  )}
-                </span>
-              </div>
+        <div className="flex justify-center">
+          <div
+            className="flex items-center gap-2 px-4 py-2 rounded-xl"
+            style={{ backgroundColor: 'var(--trainer-secondary)' }}
+          >
+            <div className="flex">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4" style={{ color: 'var(--trainer-accent)' }} fill="currentColor" />
+              ))}
             </div>
+            <span className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+              {opinionsCount} opinii
+            </span>
+            <span className="text-xs" style={{ color: 'var(--trainer-text-light)' }}>ZnanyLekarz</span>
           </div>
+        </div>
 
-          <div>
-            <div className="mb-2 flex items-center text-gray-700 dark:text-gray-300">
-              <Video
-                className="h-5 w-5 text-primary2 dark:text-gray-400"
-                fill="currentColor"
-              />
-              <span className="ml-2 text-sm">Oferuje konsultacje online</span>
-            </div>
-            <p className="mb-3 text-xs text-center text-gray-500 dark:text-gray-400">
-              Skuteczna dieta to taka, którą jesteś w stanie utrzymać.
-            </p>
-            <Button asChild className="w-full bg-primary2 mb-2">
-              <Link
-                href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Umów wizytę
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="w-full">
-              <Link href="/uslugi">
-                Zobacz ofertę i cennik
-              </Link>
-            </Button>
-          </div>
-        </Card>{' '}
+        <div className="flex flex-wrap justify-center gap-3 pt-2">
+          <a
+            href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-6 py-3 rounded-lg text-white font-medium transition-all hover:scale-105"
+            style={{ backgroundColor: 'var(--trainer-accent)' }}
+          >
+            Umów wizytę
+          </a>
+          <Link
+            href="/uslugi"
+            className="inline-flex items-center px-6 py-3 rounded-lg font-medium border-2 transition-all hover:scale-105"
+            style={{ borderColor: 'var(--trainer-accent)', color: 'var(--trainer-accent)' }}
+          >
+            Zobacz ofertę
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

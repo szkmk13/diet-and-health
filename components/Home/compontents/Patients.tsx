@@ -1,99 +1,101 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import { Apple, Baby, Dumbbell, Cookie, Leaf, HeartPulse, Scale, Pill, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from 'react';
+import Link from 'next/link';
+import { Apple, Baby, Dumbbell, Cookie, Leaf, HeartPulse, Scale, Pill, ChevronDown } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-const cardsData = [
-  {
-    title: "Osobom z nadwagą i niedowagą",
-    description: null,
-    icon: <Scale className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Kobietom w ciąży i dzieciom",
-    description: null,
-    icon: <Baby className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Sportowcom",
-    description: null,
-    icon: <Dumbbell className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Osobom na diecie roślinnej",
-    description: null,
-    icon: <Leaf className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Osobom chcącym zmienić nawyki żywieniowe",
-    description: null,
-    icon: <Apple className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Osobom, które mają problem z utratą kontroli nad jedzeniem",
-    description: null,
-    icon: <Cookie className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Osobom z dolegliwościami układu pokarmowego",
-    description: "Zaparcia, biegunki, wzdęcia, zgaga, nudności, refluks żołądkowo-przełykowy.",
-    icon: <HeartPulse className="h-10 w-10 text-primary2" />,
-  },
-  {
-    title: "Osobom z chorobami przewlekłymi",
-    description: "cukrzycą, insulinoopornością, celiakią, SIBO, zespołem jelita drażliwego, niedoczynnością tarczycy, nadczynnością tarczycy, Hashimoto, anemią, wrzodziejącym zapaleniem jelita grubego, chorobą Leśniowskiego-Crohna, dną moczanowa i innymi chorobami/ dolegliwościami.",
-    icon: <Pill className="h-10 w-10 text-primary2" />,
-  },
-]
+interface CardData {
+  title: string;
+  description: string | null;
+  Icon: LucideIcon;
+}
 
-function PatientCard({ item }: { item: typeof cardsData[number] }) {
-  const [open, setOpen] = useState(false)
-  const clickable = !!item.description
+const cardsData: CardData[] = [
+  { title: 'Osobom z nadwagą i niedowagą', description: null, Icon: Scale },
+  { title: 'Kobietom w ciąży i dzieciom', description: null, Icon: Baby },
+  { title: 'Sportowcom', description: null, Icon: Dumbbell },
+  { title: 'Osobom na diecie roślinnej', description: null, Icon: Leaf },
+  { title: 'Osobom chcącym zmienić nawyki żywieniowe', description: null, Icon: Apple },
+  { title: 'Osobom, które mają problem z utratą kontroli nad jedzeniem', description: null, Icon: Cookie },
+  {
+    title: 'Osobom z dolegliwościami układu pokarmowego',
+    description: 'Zaparcia, biegunki, wzdęcia, zgaga, nudności, refluks żołądkowo-przełykowy.',
+    Icon: HeartPulse,
+  },
+  {
+    title: 'Osobom z chorobami przewlekłymi',
+    description:
+      'Cukrzyca, insulinooporność, celiakia, SIBO, zespół jelita drażliwego, niedoczynność tarczycy, Hashimoto, anemia, wrzodziejące zapalenie jelita grubego, choroba Leśniowskiego-Crohna, dna moczanowa i inne.',
+    Icon: Pill,
+  },
+];
+
+function PatientCard({ title, description, Icon }: CardData) {
+  const [open, setOpen] = useState(false);
+  const clickable = !!description;
 
   return (
     <div
       onClick={() => clickable && setOpen(!open)}
-      className={`flex flex-col items-center gap-3 rounded-xl border bg-gray-50 dark:bg-gray-800 p-5 text-center transition-shadow
-        ${clickable ? "cursor-pointer hover:shadow-md border-gray-200 dark:border-gray-600" : "border-gray-100 dark:border-gray-700"}
-      `}
+      className={`flex flex-col items-center gap-3 rounded-xl p-5 text-center transition-all duration-200 border-2 ${
+        clickable ? 'cursor-pointer hover:shadow-md hover:border-[var(--trainer-accent)]' : 'border-transparent'
+      }`}
+      style={{ backgroundColor: 'var(--trainer-secondary)' }}
     >
-      {item.icon}
-      <p className="text-md font-semibold text-gray-800 dark:text-gray-100 leading-snug">{item.title}</p>
+      <Icon className="h-10 w-10" style={{ color: 'var(--trainer-accent)' }} />
+      <p className="text-sm font-semibold leading-snug" style={{ color: 'var(--trainer-primary)' }}>
+        {title}
+      </p>
       {clickable && (
         <ChevronDown
-          className={`h-4 w-4 text-gray-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`h-4 w-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          style={{ color: 'var(--trainer-text-light)' }}
         />
       )}
-      {open && item.description && (
-        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed border-t border-gray-200 dark:border-gray-600 pt-3 mt-1">
-          {item.description}
+      {open && description && (
+        <p
+          className="text-xs leading-relaxed border-t pt-3 mt-1"
+          style={{ color: 'var(--trainer-text-light)', borderColor: 'var(--trainer-secondary)' }}
+        >
+          {description}
         </p>
       )}
     </div>
-  )
+  );
 }
 
 export default function Patients() {
   return (
-    <section className="py-10 my-5 rounded-2xl border border-gray-200 dark:border-gray-700 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 text-center mb-8">Komu pomagam?</h2>
+    <section className="py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl text-center mb-12" style={{ color: 'var(--trainer-primary)' }}>
+          Komu pomagam?
+        </h2>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {cardsData.map((item, index) => (
-          <PatientCard key={index} item={item} />
-        ))}
-      </div>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 mb-12">
+          {cardsData.map((item, index) => (
+            <PatientCard key={index} {...item} />
+          ))}
+        </div>
 
-      <div className="flex justify-center mt-8 gap-4">
-        <Button asChild className="px-8 py-4 text-lg bg-primary hover:bg-primary/90">
-          <Link href="/uslugi">Sprawdź ofertę</Link>
-        </Button>
-        <Button asChild variant="outline" className="px-8 py-4 text-lg">
-          <Link href="/kontakt">Kontakt</Link>
-        </Button>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link
+            href="/uslugi"
+            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium text-white transition-all hover:scale-105"
+            style={{ backgroundColor: 'var(--trainer-accent)' }}
+          >
+            Sprawdź ofertę
+          </Link>
+          <Link
+            href="/kontakt"
+            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium border-2 transition-all hover:scale-105"
+            style={{ borderColor: 'var(--trainer-accent)', color: 'var(--trainer-accent)' }}
+          >
+            Kontakt
+          </Link>
+        </div>
       </div>
     </section>
-  )
+  );
 }

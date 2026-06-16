@@ -2,8 +2,8 @@
 
 import type React from 'react';
 import Image from 'next/image';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { BadgePercent } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
 
@@ -51,15 +51,15 @@ const defaultServicesData: Service[] = [
     name: 'Jadłospis 7/14 dniowy',
     price: '170/250',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
+      <>
         Jadłospisy układam po szczegółowym wywiadzie dotyczącym dotychczasowego sposobu żywienia. Uwzględniam wszystkie
         dolegliwości, problemy zdrowotne, a także preferencje smakowe.
         <br />
         <br />
-        <span className="italic text-gray-500 dark:text-gray-500">
+        <span className="italic">
           Jadłospis otrzymasz drogą mailową w ciągu 7 dni roboczych od konsultacji.
         </span>
-      </div>
+      </>
     ),
     image: 'images/service6.jpg',
     type: 'solo',
@@ -68,12 +68,10 @@ const defaultServicesData: Service[] = [
     name: 'Dieta eliminacyjna Jadłospis 7/14 dniowy',
     price: '200/280',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
+      <>
         W przypadku wielu eliminacji w diecie{' '}
-        <span className="italic text-gray-500 dark:text-gray-500">
-          (np. faza eliminacyjna diety low FODMAP przy SIBO)
-        </span>
-      </div>
+        <span className="italic">(np. faza eliminacyjna diety low FODMAP przy SIBO)</span>
+      </>
     ),
     image: 'images/service7.jpg',
     type: 'solo',
@@ -82,23 +80,22 @@ const defaultServicesData: Service[] = [
     name: 'Analiza składu ciała',
     price: '90',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
+      <>
         Urządzenie umożliwia pomiar wszystkich najważniejszych komponentów m.in.: tkanka tłuszczowa, masa mięśniowa,
         zawartość wody w organizmie.
         <br />
         <br />
         Skład ciała jest obliczany za pomocą Analizy Bioimpedancji Elektrycznej (BIA). Bezpieczne sygnały elektryczne o
-        niskim natężeniu są przesyłane przez ciało za pomocą elektrod znajdujących się na platformie pomiarowej. Ułatwia
-        to przesyłanie sygnału przez płyny znajdujące się w mięśniach i innych tkankach, ale napotyka opór w tkance
-        tłuszczowej, ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją. Odczyty są następne
-        wprowadzone do medycznie zbadanych formuł matematycznych, aby obliczyć skład ciała.
+        niskim natężeniu są przesyłane przez ciało za pomocą elektrod znajdujących się na platformie pomiarowej.
+        Ułatwia to przesyłanie sygnału przez płyny znajdujące się w mięśniach i innych tkankach, ale napotyka opór w
+        tkance tłuszczowej, ponieważ zawiera ona niewiele płynów. Ten opór jest nazywany impedancją.
         <br />
         <br />
-        <span className="font-medium italic text-gray-500 dark:text-gray-500">
-          Przeciwskazania do badania metodą bioimpedancji: wszczepiony defibrylator lub rozrusznik serca, wszczepione
+        <span className="italic font-medium">
+          Przeciwwskazania do badania metodą bioimpedancji: wszczepiony defibrylator lub rozrusznik serca, wszczepione
           inne metalowe elementy, epilepsja, ciąża.
         </span>
-      </div>
+      </>
     ),
     image: 'images/service5.jpg',
     type: 'solo',
@@ -108,7 +105,7 @@ const defaultServicesData: Service[] = [
     price: '280',
     description:
       'Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjentów. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/service1.jpg',
+    image: 'images/service12.jpg',
     type: 'duo',
   },
   {
@@ -116,48 +113,45 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/service2.jpg',
+    image: 'images/service3.jpg',
     type: 'duo',
   },
   {
     name: 'Jadłospis 7/14 dniowy dla dwóch osób',
     price: '250/350',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
-        - Potrawy w jadłospisach dla dwóch osób są identyczne. Różnią się gramatury posiłków ustalone na podstawie
+      <>
+        Potrawy w jadłospisach dla dwóch osób są identyczne — różnią się gramatury posiłków ustalone na podstawie
         zapotrzebowania kalorycznego pacjentów.
-        <br />- W przypadku odmiennych preferencji żywieniowych i/lub jednostek chorobowych przygotowanie wspólnego
-        jadłospisu jest niemożliwe.
-      </div>
+        <br />
+        <br />
+        W przypadku odmiennych preferencji żywieniowych i/lub jednostek chorobowych przygotowanie wspólnego jadłospisu
+        jest niemożliwe.
+      </>
     ),
-    image: 'images/service6.jpg',
+    image: 'images/milkshake.jpg',
     type: 'duo',
   },
   {
     name: 'Konsultacja psychodietetyczna (pierwsza wizyta)',
     price: '250',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
+      <>
         Podczas pierwszego spotkania przeprowadzam wywiad medyczno-żywieniowy. Wykonuję analizę składu i masy ciała,
         rozmawiamy o zdrowiu, o tym jak wygląda Twój plan dnia, analizujemy dotychczasowe nawyki żywieniowe, szukamy
         przyczyny problemów z jedzeniem. Wspólnie ustalamy plan działania.
         <br />
         <br />
         Zapraszam jeśli:
-        <br />- chcesz zmienić swoje nawyki żywieniowe
-        <br />- mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z nadmierną masą ciała
-        <br />- masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego efektu
-        <br />- masz problem z utratą kontroli nad jedzeniem
+        <br />— chcesz zmienić swoje nawyki żywieniowe
+        <br />— mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z nadmierną masą ciała
+        <br />— masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego efektu
+        <br />— masz problem z utratą kontroli nad jedzeniem
         <br />
         <br />
-        Istnieje możliwość dokupienia <span className="font-bold">planu żywieniowego</span>, który może pomóc Ci w
-        zmianie nawyków żywieniowych. Nauczy Cię jakie porcje są odpowiednie dla Ciebie, jak komponować posiłki, aby
-        dłużej odczuwać sytość i nie mieć spadków energii. Zawiera indywidualne zalecenia i wskazówki oraz informacje o
-        zamiennikach poszczególnych produktów.
-        <br />
-        Plan przygotowuję na podstawie wywiadu zdrowotno-żywieniowego. Nauczę Cię jak go modyfikować. Pokażę Ci, że nie
-        ma produktów „zakazanych", a najbardziej skuteczna dieta to ta, którą jesteśmy w stanie utrzymać.
-      </div>
+        Istnieje możliwość dokupienia <span className="font-semibold">planu żywieniowego</span>, który nauczy Cię jak
+        komponować posiłki, aby dłużej odczuwać sytość i nie mieć spadków energii.
+      </>
     ),
     image: 'images/service10.jpg',
     type: 'psycho',
@@ -165,13 +159,8 @@ const defaultServicesData: Service[] = [
   {
     name: 'Konsultacja psychodietetyczna (kolejna wizyta)',
     price: '170',
-    description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
-        Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów
-        z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy
-        ciała.
-      </div>
-    ),
+    description:
+      'Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy ciała.',
     image: 'images/service11.jpg',
     type: 'psycho',
   },
@@ -179,25 +168,19 @@ const defaultServicesData: Service[] = [
     name: 'Pakiet standard trzech spotkań + jadłospis 14 dniowy',
     price: '640/550',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
+      <>
         W cenie:
-        <br />
-        Pierwsza wizyta
-        <br />
-        Dwie wizyty kontrolne
-        <br />
-        Jadłospis 14dniowy
-        <br />
-        Analiza składu ciała przy każdej z wizyt.
+        <br />— Pierwsza wizyta
+        <br />— Dwie wizyty kontrolne
+        <br />— Jadłospis 14-dniowy
+        <br />— Analiza składu ciała przy każdej z wizyt
         <br />
         <br />
         <span className="italic">
-          Uwaga!
-          <br />- W przypadku nie pojawienia się na wizycie kontrolnej, wizyta ta przepada (Dotyczy wizyt
-          niepotwierdzonych przez pacjenta i/lub wizyt nieodwołanych we wcześniejszym terminie).
-          <br />- Wizyty kontrolne muszą się odbyć w ciągu 2 miesięcy od pierwszej konsultacji.
+          Uwaga: w przypadku niepotwierdzenia lub nieodwołania wizyty kontrolnej we wcześniejszym terminie — wizyta
+          przepada. Wizyty kontrolne muszą odbyć się w ciągu 2 miesięcy od pierwszej konsultacji.
         </span>
-      </div>
+      </>
     ),
     image: 'images/service4.jpg',
     type: 'pakiet',
@@ -206,21 +189,15 @@ const defaultServicesData: Service[] = [
     name: 'Pakiet dietetyczny kolejny',
     price: '510/400',
     description: (
-      <div className="text-base text-gray-600 dark:text-gray-400">
+      <>
         W cenie:
-        <br />
-        Dwie wizyty kontrolne
-        <br />
-        Jadłospis 14dniowy
-        <br />
-        Analiza składu ciała
+        <br />— Dwie wizyty kontrolne
+        <br />— Jadłospis 14-dniowy
+        <br />— Analiza składu ciała
         <br />
         <br />
-        <span className="italic">
-          Uwaga!
-          <br />W cenie pakietu nie ma pierwszej konsultacji
-        </span>
-      </div>
+        <span className="italic">W cenie pakietu nie ma pierwszej konsultacji.</span>
+      </>
     ),
     image: 'images/service9.jpg',
     type: 'pakiet',
@@ -228,9 +205,7 @@ const defaultServicesData: Service[] = [
 ];
 
 const Description = ({ content }: { content: string | React.ReactNode }) => {
-  if (typeof content === 'string') {
-    return <p className="text-base text-gray-600 dark:text-gray-400">{content}</p>;
-  }
+  if (typeof content === 'string') return <p>{content}</p>;
   return <>{content}</>;
 };
 
@@ -239,60 +214,47 @@ const ServiceItem = ({ service }: { service: Service }) => {
   const [oldPrice, newPrice] = isPakiet ? service.price.split('/') : [service.price, null];
 
   return (
-    <div className="mb-6 last:mb-0">
+    <div className="px-6 py-6 border-b last:border-b-0" style={{ borderColor: 'var(--trainer-secondary)' }}>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
         <div className="flex-1">
-          <h3 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-100">
-            {service.name}
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
+            <h3 className="text-base font-medium" style={{ color: 'var(--trainer-primary)' }}>
+              {service.name}
+            </h3>
             {isPakiet ? (
-              <>
-                {' '}
-                <span className="line-through">{oldPrice} zł</span>{' '}
-                <span className="text-red-600 dark:text-red-400">{newPrice} zł</span>
-              </>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="line-through" style={{ color: 'var(--trainer-text-light)' }}>
+                  {oldPrice} zł
+                </span>
+                <span className="font-semibold" style={{ color: 'var(--trainer-accent)' }}>
+                  {newPrice} zł
+                </span>
+              </div>
             ) : (
-              ` ${service.price} zł`
+              <span className="text-sm font-semibold" style={{ color: 'var(--trainer-accent)' }}>
+                {service.price} zł
+              </span>
             )}
-          </h3>
-          <Description content={service.description} />
-          {service.description2 && (
-            <p className="mt-4 text-base text-gray-600 dark:text-gray-400">{service.description2}</p>
-          )}
+          </div>
+          <div className="text-sm leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
+            <Description content={service.description} />
+            {service.description2 && <p className="mt-4">{service.description2}</p>}
+          </div>
         </div>
-        <div className="hidden sm:block sm:w-48 lg:w-64">
+        <div className="hidden sm:block sm:w-40 lg:w-52 flex-shrink-0">
           <Image
             src={`/${service.image}`}
             alt={service.name}
-            width={256}
-            height={192}
-            className="h-48 w-full rounded-lg object-cover"
-            priority
+            width={208}
+            height={156}
+            className="w-full rounded-xl object-cover"
+            style={{ height: '156px' }}
           />
         </div>
       </div>
-      <hr className="mt-6 border-gray-200 dark:border-gray-700" />
     </div>
   );
 };
-
-const ServiceSection = ({ title, services }: { title: string; services: Service[] }) => (
-  <AccordionItem
-    value={title}
-    className="border last:border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
-  >
-    <AccordionTrigger className="px-6 py-8 md:py-12 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
-      <div className="flex items-center gap-4">
-        <h2 className="text-gray-800 dark:text-gray-100 font-bold text-2xl">{title}</h2>
-        {title === 'Pakiety' && <BadgePercent size={24} color="#5cbdc0" />}
-      </div>
-    </AccordionTrigger>
-    <AccordionContent className="px-6 pb-6 pt-2">
-      {services.map((service, index) => (
-        <ServiceItem key={`${service.type}-${index}`} service={service} />
-      ))}
-    </AccordionContent>
-  </AccordionItem>
-);
 
 const sections = [
   { title: 'Oferta Indywidualna', type: 'solo' },
@@ -308,19 +270,40 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
   }));
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Usługi dietetyczne</h1>
+    <section className="py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-4xl text-center mb-12" style={{ color: 'var(--trainer-primary)' }}>
+          Cennik
+        </h2>
+
+        <Tabs defaultValue={sections[0].title}>
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-transparent p-0 h-auto w-full mb-8">
+            {sections.map((section) => (
+              <TabsTrigger
+                key={section.title}
+                value={section.title}
+                className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-sm font-medium bg-white shadow-sm border-2 border-transparent h-auto w-full transition-all duration-200 data-[state=active]:!bg-[var(--trainer-accent)] data-[state=active]:!text-white data-[state=active]:!border-[var(--trainer-accent)] data-[state=active]:shadow-md"
+                style={{ color: 'var(--trainer-primary)' }}
+              >
+                {section.title}
+                {section.title === 'Pakiety' && <BadgePercent size={16} />}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {sections.map((section) => (
+            <TabsContent key={section.title} value={section.title}>
+              <div className="rounded-xl bg-white shadow-md overflow-hidden">
+                {services
+                  .filter((s) => s.type === section.type)
+                  .map((service, index) => (
+                    <ServiceItem key={`${service.type}-${index}`} service={service} />
+                  ))}
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
-      <Accordion type="multiple" className="sm:space-y-8 space-y-4">
-        {sections.map((section) => (
-          <ServiceSection
-            key={section.title}
-            title={section.title}
-            services={services.filter((s) => s.type === section.type)}
-          />
-        ))}
-      </Accordion>
-    </div>
+    </section>
   );
 }

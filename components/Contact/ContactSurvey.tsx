@@ -101,16 +101,9 @@ export default function ContactSurvey() {
   };
 
   return (
-    <div className="rounded-lg bg-white/95 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-900/95 sm:p-8">
-      <div className="mb-6 text-center">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-          Jesteś umówiony na konsultację? Wypełnij wstępną ankietę:
-        </h2>
-      </div>
-
+    <div className="rounded-xl bg-white p-6 sm:p-8 shadow-md border-2 border-[var(--trainer-secondary)]">
       <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
-        {/* Honeypot field - hidden from users but visible to bots */}
-        <div className="absolute -left-2499.75" aria-hidden="true">
+        <div className="absolute -left-[9999px]" aria-hidden="true">
           <Label htmlFor="website">Website</Label>
           <Input
             id="website"
@@ -123,14 +116,14 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="name" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Imię i nazwisko
           </Label>
           <Input id="name" name="name" placeholder="Jan Kowalski" required className="w-full" />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="email" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Email
           </Label>
           <Input
@@ -144,7 +137,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Data konsultacji</Label>
+          <Label className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>Data konsultacji</Label>
           <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -177,7 +170,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="purpose" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="purpose" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Cel porady
           </Label>
           <Input
@@ -190,7 +183,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="problems" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="problems" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Problemy
           </Label>
           <Textarea
@@ -204,7 +197,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="drugs" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="drugs" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Leki
           </Label>
           <Input
@@ -217,7 +210,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="supplements" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="supplements" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Suplementy diety
           </Label>
           <Input
@@ -230,7 +223,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="intolerances" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="intolerances" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Nietolerancje
           </Label>
           <Input
@@ -243,7 +236,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="ailments" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="ailments" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Dolegliwości
           </Label>
           <Textarea
@@ -256,7 +249,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="liquids" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="liquids" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Płyny
           </Label>
           <Input
@@ -269,7 +262,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="diet" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="diet" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Obecna dieta
           </Label>
           <Textarea
@@ -282,7 +275,7 @@ export default function ContactSurvey() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="not_liked" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="not_liked" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Produkty lub dania których nie lubisz
           </Label>
           <Textarea id="not_liked" name="not_liked" placeholder="Jarmuż ..." required className="w-full" />
@@ -296,7 +289,12 @@ export default function ContactSurvey() {
           />
 
         <div className="flex justify-end pt-4">
-          <Button type="submit" disabled={loading || !turnstileToken} className="w-full">
+          <Button
+            type="submit"
+            disabled={loading || !turnstileToken}
+            className="w-full text-white border-0"
+            style={{ backgroundColor: 'var(--trainer-accent)' }}
+          >
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

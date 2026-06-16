@@ -70,13 +70,9 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="rounded-lg bg-white/95 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-900/95 sm:p-8">
-      <div className="mb-6 text-center">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Masz pytanie ?</h2>
-      </div>
-
+    <div className="rounded-xl bg-white p-6 sm:p-8 shadow-md border-2 border-[var(--trainer-secondary)]">
       <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
-        <div className="absolute -left-2499.75" aria-hidden="true">
+        <div className="absolute -left-[9999px]" aria-hidden="true">
           <Label htmlFor="website">Website</Label>
           <Input
             id="website"
@@ -87,29 +83,23 @@ export default function ContactForm() {
             placeholder="Leave this field empty"
           />
         </div>
+
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="email" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Email <span className="text-red-500">*</span>
           </Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="twoj_email@email.com"
-            required
-            className="w-full"
-          />
+          <Input id="email" name="email" type="email" placeholder="twoj_email@email.com" required className="w-full" />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="name" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Imię <span className="text-red-500">*</span>
           </Label>
           <Input id="name" name="name" placeholder="Jan Kowalski" required className="w-full" />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <Label htmlFor="message" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
             Wiadomość <span className="text-red-500">*</span>
           </Label>
           <Textarea
@@ -122,22 +112,27 @@ export default function ContactForm() {
           />
         </div>
 
-          <Turnstile
-            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-            onSuccess={setTurnstileToken}
-            onExpire={() => setTurnstileToken(null)}
-            options={{ theme: 'light' }}
-          />
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+          onSuccess={setTurnstileToken}
+          onExpire={() => setTurnstileToken(null)}
+          options={{ theme: 'light' }}
+        />
 
         <div className="flex justify-end pt-4">
-          <Button type="submit" disabled={loading || !turnstileToken} className="min-w-[100px]">
+          <Button
+            type="submit"
+            disabled={loading || !turnstileToken}
+            className="min-w-[100px] text-white border-0"
+            style={{ backgroundColor: 'var(--trainer-accent)' }}
+          >
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Wysyłanie...
               </>
             ) : (
-              "Wyślij"
+              'Wyślij'
             )}
           </Button>
         </div>

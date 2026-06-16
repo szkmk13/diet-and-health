@@ -19,8 +19,8 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-      <TopSection isLoading={false} error={!data} opinionsCount={data?.opinionsCount ?? '+100'} />
+    <div className="min-h-screen bg-white">
+      <TopSection opinionsCount={data?.opinionsCount ?? '100+'} />
       <About />
       <Patients />
       <Opinions isLoading={false} error={!data} opinions={data?.opinions ?? null} />
