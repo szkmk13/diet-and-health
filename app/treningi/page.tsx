@@ -43,7 +43,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-10 md:py-20 px-6">
+      <section className="py-12 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
@@ -76,23 +76,15 @@ export default function Page() {
             </div>
 
             <div className="relative order-1 md:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '3 / 4' }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
                 <Image
                   src="/images/krzychu.jpg"
                   alt="Krzysiek - Trener Personalny"
                   fill
                   priority
-                  className="object-cover"
-                />
-                <Image
-                  src="/images/krzychu.jpg"
-                  alt=""
-                  fill
-                  className="object-cover blur-xl scale-105"
-                  style={{
-                    maskImage: 'radial-gradient(ellipse 35% 55% at center, transparent 50%, black 80%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 30% 55% at center, transparent 60%, black 70%)',
-                  }}
+                  quality={90}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
