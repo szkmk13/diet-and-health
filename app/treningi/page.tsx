@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Dumbbell, Calendar, Instagram } from 'lucide-react';
+import { TrainingWeek } from '@/components/TrainingWeek';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -117,24 +118,10 @@ export default function Page() {
       {/* Training Plan Preview Section */}
       <section className="py-12 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 flex flex-col justify-center">
-              <h2 className="text-2xl md:text-4xl" style={{ color: 'var(--trainer-primary)' }}>
-                Przykładowy Plan Treningowy
-              </h2>
-              <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                Przeglądaj interaktywny plan treningowy
-              </p>
-            </div>
-            <div className="overflow-hidden rounded-2xl border-2 border-black shadow-2xl bg-white relative">
-              <iframe
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQX4XBRFZolnt9xTncu3TKu5RfkmG24VUZC8-WVYFs5dhJZZgooyog8jzoYg9kXBC7S3GdVqhLt_-iP/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
-                className="w-full h-[300px] md:h-[600px]"
-                style={{ border: 'none' }}
-                title="Plan Treningowy"
-              />
-            </div>
-          </div>
+          <h2 className="text-2xl md:text-4xl text-center mb-10" style={{ color: 'var(--trainer-primary)' }}>
+            Przykladowy Plan Treningowy
+          </h2>
+          <TrainingWeek />
         </div>
       </section>
     </div>
