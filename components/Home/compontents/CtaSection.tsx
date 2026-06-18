@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function CtaSection() {
   return (
-    <section className="py-20 px-6" style={{ backgroundColor: 'var(--trainer-primary)' }}>
+    <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-primary)' }}>
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl mb-4 text-white">Czas na zmianę?</h2>
+        <h2 className="text-3xl md:text-4xl mb-4 text-white">Czas na zmianę?</h2>
         <div className="h-1 w-20 mx-auto mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-        <p className="text-lg mb-10" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+        <p className="text-base md:text-lg mb-8 md:mb-10" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
           Pierwsza konsultacja to krok, który może zmienić Twoje podejście do jedzenia na zawsze.
         </p>
         <div className="flex flex-wrap justify-center gap-4">

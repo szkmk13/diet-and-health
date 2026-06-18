@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Oferta i cennik | Monika Skibicka Dietetyk',
     description:
-      'Konsultacje dietetyczne, psychodietetyka, jadłospisy i analiza składu ciała — cennik usług.',
+      'Konsultacje dietetyczne, psychodietetyka, jadłospisy i analiza składu ciała - cennik usług.',
   },
 };
 

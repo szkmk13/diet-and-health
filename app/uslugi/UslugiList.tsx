@@ -121,7 +121,7 @@ const defaultServicesData: Service[] = [
     price: '250/350',
     description: (
       <>
-        Potrawy w jadłospisach dla dwóch osób są identyczne — różnią się gramatury posiłków ustalone na podstawie
+        Potrawy w jadłospisach dla dwóch osób są identyczne - różnią się gramatury posiłków ustalone na podstawie
         zapotrzebowania kalorycznego pacjentów.
         <br />
         <br />
@@ -143,10 +143,10 @@ const defaultServicesData: Service[] = [
         <br />
         <br />
         Zapraszam jeśli:
-        <br />— chcesz zmienić swoje nawyki żywieniowe
-        <br />— mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z nadmierną masą ciała
-        <br />— masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego efektu
-        <br />— masz problem z utratą kontroli nad jedzeniem
+        <br />- chcesz zmienić swoje nawyki żywieniowe
+        <br />- mimo znajomości zasad prawidłowego odżywiania nie potrafisz sobie poradzić z nadmierną masą ciała
+        <br />- masz za sobą wiele prób redukcji masy ciała, które nie przyniosły oczekiwanego efektu
+        <br />- masz problem z utratą kontroli nad jedzeniem
         <br />
         <br />
         Istnieje możliwość dokupienia <span className="font-semibold">planu żywieniowego</span>, który nauczy Cię jak
@@ -170,14 +170,14 @@ const defaultServicesData: Service[] = [
     description: (
       <>
         W cenie:
-        <br />— Pierwsza wizyta
-        <br />— Dwie wizyty kontrolne
-        <br />— Jadłospis 14-dniowy
-        <br />— Analiza składu ciała przy każdej z wizyt
+        <br />- Pierwsza wizyta
+        <br />- Dwie wizyty kontrolne
+        <br />- Jadłospis 14-dniowy
+        <br />- Analiza składu ciała przy każdej z wizyt
         <br />
         <br />
         <span className="italic">
-          Uwaga: w przypadku niepotwierdzenia lub nieodwołania wizyty kontrolnej we wcześniejszym terminie — wizyta
+          Uwaga: w przypadku niepotwierdzenia lub nieodwołania wizyty kontrolnej we wcześniejszym terminie - wizyta
           przepada. Wizyty kontrolne muszą odbyć się w ciągu 2 miesięcy od pierwszej konsultacji.
         </span>
       </>
@@ -191,9 +191,9 @@ const defaultServicesData: Service[] = [
     description: (
       <>
         W cenie:
-        <br />— Dwie wizyty kontrolne
-        <br />— Jadłospis 14-dniowy
-        <br />— Analiza składu ciała
+        <br />- Dwie wizyty kontrolne
+        <br />- Jadłospis 14-dniowy
+        <br />- Analiza składu ciała
         <br />
         <br />
         <span className="italic">W cenie pakietu nie ma pierwszej konsultacji.</span>
@@ -270,9 +270,9 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
   }));
 
   return (
-    <section className="py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
+    <section className="py-12 md:py-20 px-4 sm:px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl text-center mb-12" style={{ color: 'var(--trainer-primary)' }}>
+        <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
           Cennik
         </h2>
 

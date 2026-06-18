@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Przed wizytą | Monika Skibicka Dietetyk',
     description:
-      'Przygotuj się do wizyty dietetycznej — wskazówki i wstępna ankieta online.',
+      'Przygotuj się do wizyty dietetycznej - wskazówki i wstępna ankieta online.',
   },
 };
 

@@ -20,7 +20,8 @@ export async function fetchZnanyLekarzData(): Promise<ZnanyLekarzData> {
   const html = await response.text();
   const $ = cheerio.load(html);
 
-  const opinionsCount = $(opinieSelector).text().trim();
+  const rawCount = $(opinieSelector).text().trim();
+  const opinionsCount = rawCount.match(/\d+/)?.[0] ?? '100+';
 
   const opinionsUl = $('ul.standard-opinions-container.list-unstyled.mb-0');
   const opinions = opinionsUl

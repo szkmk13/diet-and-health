@@ -1,17 +1,17 @@
 import Image from 'next/image';
 
 const bulletPoints = [
-  'Dietetyk kliniczny i psychodietetyk — mgr Gdańskiego Uniwersytetu Medycznego',
+  'Dietetyk kliniczny i psychodietetyk - mgr Gdańskiego Uniwersytetu Medycznego',
   'Studia podyplomowe z Psychodietetyki (WSB Merito)',
-  'Indywidualne podejście — jadłospisy dopasowane do stanu zdrowia i preferencji',
+  'Indywidualne podejście - jadłospisy dopasowane do stanu zdrowia i preferencji',
   'Posiłki zdrowe, smaczne i łatwe do przygotowania',
   'Szukam przyczyny problemu, nie tylko objawów',
-  'Zdrowa relacja z jedzeniem — bez zakazów i systemu zero-jedynkowego',
+  'Zdrowa relacja z jedzeniem - bez zakazów i systemu zero-jedynkowego',
 ];
 
 export default function About() {
   return (
-    <section className="py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
+    <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="hidden md:block">
@@ -28,13 +28,13 @@ export default function About() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-4xl" style={{ color: 'var(--trainer-primary)' }}>
+            <h2 className="text-3xl md:text-4xl" style={{ color: 'var(--trainer-primary)' }}>
               Dietetyk Kliniczny
               <br />& Psychodietetyk
             </h2>
             <div className="h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />
 
-            {/* Full text — desktop */}
+            {/* Full text - desktop */}
             <div className="hidden md:block space-y-4">
               <p className="text-base leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                 Jestem{' '}
@@ -53,14 +53,14 @@ export default function About() {
                 <span className="font-semibold" style={{ color: 'var(--trainer-text)' }}>
                   Zależy mi przede wszystkim na znalezieniu przyczyny problemów z jedzeniem.
                 </span>{' '}
-                Nie jestem zwolenniczką systemu zero-jedynkowego —{' '}
+                Nie jestem zwolenniczką systemu zero-jedynkowego -{' '}
                 <span className="font-semibold">
                   najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.
                 </span>
               </p>
             </div>
 
-            {/* Bullet points — mobile */}
+            {/* Bullet points - mobile */}
             <ul className="md:hidden space-y-2 text-sm">
               {bulletPoints.map((item, i) => (
                 <li key={i} className="flex items-start gap-2">

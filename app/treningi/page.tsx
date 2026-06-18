@@ -43,19 +43,19 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-2 md:py-20 px-6">
+      <section className="relative py-10 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
-                <h1 className="text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
+                <h1 className="text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
                   Krzysiek
                 </h1>
                 <div className="h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-                <p className="text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
+                <p className="text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
                   Trener Personalny z Humorem
                 </p>
-                <p className="text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
+                <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                   Wierzę, że trening to nie tylko ciężka praca, ale też dobra zabawa!
                   Pomogę Ci osiągnąć cele treningowe z uśmiechem na twarzy.
                   Bez nudy, bez wymówek - tylko efekty i dobra energia! 💪
@@ -101,9 +101,9 @@ export default function Page() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
+      <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl text-center mb-12" style={{ color: 'var(--trainer-primary)' }}>
+          <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
             Moja Oferta
           </h2>
           <div className="space-y-16">
@@ -123,11 +123,11 @@ export default function Page() {
       </section>
 
       {/* Training Plan Preview Section */}
-      <section className="py-20 px-6">
+      <section className="py-12 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 flex flex-col justify-center">
-              <h2 className="text-3xl md:text-4xl" style={{ color: 'var(--trainer-primary)' }}>
+              <h2 className="text-2xl md:text-4xl" style={{ color: 'var(--trainer-primary)' }}>
                 Przykładowy Plan Treningowy
               </h2>
               <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
@@ -137,7 +137,7 @@ export default function Page() {
             <div className="overflow-hidden rounded-2xl border-2 border-black shadow-2xl bg-white relative">
               <iframe
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQX4XBRFZolnt9xTncu3TKu5RfkmG24VUZC8-WVYFs5dhJZZgooyog8jzoYg9kXBC7S3GdVqhLt_-iP/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
-                className="w-full h-[400px] md:h-[600px]"
+                className="w-full h-[300px] md:h-[600px]"
                 style={{ border: 'none' }}
                 title="Plan Treningowy"
               />

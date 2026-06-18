@@ -67,9 +67,9 @@ function PatientCard({ title, description, Icon }: CardData) {
 
 export default function Patients() {
   return (
-    <section className="py-20 px-6">
+    <section className="py-12 md:py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl text-center mb-12" style={{ color: 'var(--trainer-primary)' }}>
+        <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
           Komu pomagam?
         </h2>
 

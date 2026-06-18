@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   }
 
   const row = (label: string, value: string) =>
-    `<tr><td style="padding:6px 12px;font-weight:bold;background:#f3f4f6;border:1px solid #e5e7eb;">${label}</td><td style="padding:6px 12px;border:1px solid #e5e7eb;">${(value || '—').replace(/\n/g, '<br/>')}</td></tr>`;
+    `<tr><td style="padding:6px 12px;font-weight:bold;background:#f3f4f6;border:1px solid #e5e7eb;">${label}</td><td style="padding:6px 12px;border:1px solid #e5e7eb;">${(value || '-').replace(/\n/g, '<br/>')}</td></tr>`;
 
   const { error } = await resend.emails.send({
     from: 'Ankieta przedwizytowa <onboarding@resend.dev>',

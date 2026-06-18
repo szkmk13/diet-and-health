@@ -30,7 +30,7 @@ function ContactCard({ icon, title, description, href, linkLabel }: ContactCardP
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-medium hover:underline"
+          className="text-sm font-medium hover:underline break-all"
           style={{ color: 'var(--trainer-accent)' }}
         >
           {linkLabel} →
@@ -49,16 +49,16 @@ export default function Page() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
-                <h1 className="text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
+                <h1 className="text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
                   Monika
                 </h1>
                 <div className="h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-                <p className="text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
+                <p className="text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
                   Dietetyk Kliniczny
                 </p>
-                <p className="text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
+                <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                   Kompleksowe podejście do zdrowia i odżywiania. Pomagam moim pacjentom osiągać trwałe
-                  zmiany poprzez indywidualnie dopasowaną dietę — bez wyrzeczeń, z przyjemnością jedzenia.
+                  zmiany poprzez indywidualnie dopasowaną dietę - bez wyrzeczeń, z przyjemnością jedzenia.
                 </p>
               </div>
               <div className="flex justify-center md:justify-start">
@@ -93,9 +93,9 @@ export default function Page() {
       </section>
 
       {/* Contact Cards Section */}
-      <section className="py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
+      <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl text-center mb-12" style={{ color: 'var(--trainer-primary)' }}>
+          <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
             Jak się skontaktować?
           </h2>
           <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -118,12 +118,12 @@ export default function Page() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 px-6">
+      <section className="py-12 md:py-20 px-6">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-4xl text-center mb-4" style={{ color: 'var(--trainer-primary)' }}>
+          <h2 className="text-3xl md:text-4xl text-center mb-4" style={{ color: 'var(--trainer-primary)' }}>
             Napisz do mnie
           </h2>
-          <p className="text-center mb-12 text-lg" style={{ color: 'var(--trainer-text-light)' }}>
+          <p className="text-center mb-8 md:mb-12 text-base md:text-lg" style={{ color: 'var(--trainer-text-light)' }}>
             Masz pytanie? Chętnie odpiszę.
           </p>
           <ContactForm />
