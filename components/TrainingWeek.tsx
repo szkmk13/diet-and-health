@@ -27,38 +27,40 @@ export function TrainingWeek() {
   return (
     <div className="max-w-2xl mx-auto">
       {/* Tab bar */}
-      <div className="overflow-x-auto py-2 mb-8">
-        <div className="flex gap-1.5 min-w-max mx-auto w-fit">
-          {DAYS.map((d, i) => {
-            const isActive = active === i;
-            const isToday = i === todayIndex();
-            return (
-              <button
-                key={d.short}
-                onClick={() => setActive(i)}
-                className="relative flex flex-col items-center px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all"
-                style={
-                  isActive
-                    ? { backgroundColor: 'var(--trainer-accent)', color: 'white' }
-                    : { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)' }
-                }
-              >
-                {isToday && !isActive && (
-                  <span
-                    className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full border-2 border-white"
-                    style={{ backgroundColor: 'var(--trainer-accent)' }}
-                  />
-                )}
-                {d.short}
-                {d.plan && (
-                  <span
-                    className="w-1 h-1 rounded-full mt-1"
-                    style={{ backgroundColor: isActive ? 'rgba(255,255,255,0.6)' : 'var(--trainer-accent)' }}
-                  />
-                )}
-              </button>
-            );
-          })}
+      <div className="mb-8 pt-2 pb-1">
+        <div className="overflow-x-auto">
+          <div className="flex gap-1.5 min-w-max pb-1">
+            {DAYS.map((d, i) => {
+              const isActive = active === i;
+              const isToday = i === todayIndex();
+              return (
+                <button
+                  key={d.short}
+                  onClick={() => setActive(i)}
+                  className="relative flex flex-col items-center px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all"
+                  style={
+                    isActive
+                      ? { backgroundColor: 'var(--trainer-accent)', color: 'white' }
+                      : { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)' }
+                  }
+                >
+                  {isToday && !isActive && (
+                    <span
+                      className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full border-2 border-white"
+                      style={{ backgroundColor: 'var(--trainer-accent)' }}
+                    />
+                  )}
+                  {d.short}
+                  {d.plan && (
+                    <span
+                      className="w-1 h-1 rounded-full mt-1"
+                      style={{ backgroundColor: isActive ? 'rgba(255,255,255,0.6)' : 'var(--trainer-accent)' }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

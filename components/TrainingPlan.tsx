@@ -42,22 +42,22 @@ function SectionHeader({
   duration?: string;
 }) {
   return (
-    <div className="flex items-center justify-between px-5 py-4" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
-      <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-3 px-5 py-4" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
+      <div className="flex items-center gap-3 flex-1 min-w-0">
         <div
           className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
           style={{ backgroundColor: 'var(--trainer-accent)' }}
         >
           {icon}
         </div>
-        <div>
+        <div className="min-w-0">
           <span
             className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded"
             style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 15%, transparent)', color: 'var(--trainer-accent)' }}
           >
             {label}
           </span>
-          <p className="font-semibold mt-0.5" style={{ color: 'var(--trainer-primary)' }}>
+          <p className="font-semibold mt-0.5 truncate" style={{ color: 'var(--trainer-primary)' }}>
             {title}
           </p>
           {subtitle && (
@@ -161,18 +161,6 @@ export function TrainingPlan() {
 
   return (
     <div className="space-y-4 max-w-2xl mx-auto">
-
-      {/* Reset */}
-      <div className="flex justify-end">
-        <button
-          onClick={reset}
-          className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-xl border-2 transition-colors hover:opacity-80"
-          style={{ borderColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)' }}
-        >
-          <RotateCcw className="h-4 w-4" />
-          Reset
-        </button>
-      </div>
 
       {/* ── WARM UP ── */}
       <div

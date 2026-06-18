@@ -34,8 +34,8 @@ function Variant1({ opinionsCount }: TopSectionProps) {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div
-            className="relative rounded-2xl overflow-hidden shadow-2xl order-1 md:order-2 mx-auto w-full"
-            style={{ aspectRatio: '3/4', maxHeight: '520px' }}
+            className="relative rounded-2xl overflow-hidden shadow-2xl order-2 mx-auto w-full max-h-64 md:max-h-[520px]"
+            style={{ aspectRatio: '3/4' }}
           >
             <Image
               src="/images/monia_kontakt.jpeg"
@@ -46,7 +46,7 @@ function Variant1({ opinionsCount }: TopSectionProps) {
             />
           </div>
 
-          <div className="order-2 md:order-1 space-y-5">
+          <div className="order-1 space-y-5">
             <div>
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl mb-3"
@@ -162,12 +162,8 @@ function Variant3({ opinionsCount }: TopSectionProps) {
         </p>
 
         <h1
-          style={{
-            fontFamily: 'Allura, cursive',
-            fontSize: 'clamp(3.5rem, 12vw, 6rem)',
-            color: 'var(--trainer-primary)',
-            lineHeight: 1.1,
-          }}
+          className="text-5xl md:text-7xl"
+          style={{ color: 'var(--trainer-primary)', lineHeight: 1.1 }}
         >
           Monika Skibicka
         </h1>

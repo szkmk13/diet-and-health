@@ -1,9 +1,9 @@
 'use client';
 
 import type React from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { BadgePercent } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { BadgePercent, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
 
@@ -264,10 +264,34 @@ const sections = [
 ] as const;
 
 export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null }) {
+  const [active, setActive] = useState<(typeof sections)[number]['type']>(sections[0].type);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const updateArrows = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  };
+
+  useEffect(() => {
+    updateArrows();
+    window.addEventListener('resize', updateArrows);
+    return () => window.removeEventListener('resize', updateArrows);
+  }, []);
+
+  const scroll = (dir: 'left' | 'right') => {
+    scrollRef.current?.scrollBy({ left: dir === 'left' ? -160 : 160, behavior: 'smooth' });
+  };
+
   const services = defaultServicesData.map((service) => ({
     ...service,
     ...(offers?.find((item) => item.name === service.name) || {}),
   }));
+
+  const activeSection = sections.find((s) => s.type === active)!;
 
   return (
     <section className="py-12 md:py-20 px-4 sm:px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
@@ -276,33 +300,82 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
           Cennik
         </h2>
 
-        <Tabs defaultValue={sections[0].title}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-transparent p-0 h-auto w-full mb-8">
-            {sections.map((section) => (
-              <TabsTrigger
-                key={section.title}
-                value={section.title}
-                className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-sm font-medium bg-white shadow-sm border-2 border-transparent h-auto w-full transition-all duration-200 data-[state=active]:!bg-[var(--trainer-accent)] data-[state=active]:!text-white data-[state=active]:!border-[var(--trainer-accent)] data-[state=active]:shadow-md"
-                style={{ color: 'var(--trainer-primary)' }}
-              >
-                {section.title}
-                {section.title === 'Pakiety' && <BadgePercent size={16} />}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+        {/* Tab bar - scrollable on mobile */}
+        <div className="relative mb-8">
+          {/* lewa strzalka */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow-md"
+              style={{ backgroundColor: 'white', color: 'var(--trainer-primary)' }}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+          )}
 
-          {sections.map((section) => (
-            <TabsContent key={section.title} value={section.title}>
-              <div className="rounded-xl bg-white shadow-md overflow-hidden">
-                {services
-                  .filter((s) => s.type === section.type)
-                  .map((service, index) => (
-                    <ServiceItem key={`${service.type}-${index}`} service={service} />
-                  ))}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+          {/* prawa strzalka + fade */}
+          {canScrollRight && (
+            <>
+              <div
+                className="absolute right-0 top-0 bottom-1 w-16 z-10 pointer-events-none rounded-r-xl"
+                style={{ background: 'linear-gradient(to right, transparent, var(--trainer-secondary))' }}
+              />
+              <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full flex items-center justify-center shadow-md"
+                style={{ backgroundColor: 'white', color: 'var(--trainer-primary)' }}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </>
+          )}
+
+          <div
+            ref={scrollRef}
+            onScroll={updateArrows}
+            className="overflow-x-auto pb-1"
+            style={{ scrollbarWidth: 'none' }}
+          >
+            <div className="flex gap-2 min-w-max">
+              {sections.map((section) => {
+                const isActive = active === section.type;
+                return (
+                  <button
+                    key={section.type}
+                    onClick={() => setActive(section.type)}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap border-2 transition-all duration-200 flex-shrink-0"
+                    style={
+                      isActive
+                        ? {
+                            backgroundColor: 'var(--trainer-accent)',
+                            color: 'white',
+                            borderColor: 'var(--trainer-accent)',
+                          }
+                        : {
+                            backgroundColor: 'white',
+                            color: 'var(--trainer-primary)',
+                            borderColor: 'transparent',
+                            boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+                          }
+                    }
+                  >
+                    {section.title}
+                    {section.type === 'pakiet' && <BadgePercent size={16} />}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Panel */}
+        <div className="rounded-xl bg-white shadow-md overflow-hidden">
+          {services
+            .filter((s) => s.type === activeSection.type)
+            .map((service, index) => (
+              <ServiceItem key={`${service.type}-${index}`} service={service} />
+            ))}
+        </div>
       </div>
     </section>
   );
