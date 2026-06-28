@@ -28,8 +28,8 @@ export function TrainingWeek() {
     <div className="max-w-2xl mx-auto">
       {/* Tab bar */}
       <div className="mb-8 pt-2 pb-1">
-        <div className="overflow-x-auto">
-          <div className="flex gap-1.5 min-w-max pb-1">
+        <div className="overflow-x-auto text-center">
+          <div className="inline-flex gap-1.5 pb-1">
             {DAYS.map((d, i) => {
               const isActive = active === i;
               const isToday = i === todayIndex();

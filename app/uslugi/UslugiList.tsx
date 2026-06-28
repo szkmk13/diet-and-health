@@ -336,7 +336,7 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
             className="overflow-x-auto pb-1"
             style={{ scrollbarWidth: 'none' }}
           >
-            <div className="flex gap-2 min-w-max">
+            <div className="flex gap-2 min-w-max md:min-w-0 md:w-full md:justify-center">
               {sections.map((section) => {
                 const isActive = active === section.type;
                 return (

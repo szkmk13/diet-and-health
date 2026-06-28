@@ -79,13 +79,14 @@ export default function Page() {
             <div className="relative order-1 md:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
                 <Image
-                  src="/images/krzychu.jpg"
+                  src="/images/krzychu_solo.png"
                   alt="Krzysiek - Trener Personalny"
                   fill
                   priority
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top"
+                  className="object-cover"
+                  style={{ objectPosition: '50% 40%' }}
                 />
               </div>
             </div>
@@ -107,7 +108,7 @@ export default function Page() {
             />
             <ServiceCard
               icon={<Calendar className="w-6 h-6 md:w-8 md:h-8" color="#ffffff" />}
-              title="Rozpiski Treningowe"
+              title="Plany Treningowe"
               description="Spersonalizowane plany treningowe stworzone specjalnie dla Ciebie. Możesz trenować samodzielnie, ale z moim profesjonalnym planem w kieszeni. Regularnie aktualizowane, dopasowane do Twoich postępów i gotowe do działania!"
               reverse
             />
@@ -119,7 +120,7 @@ export default function Page() {
       <section className="py-12 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-4xl text-center mb-10" style={{ color: 'var(--trainer-primary)' }}>
-            Przykladowy Plan Treningowy
+            Przykładowy Plan Treningowy
           </h2>
           <TrainingWeek />
         </div>

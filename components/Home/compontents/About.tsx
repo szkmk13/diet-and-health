@@ -28,9 +28,10 @@ export default function About() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl" style={{ color: 'var(--trainer-primary)' }}>
-              Dietetyk Kliniczny
-              <br />& Psychodietetyk
+            <h2 className="text-3xl md:text-4xl">
+              <span style={{ color: 'var(--trainer-text)' }}>mgr Monika Skibicka</span>
+              <br />
+              <span className="text-2xl md:text-3xl text-primary2">DIETETYK KLINICZNY</span>
             </h2>
             <div className="h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />
 
