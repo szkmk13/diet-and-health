@@ -7,7 +7,7 @@ import { Dumbbell } from 'lucide-react';
 const DAYS = [
   { short: 'Pon',  full: 'Poniedzialek', plan: true },
   { short: 'Wt',   full: 'Wtorek',       plan: false },
-  { short: 'Sr',   full: 'Sroda',        plan: true },
+  { short: 'Śr',   full: 'Sroda',        plan: true },
   { short: 'Czw',  full: 'Czwartek',     plan: true },
   { short: 'Pt',   full: 'Piatek',       plan: true },
   { short: 'Sob',  full: 'Sobota',       plan: false },
@@ -40,16 +40,12 @@ export function TrainingWeek() {
                   className="relative flex flex-col items-center px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all"
                   style={
                     isActive
-                      ? { backgroundColor: 'var(--trainer-accent)', color: 'white' }
-                      : { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)' }
+                      ? { backgroundColor: 'var(--trainer-accent)', color: 'white', border: '2px solid var(--trainer-accent)' }
+                      : isToday
+                        ? { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)', border: '2px solid var(--trainer-accent)' }
+                        : { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)', border: '2px solid transparent' }
                   }
                 >
-                  {isToday && !isActive && (
-                    <span
-                      className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full border-2 border-white"
-                      style={{ backgroundColor: 'var(--trainer-accent)' }}
-                    />
-                  )}
                   {d.short}
                   {d.plan && (
                     <span

@@ -1,29 +1,53 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { RotateCcw, Plus, Minus, Timer, Zap, Flame, Dumbbell, Play, Pause, SkipForward } from 'lucide-react';
+import { useState } from 'react';
+import { Plus, Minus, Flame, Zap, Dumbbell, Target, Timer } from 'lucide-react';
 
 /* ─── Data ─── */
 
-const warmupExercises = [
-  { id: 'w1', text: '3 min ergometr' },
-  { id: 'w2', text: '5x pies z glowa w dol i foczka i po jednym spidermanie na strone' },
-  { id: 'w3', text: '10 band pull aparts' },
-  { id: 'w4', text: '15 scap pull-ups' },
+const warmupSingle = [
+  { id: 'w1', text: '500m easy run' },
+  { id: 'w2', text: '5x (upward + downward dog + 1/1 spiderman)' },
+  { id: 'w3', text: '30/30 single leg quarter squat heel elevated slow pace' },
 ];
 
-const skillExercises = [
-  { id: 's1', text: '6 Nordic hamstring curl' },
-  { id: 's2', text: '10 front rack squats (kettlebell)' },
-  { id: 's3', text: '20 slider jumps' },
+const warmupCircuit = [
+  { id: 'wc1', text: '10 alt box step 50cm' },
+  { id: 'wc2', text: '5 banded face pull + external rotation + press' },
+  { id: 'wc3', text: '5/5 pallof press with rotation' },
+];
+
+const powerBlock1 = [
+  { id: 'p1', text: '20 banded pogo jumps' },
+  { id: 'p2', text: '20 alt skater jumps into forward plate hops' },
+  { id: 'p3', text: "2' easy bike erg" },
+];
+
+const powerBlock2 = [
+  { id: 'p4', text: '10x 1"ON/1"OFF overcoming iso back squat empty barbell' },
+  { id: 'p5', text: '20" 90 degree iso squat hold + 5 squat jumps' },
+  { id: 'p6', text: "2' easy bike erg" },
+];
+
+const strengthExercises = [
+  { id: 's1', text: '6 bulgarian split squats, leg 1 - barbell behind the neck tempo 51X1' },
+  { id: 's2', text: '6 bulgarian split squats, leg 2 - barbell behind the neck tempo 51X1' },
+  { id: 's3', text: '30"/30" copenhagen adductor hold' },
+  { id: 's4', text: "2' rest" },
+];
+
+const accessoriesExercises = [
+  { id: 'a1', text: '3x 2"ON/1"OFF seated ball squeeze' },
+  { id: 'a2', text: "1' mini band walk" },
 ];
 
 const workoutSteps = [
-  { id: 'r1', text: '500m run' },
-  { id: 'r2', text: '4x15m sandbag lunges' },
-  { id: 'r3', text: '500m run' },
-  { id: 'r4', text: '3x15m burpee broad jump' },
-  { id: 'r5', text: '500m run' },
+  { id: 'wk1', time: "2'",   text: '12,5m rope pull sled + 8x12,5m farmer carry 2xKB' },
+  { id: 'wk2', time: '30"',  text: 'Rest', isRest: true },
+  { id: 'wk3', time: "90\"", text: '20m burpee broad jump' },
+  { id: 'wk4', time: '30"',  text: 'Rest', isRest: true },
+  { id: 'wk5', time: "2'",   text: '20 wall balls + 300m run' },
+  { id: 'wk6', time: "90\"", text: 'Rest between rounds', isRest: true },
 ];
 
 /* ─── Helpers ─── */
@@ -33,13 +57,11 @@ function SectionHeader({
   label,
   title,
   subtitle,
-  duration,
 }: {
   icon: React.ReactNode;
   label: string;
   title: string;
   subtitle?: string;
-  duration?: string;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3 px-5 py-4" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
@@ -67,15 +89,6 @@ function SectionHeader({
           )}
         </div>
       </div>
-      {duration && (
-        <span
-          className="flex items-center gap-1 text-sm font-semibold px-3 py-1 rounded-full flex-shrink-0"
-          style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 12%, transparent)', color: 'var(--trainer-accent)' }}
-        >
-          <Timer className="h-3.5 w-3.5" />
-          {duration}
-        </span>
-      )}
     </div>
   );
 }
@@ -99,47 +112,144 @@ function Checkbox({ done }: { done: boolean }) {
   );
 }
 
-/* ─── Main component ─── */
+function RoundCounter({
+  rounds,
+  maxRounds,
+  onChange,
+}: {
+  rounds: number;
+  maxRounds: number;
+  onChange: (n: number) => void;
+}) {
+  return (
+    <div
+      className="px-5 py-3 flex items-center justify-between"
+      style={{ backgroundColor: 'var(--trainer-secondary)', borderTop: '1px solid color-mix(in srgb, var(--trainer-accent) 15%, transparent)' }}
+    >
+      <p className="text-sm font-medium" style={{ color: 'var(--trainer-text-light)' }}>
+        Wykonane rundy
+      </p>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => onChange(Math.max(0, rounds - 1))}
+          className="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80"
+          style={{ backgroundColor: 'white', color: 'var(--trainer-accent)' }}
+        >
+          <Minus className="h-3.5 w-3.5" />
+        </button>
+        <div className="text-center w-10">
+          <span className="text-2xl font-bold" style={{ color: 'var(--trainer-accent)' }}>
+            {rounds}
+          </span>
+          <span className="text-sm font-medium" style={{ color: 'var(--trainer-text-light)' }}>
+            /{maxRounds}
+          </span>
+        </div>
+        <button
+          onClick={() => onChange(Math.min(maxRounds, rounds + 1))}
+          className="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80"
+          style={{ backgroundColor: 'var(--trainer-accent)', color: 'white' }}
+        >
+          <Plus className="h-3.5 w-3.5" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
-const INTERVAL_SECONDS = 120;
+function SubLabel({ text }: { text: string }) {
+  return (
+    <div
+      className="px-5 py-2 flex items-center gap-2"
+      style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 8%, white)' }}
+    >
+      <span
+        className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded"
+        style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 15%, transparent)', color: 'var(--trainer-accent)' }}
+      >
+        {text}
+      </span>
+    </div>
+  );
+}
+
+function ExerciseRow({ id, text, checked, onToggle }: { id: string; text: string; checked: boolean; onToggle: (id: string) => void }) {
+  return (
+    <button
+      onClick={() => onToggle(id)}
+      className="w-full flex items-center gap-4 px-5 py-3.5 text-left transition-all hover:opacity-90"
+      style={{ backgroundColor: checked ? 'color-mix(in srgb, var(--trainer-accent) 6%, white)' : 'white' }}
+    >
+      <Checkbox done={checked} />
+      <span
+        className="text-sm transition-all"
+        style={{
+          color: checked ? 'var(--trainer-text-light)' : 'var(--trainer-text)',
+          textDecoration: checked ? 'line-through' : 'none',
+        }}
+      >
+        {text}
+      </span>
+    </button>
+  );
+}
+
+function WorkoutRow({
+  id,
+  time,
+  text,
+  isRest,
+  checked,
+  onToggle,
+}: {
+  id: string;
+  time: string;
+  text: string;
+  isRest?: boolean;
+  checked: boolean;
+  onToggle: (id: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => onToggle(id)}
+      className="w-full flex items-center gap-3 px-5 py-3.5 text-left transition-all hover:opacity-90"
+      style={{ backgroundColor: checked ? 'color-mix(in srgb, var(--trainer-accent) 6%, white)' : 'white' }}
+    >
+      <Checkbox done={checked} />
+      <span
+        className="text-xs font-bold tabular-nums px-2 py-1 rounded-lg flex-shrink-0 min-w-[2.75rem] text-center"
+        style={
+          isRest
+            ? { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)' }
+            : { backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 12%, transparent)', color: 'var(--trainer-accent)' }
+        }
+      >
+        {time}
+      </span>
+      <span
+        className="text-sm transition-all flex-1"
+        style={{
+          color: checked ? 'var(--trainer-text-light)' : isRest ? 'var(--trainer-text-light)' : 'var(--trainer-text)',
+          textDecoration: checked ? 'line-through' : 'none',
+          fontStyle: isRest ? 'italic' : 'normal',
+        }}
+      >
+        {text}
+      </span>
+    </button>
+  );
+}
+
+/* ─── Main component ─── */
 
 export function TrainingPlan() {
   const [checked, setChecked] = useState<Set<string>>(new Set());
-  const [strengthSets, setStrengthSets] = useState(0);
-  const [skillRounds, setSkillRounds] = useState(0);
-
-  const [timerSeconds, setTimerSeconds] = useState(INTERVAL_SECONDS);
-  const [timerRunning, setTimerRunning] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    if (timerRunning) {
-      intervalRef.current = setInterval(() => {
-        setTimerSeconds((s) => {
-          if (s <= 1) {
-            setStrengthSets((prev) => {
-              const next = prev + 1;
-              if (next >= 7) {
-                clearInterval(intervalRef.current!);
-                setTimerRunning(false);
-              }
-              return Math.min(7, next);
-            });
-            return INTERVAL_SECONDS;
-          }
-          return s - 1;
-        });
-      }, 1000);
-    } else {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    }
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [timerRunning]);
-
-  const timerMin = Math.floor(timerSeconds / 60);
-  const timerSec = timerSeconds % 60;
-  const timerLabel = `${timerMin}:${timerSec.toString().padStart(2, '0')}`;
-  const timerProgress = ((INTERVAL_SECONDS - timerSeconds) / INTERVAL_SECONDS) * 100;
+  const [warmupRounds, setWarmupRounds] = useState(0);
+  const [powerRounds1, setPowerRounds1] = useState(0);
+  const [powerRounds2, setPowerRounds2] = useState(0);
+  const [strengthRounds, setStrengthRounds] = useState(0);
+  const [accessoriesRounds, setAccessoriesRounds] = useState(0);
+  const [workoutRounds, setWorkoutRounds] = useState(0);
 
   const toggle = (id: string) =>
     setChecked((prev) => {
@@ -148,275 +258,113 @@ export function TrainingPlan() {
       return next;
     });
 
-  const reset = () => {
-    setChecked(new Set());
-    setStrengthSets(0);
-    setSkillRounds(0);
-    setTimerSeconds(INTERVAL_SECONDS);
-    setTimerRunning(false);
-  };
-
-  const workoutDone = workoutSteps.filter((s) => checked.has(s.id)).length;
-  const workoutProgress = (workoutDone / workoutSteps.length) * 100;
+  const borderStyle = { borderColor: 'color-mix(in srgb, var(--trainer-accent) 20%, transparent)' };
+  const divideStyle = { borderColor: 'var(--trainer-secondary)' };
 
   return (
     <div className="space-y-4 max-w-2xl mx-auto">
 
       {/* ── WARM UP ── */}
-      <div
-        className="rounded-2xl overflow-hidden shadow-sm border"
-        style={{ borderColor: 'color-mix(in srgb, var(--trainer-accent) 20%, transparent)' }}
-      >
+      <div className="rounded-2xl overflow-hidden shadow-sm border" style={borderStyle}>
         <SectionHeader
           icon={<Flame className="h-5 w-5 text-white" />}
           label="Warm Up"
           title="Rozgrzewka"
         />
-        <div className="divide-y" style={{ borderColor: 'var(--trainer-secondary)' }}>
-          {warmupExercises.map((ex) => {
-            const done = checked.has(ex.id);
-            return (
-              <button
-                key={ex.id}
-                onClick={() => toggle(ex.id)}
-                className="w-full flex items-center gap-4 px-5 py-3.5 text-left transition-all hover:opacity-90"
-                style={{ backgroundColor: done ? 'color-mix(in srgb, var(--trainer-accent) 6%, white)' : 'white' }}
-              >
-                <Checkbox done={done} />
-                <span
-                  className="text-sm transition-all"
-                  style={{
-                    color: done ? 'var(--trainer-text-light)' : 'var(--trainer-text)',
-                    textDecoration: done ? 'line-through' : 'none',
-                  }}
-                >
-                  {ex.text}
-                </span>
-              </button>
-            );
-          })}
+        <div className="divide-y" style={divideStyle}>
+          {warmupSingle.map((ex) => (
+            <ExerciseRow key={ex.id} id={ex.id} text={ex.text} checked={checked.has(ex.id)} onToggle={toggle} />
+          ))}
+          <SubLabel text="2 rounds" />
+          {warmupCircuit.map((ex) => (
+            <ExerciseRow key={ex.id} id={ex.id} text={ex.text} checked={checked.has(ex.id)} onToggle={toggle} />
+          ))}
         </div>
+        <RoundCounter rounds={warmupRounds} maxRounds={2} onChange={setWarmupRounds} />
       </div>
 
-      {/* ── STRENGTH ── */}
-      <div
-        className="rounded-2xl overflow-hidden shadow-sm border"
-        style={{ borderColor: 'color-mix(in srgb, var(--trainer-accent) 20%, transparent)' }}
-      >
+      {/* ── POWER - block 1 (2 rounds) ── */}
+      <div className="rounded-2xl overflow-hidden shadow-sm border" style={borderStyle}>
+        <SectionHeader
+          icon={<Zap className="h-5 w-5 text-white" />}
+          label="Power"
+          title="2 Rounds"
+        />
+        <div className="divide-y" style={divideStyle}>
+          {powerBlock1.map((ex) => (
+            <ExerciseRow key={ex.id} id={ex.id} text={ex.text} checked={checked.has(ex.id)} onToggle={toggle} />
+          ))}
+        </div>
+        <RoundCounter rounds={powerRounds1} maxRounds={2} onChange={setPowerRounds1} />
+      </div>
+
+      {/* ── POWER - block 2 (3 rounds) ── */}
+      <div className="rounded-2xl overflow-hidden shadow-sm border" style={borderStyle}>
+        <SectionHeader
+          icon={<Zap className="h-5 w-5 text-white" />}
+          label="Power"
+          title="3 Rounds"
+        />
+        <div className="divide-y" style={divideStyle}>
+          {powerBlock2.map((ex) => (
+            <ExerciseRow key={ex.id} id={ex.id} text={ex.text} checked={checked.has(ex.id)} onToggle={toggle} />
+          ))}
+        </div>
+        <RoundCounter rounds={powerRounds2} maxRounds={3} onChange={setPowerRounds2} />
+      </div>
+
+      {/* ── STRENGTH (5 rounds) ── */}
+      <div className="rounded-2xl overflow-hidden shadow-sm border" style={borderStyle}>
         <SectionHeader
           icon={<Dumbbell className="h-5 w-5 text-white" />}
           label="Strength"
-          title="Deadlift"
-          subtitle="HEAVY - 3 powt."
-          duration="7 x 2 min"
+          title="5 Rounds"
         />
-        <div className="px-5 py-5 bg-white">
-
-          <div className="flex flex-col items-center gap-3 mb-5">
-            <div
-              className="relative w-32 h-32 rounded-full flex items-center justify-center"
-              style={{
-                background: `conic-gradient(var(--trainer-accent) ${timerProgress * 3.6}deg, var(--trainer-secondary) ${timerProgress * 3.6}deg)`,
-              }}
-            >
-              <div className="w-24 h-24 rounded-full bg-white flex flex-col items-center justify-center">
-                <span className="text-3xl font-bold tabular-nums" style={{ color: 'var(--trainer-accent)' }}>
-                  {timerLabel}
-                </span>
-                <span className="text-xs font-medium" style={{ color: 'var(--trainer-text-light)' }}>
-                  seria {Math.min(strengthSets + 1, 7)}/7
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => { setTimerSeconds(INTERVAL_SECONDS); setTimerRunning(false); }}
-                className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors hover:opacity-80"
-                style={{ backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-accent)' }}
-                aria-label="Reset timer"
-              >
-                <RotateCcw className="h-4 w-4" />
-              </button>
-
-              <button
-                onClick={() => setTimerRunning((r) => !r)}
-                disabled={strengthSets >= 7}
-                className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all active:scale-95 disabled:opacity-40"
-                style={{ backgroundColor: 'var(--trainer-accent)', color: 'white' }}
-                aria-label={timerRunning ? 'Pauza' : 'Start'}
-              >
-                {timerRunning
-                  ? <Pause className="h-7 w-7" />
-                  : <Play className="h-7 w-7 ml-1" />}
-              </button>
-
-              <button
-                onClick={() => {
-                  setTimerRunning(false);
-                  setTimerSeconds(INTERVAL_SECONDS);
-                  setStrengthSets((s) => Math.min(7, s + 1));
-                }}
-                disabled={strengthSets >= 7}
-                className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors disabled:opacity-40 hover:opacity-80"
-                style={{ backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-accent)' }}
-                aria-label="Nastepna seria"
-              >
-                <SkipForward className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-
-          <div className="flex gap-1.5">
-            {Array.from({ length: 7 }).map((_, i) => (
-              <div
-                key={i}
-                onClick={() => setStrengthSets(i + 1)}
-                className="h-2 flex-1 rounded-full transition-all cursor-pointer"
-                style={{ backgroundColor: i < strengthSets ? 'var(--trainer-accent)' : 'var(--trainer-secondary)' }}
-              />
-            ))}
-          </div>
-          {strengthSets >= 7 && (
-            <p className="text-center text-sm font-semibold mt-3" style={{ color: 'var(--trainer-accent)' }}>
-              Wszystkie serie wykonane!
-            </p>
-          )}
+        <div className="divide-y" style={divideStyle}>
+          {strengthExercises.map((ex) => (
+            <ExerciseRow key={ex.id} id={ex.id} text={ex.text} checked={checked.has(ex.id)} onToggle={toggle} />
+          ))}
         </div>
+        <RoundCounter rounds={strengthRounds} maxRounds={5} onChange={setStrengthRounds} />
       </div>
 
-      {/* ── SKILL ── */}
-      <div
-        className="rounded-2xl overflow-hidden shadow-sm border"
-        style={{ borderColor: 'color-mix(in srgb, var(--trainer-accent) 20%, transparent)' }}
-      >
+      {/* ── ACCESSORIES (2 rounds) ── */}
+      <div className="rounded-2xl overflow-hidden shadow-sm border" style={borderStyle}>
         <SectionHeader
-          icon={<Zap className="h-5 w-5 text-white" />}
-          label="Skill"
-          title="3 Rounds"
+          icon={<Target className="h-5 w-5 text-white" />}
+          label="Accessories"
+          title="2 Rounds"
+          subtitle="No rest between rounds"
         />
-        <div className="divide-y" style={{ borderColor: 'var(--trainer-secondary)' }}>
-          {skillExercises.map((ex) => {
-            const done = checked.has(ex.id);
-            return (
-              <button
-                key={ex.id}
-                onClick={() => toggle(ex.id)}
-                className="w-full flex items-center gap-4 px-5 py-3.5 text-left transition-all hover:opacity-90"
-                style={{ backgroundColor: done ? 'color-mix(in srgb, var(--trainer-accent) 6%, white)' : 'white' }}
-              >
-                <Checkbox done={done} />
-                <span
-                  className="text-sm transition-all"
-                  style={{
-                    color: done ? 'var(--trainer-text-light)' : 'var(--trainer-text)',
-                    textDecoration: done ? 'line-through' : 'none',
-                  }}
-                >
-                  {ex.text}
-                </span>
-              </button>
-            );
-          })}
+        <div className="divide-y" style={divideStyle}>
+          {accessoriesExercises.map((ex) => (
+            <ExerciseRow key={ex.id} id={ex.id} text={ex.text} checked={checked.has(ex.id)} onToggle={toggle} />
+          ))}
         </div>
-        <div
-          className="px-5 py-3 flex items-center justify-between"
-          style={{ backgroundColor: 'var(--trainer-secondary)', borderTop: '1px solid color-mix(in srgb, var(--trainer-accent) 15%, transparent)' }}
-        >
-          <p className="text-sm font-medium" style={{ color: 'var(--trainer-text-light)' }}>
-            Wykonane rundy
-          </p>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setSkillRounds((r) => Math.max(0, r - 1))}
-              className="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80"
-              style={{ backgroundColor: 'white', color: 'var(--trainer-accent)' }}
-            >
-              <Minus className="h-3.5 w-3.5" />
-            </button>
-            <div className="text-center w-10">
-              <span className="text-2xl font-bold" style={{ color: 'var(--trainer-accent)' }}>
-                {skillRounds}
-              </span>
-              <span className="text-sm font-medium" style={{ color: 'var(--trainer-text-light)' }}>/3</span>
-            </div>
-            <button
-              onClick={() => setSkillRounds((r) => Math.min(3, r + 1))}
-              className="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80"
-              style={{ backgroundColor: 'var(--trainer-accent)', color: 'white' }}
-            >
-              <Plus className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        </div>
+        <RoundCounter rounds={accessoriesRounds} maxRounds={2} onChange={setAccessoriesRounds} />
       </div>
 
-      {/* ── WORKOUT ── */}
-      <div
-        className="rounded-2xl overflow-hidden shadow-sm border"
-        style={{ borderColor: 'color-mix(in srgb, var(--trainer-accent) 20%, transparent)' }}
-      >
+      {/* ── WORKOUT (3 rounds) ── */}
+      <div className="rounded-2xl overflow-hidden shadow-sm border" style={borderStyle}>
         <SectionHeader
           icon={<Timer className="h-5 w-5 text-white" />}
           label="Workout"
-          title="For Time"
+          title="3 Rounds"
         />
-
-        {workoutDone > 0 && (
-          <div className="px-5 pt-3 pb-1 bg-white">
-            <div className="h-1.5 rounded-full" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
-              <div
-                className="h-1.5 rounded-full transition-all duration-500"
-                style={{ width: `${workoutProgress}%`, backgroundColor: 'var(--trainer-accent)' }}
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="divide-y" style={{ borderColor: 'var(--trainer-secondary)' }}>
-          {workoutSteps.map((step, i) => {
-            const done = checked.has(step.id);
-            const isRun = step.text.includes('run');
-            return (
-              <button
-                key={step.id}
-                onClick={() => toggle(step.id)}
-                className="w-full flex items-center gap-4 px-5 py-4 text-left transition-all hover:opacity-90"
-                style={{ backgroundColor: done ? 'color-mix(in srgb, var(--trainer-accent) 6%, white)' : 'white' }}
-              >
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold"
-                  style={
-                    done
-                      ? { backgroundColor: 'var(--trainer-accent)', color: 'white' }
-                      : { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-accent)' }
-                  }
-                >
-                  {done ? '✓' : i + 1}
-                </div>
-                <span
-                  className="text-sm font-medium flex-1 transition-all"
-                  style={{
-                    color: done ? 'var(--trainer-text-light)' : 'var(--trainer-text)',
-                    textDecoration: done ? 'line-through' : 'none',
-                  }}
-                >
-                  {step.text}
-                </span>
-                {isRun && (
-                  <span
-                    className="text-xs font-semibold px-2 py-0.5 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 12%, transparent)', color: 'var(--trainer-accent)' }}
-                  >
-                    run
-                  </span>
-                )}
-              </button>
-            );
-          })}
+        <div className="divide-y" style={divideStyle}>
+          {workoutSteps.map((step) => (
+            <WorkoutRow
+              key={step.id}
+              id={step.id}
+              time={step.time}
+              text={step.text}
+              isRest={step.isRest}
+              checked={checked.has(step.id)}
+              onToggle={toggle}
+            />
+          ))}
         </div>
-
-        {workoutDone === workoutSteps.length && (
+        {workoutRounds === 3 && (
           <div
             className="px-5 py-4 text-center font-semibold text-sm"
             style={{ backgroundColor: 'var(--trainer-accent)', color: 'white' }}
@@ -424,7 +372,9 @@ export function TrainingPlan() {
             Trening ukonczony!
           </div>
         )}
+        <RoundCounter rounds={workoutRounds} maxRounds={3} onChange={setWorkoutRounds} />
       </div>
+
     </div>
   );
 }

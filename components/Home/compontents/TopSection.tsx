@@ -41,8 +41,7 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
             </p>
 
             <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-              Skuteczna dieta to ta, którą jesteś w stanie utrzymać - bez zakazów, bez systemu
-              zero-jedynkowego.
+              Skuteczna dieta to ta, którą jesteś w stanie utrzymać.
             </p>
 
             <div className="flex items-center gap-2">

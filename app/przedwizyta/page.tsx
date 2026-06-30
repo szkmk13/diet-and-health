@@ -77,8 +77,8 @@ export default function Page() {
                   Jak się przygotować?
                 </p>
                 <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                  Kilka prostych kroków sprawi, że nasza pierwsza konsultacja będzie jak najbardziej efektywna.
-                  Poniżej znajdziesz wskazówki oraz wstępną ankietę - wypełnij ją przed wizytą.
+                  Poniżej znajdziesz wskazówki oraz wstępną ankietę, którą możesz wypełnić przed
+pierwszą konsultacją.
                 </p>
               </div>
             </div>
