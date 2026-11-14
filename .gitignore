@@ -39,3 +39,4 @@ storybook-static
 .vscode/
 .claude/*
 .idea/
+next-env.d.ts
