@@ -10,13 +10,7 @@ module.exports = {
   extends: [
     'plugin:@next/next/recommended',
   ],
-  plugins: ['testing-library', '@typescript-eslint'],
-  overrides: [
-    {
-      files: ['**/*.{spec,test}.{js,jsx,ts,tsx}'],
-      extends: ['plugin:testing-library/react'],
-    },
-  ],
+  plugins: ['@typescript-eslint'],
   rules: {
     'linebreak-style': 'off',
   },
