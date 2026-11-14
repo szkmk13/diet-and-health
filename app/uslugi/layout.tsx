@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { baseOpenGraph } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Oferta i cennik',
@@ -6,6 +7,8 @@ export const metadata: Metadata = {
     'Konsultacje dietetyczne, psychodietetyka, jadłospisy i analiza składu ciała w Gdyni. Sprawdź pełny cennik usług dietetycznych Moniki Skibickiej.',
   alternates: { canonical: '/uslugi' },
   openGraph: {
+    ...baseOpenGraph,
+    url: '/uslugi',
     title: 'Oferta i cennik | Monika Skibicka Dietetyk',
     description:
       'Konsultacje dietetyczne, psychodietetyka, jadłospisy i analiza składu ciała - cennik usług.',

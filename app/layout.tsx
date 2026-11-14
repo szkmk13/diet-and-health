@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/sonner';
 import Providers from './providers';
 import type { Metadata } from 'next';
+import { baseOpenGraph } from '@/lib/seo';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,19 +15,7 @@ export const metadata: Metadata = {
   description:
     'Diet and health Monika Skibicka. Konsultacje dietetyczne, psychodietetyka, jadłospisy, analiza składu ciała, treningi personalne. Umów wizytę online lub stacjonarnie.',
   metadataBase: new URL('https://diet-and-health.pl'),
-  openGraph: {
-    siteName: 'diet-and-health.pl',
-    locale: 'pl_PL',
-    type: 'website',
-    images: [
-      {
-        url: '/images/Diet_and_Health_logo_podpis_tlo.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Diet and Health - Monika Skibicka Dietetyk',
-      },
-    ],
-  },
+  openGraph: baseOpenGraph,
   icons: {
     icon: '/favicon.jpg',
   },
@@ -44,9 +33,10 @@ const jsonLd = {
   image: 'https://diet-and-health.pl/images/monia_kontakt.webp',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'ul. Chłopska 34a/6',
-    addressLocality: 'Gdańsk',
-    postalCode: '80-368',
+    // gabinet: Maritimus Clinic (adres jak na profilu ZnanyLekarz)
+    streetAddress: 'ul. Żwirki i Wigury 2A',
+    addressLocality: 'Gdynia',
+    postalCode: '81-392',
     addressCountry: 'PL',
   },
   employee: {

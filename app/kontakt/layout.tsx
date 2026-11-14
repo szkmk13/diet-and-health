@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { baseOpenGraph } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Kontakt',
@@ -6,6 +7,8 @@ export const metadata: Metadata = {
     'Skontaktuj się z dietetykiem Moniką Skibicką. Umów wizytę online lub stacjonarnie w Gdyni. Napisz na kontakt@diet-and-health.pl lub wypełnij formularz kontaktowy.',
   alternates: { canonical: '/kontakt' },
   openGraph: {
+    ...baseOpenGraph,
+    url: '/kontakt',
     title: 'Kontakt | Monika Skibicka Dietetyk',
     description:
       'Umów wizytę u dietetyka klinicznego w Gdyni. Konsultacje online i stacjonarne.',

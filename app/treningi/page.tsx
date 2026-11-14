@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Dumbbell, Calendar, Instagram } from 'lucide-react';
+import { Dumbbell, Calendar, Instagram, Trophy } from 'lucide-react';
 import { TrainingWeek } from '@/components/TrainingWeek';
 
 interface ServiceCardProps {
@@ -54,12 +54,14 @@ export default function Page() {
                 </h1>
                 <div className="h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
                 <p className="text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
-                  Trener Personalny z Humorem
+                  Certyfikowany Trener HYROX · CrossFit · Trener Personalny z Humorem
                 </p>
                 <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                   Wierzę, że trening to nie tylko ciężka praca, ale też dobra zabawa!
                   Pomogę Ci osiągnąć cele treningowe z uśmiechem na twarzy.
                   Bez nudy, bez wymówek - tylko efekty i dobra energia! 💪
+                  Specjalizuję się w przygotowaniu do zawodów HYROX, a na co dzień łączę
+                  trening siłowy z elementami CrossFit.
                 </p>
               </div>
               <div className="flex justify-center md:justify-start">
@@ -80,7 +82,7 @@ export default function Page() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
                 <Image
                   src="/images/krzychu_solo.webp"
-                  alt="Krzysiek - Trener Personalny"
+                  alt="Krzysztof Skibicki - certyfikowany trener HYROX i trener personalny"
                   fill
                   priority
                   quality={90}
@@ -102,15 +104,20 @@ export default function Page() {
           </h2>
           <div className="space-y-16">
             <ServiceCard
+              icon={<Trophy className="w-6 h-6 md:w-8 md:h-8" color="#ffffff" />}
+              title="Przygotowanie do HYROX"
+              description="Jako certyfikowany trener HYROX przygotuję Cię do startu - od pierwszych zawodów po walkę o lepszy czas. Bieg, SkiErg, sled push i pull, burpee broad jumps, wall balls - pracujemy nad każdą stacją, wytrzymałością i strategią na dzień startu."
+            />
+            <ServiceCard
               icon={<Dumbbell className="w-6 h-6 md:w-8 md:h-8" color="#ffffff" />}
-              title="Trening Personalny na Miejscu"
-              description="Indywidualne sesje treningowe dostosowane do Twoich celów i możliwości. Trenujesz ze mną na siłowni - motywacja, korekta techniki i maksymalne zaangażowanie gwarantowane! Każdy trening to krok bliżej do Twojej wymarzonej sylwetki."
+              title="Trening Personalny i CrossFit"
+              description="Indywidualne sesje treningowe dostosowane do Twoich celów i możliwości, z elementami CrossFit: siła, kondycja i sprawność w jednym. Trenujesz ze mną na siłowni - motywacja, korekta techniki i maksymalne zaangażowanie gwarantowane!"
+              reverse
             />
             <ServiceCard
               icon={<Calendar className="w-6 h-6 md:w-8 md:h-8" color="#ffffff" />}
               title="Plany Treningowe"
-              description="Spersonalizowane plany treningowe stworzone specjalnie dla Ciebie. Możesz trenować samodzielnie, ale z moim profesjonalnym planem w kieszeni. Regularnie aktualizowane, dopasowane do Twoich postępów i gotowe do działania!"
-              reverse
+              description="Spersonalizowane plany treningowe stworzone specjalnie dla Ciebie, także pod HYROX. Możesz trenować samodzielnie, ale z moim profesjonalnym planem w kieszeni. Regularnie aktualizowane, dopasowane do Twoich postępów i gotowe do działania!"
             />
           </div>
         </div>
