@@ -98,7 +98,6 @@ export default function ProtectedPage() {
     )
 
   const handleInputChange = (id: number, value: string, type: "solo" | "duo" | "psycho" | "pakiet") => {
-    console.log(id, value, type)
     if (type === "solo") {
       setSoloOffers((prev) => prev.map((offer) => (offer.id === id ? { ...offer, price: value } : offer)))
     }

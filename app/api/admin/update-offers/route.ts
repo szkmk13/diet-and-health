@@ -8,6 +8,27 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
+// Ceny w bazie to tekst, np. "190", "170/250" albo "190 zł".
+const PRICE_PATTERN = /^[0-9 .,/zł-]{1,30}$/i;
+const MAX_OFFERS = 100;
+
+interface OfferUpdate {
+  id: number;
+  price: string;
+}
+
+function isValidOffer(offer: unknown): offer is OfferUpdate {
+  if (typeof offer !== 'object' || offer === null) return false;
+  const { id, price } = offer as Record<string, unknown>;
+  return (
+    typeof id === 'number' &&
+    Number.isInteger(id) &&
+    id > 0 &&
+    typeof price === 'string' &&
+    PRICE_PATTERN.test(price.trim())
+  );
+}
+
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -15,20 +36,15 @@ export async function POST(req: NextRequest) {
   }
 
   const { offers } = await req.json();
-  if (!Array.isArray(offers)) {
+  if (!Array.isArray(offers) || offers.length === 0 || offers.length > MAX_OFFERS || !offers.every(isValidOffer)) {
     return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
   }
 
-  console.log('[update-offers] offers to update:', JSON.stringify(offers));
-  console.log('[update-offers] supabase url:', process.env.NEXT_PUBLIC_SUPABASE_URL);
-
   for (const offer of offers) {
-    const { error, data, count } = await supabase
+    const { error } = await supabase
       .from('offers')
-      .update({ price: offer.price })
-      .eq('id', offer.id)
-      .select();
-    console.log(`[update-offers] id=${offer.id} price=${offer.price} → data:`, data, 'error:', error, 'count:', count);
+      .update({ price: offer.price.trim() })
+      .eq('id', offer.id);
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }

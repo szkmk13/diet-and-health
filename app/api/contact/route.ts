@@ -1,30 +1,42 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { verifyTurnstile } from '@/lib/turnstile';
+import { escapeHtml, escapeHtmlMultiline, readText } from '@/lib/escape-html';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function POST(request: Request) {
-  const { name, email, message, turnstileToken } = await request.json();
+  const body = await request.json();
+  const name = readText(body.name, 100);
+  const email = readText(body.email, 200);
+  const message = readText(body.message, 5000);
+  const { turnstileToken } = body;
 
   if (!name || !email || !message) {
-    return NextResponse.json({ error: 'Brakujące pola formularza.' }, { status: 400 });
+    return NextResponse.json({ error: 'Brakujące lub zbyt długie pola formularza.' }, { status: 400 });
   }
 
-  if (!turnstileToken || !(await verifyTurnstile(turnstileToken))) {
+  if (!EMAIL_PATTERN.test(email)) {
+    return NextResponse.json({ error: 'Niepoprawny adres email.' }, { status: 400 });
+  }
+
+  if (typeof turnstileToken !== 'string' || !(await verifyTurnstile(turnstileToken))) {
     return NextResponse.json({ error: 'Weryfikacja CAPTCHA nie powiodła się.' }, { status: 400 });
   }
 
   const { error } = await resend.emails.send({
     from: 'Formularz kontaktowy <onboarding@resend.dev>',
     to: process.env.RECIPIENT_EMAIL!,
+    replyTo: email,
     subject: `Nowa wiadomość od ${name}`,
     html: `
       <h2>Nowa wiadomość z formularza kontaktowego</h2>
-      <p><strong>Imię:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Imię:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       <p><strong>Wiadomość:</strong></p>
-      <p>${message.replace(/\n/g, '<br/>')}</p>
+      <p>${escapeHtmlMultiline(message)}</p>
     `,
   });
 

@@ -3,9 +3,10 @@
 import type React from "react"
 
 import { signIn } from "next-auth/react"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Loader2, Eye, EyeOff } from "lucide-react"
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,23 +19,29 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const turnstileRef = useRef<TurnstileInstance>(null)
   const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
-    console.log(username, password)
     e.preventDefault()
+    if (!turnstileToken) return
     setError("")
     setLoading(true)
 
     const result = await signIn("credentials", {
       username,
       password,
+      turnstileToken,
       redirect: false,
     })
 
     if (result?.error) {
-      setError("Invalid username or password")
+      setError("Nieprawidłowa nazwa użytkownika lub hasło")
       setLoading(false)
+      // token Turnstile jest jednorazowy, więc po nieudanej próbie potrzebny jest nowy
+      setTurnstileToken(null)
+      turnstileRef.current?.reset()
     } else {
       router.push("/admin")
     }
@@ -101,7 +108,15 @@ export default function LoginPage() {
                 </div>
               )}
 
-              <Button type="submit" disabled={loading} className="w-full">
+              <Turnstile
+                ref={turnstileRef}
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                onSuccess={setTurnstileToken}
+                onExpire={() => setTurnstileToken(null)}
+                options={{ theme: "light" }}
+              />
+
+              <Button type="submit" disabled={loading || !turnstileToken} className="w-full">
                 {loading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
