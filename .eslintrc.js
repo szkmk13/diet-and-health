@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -9,6 +10,8 @@ module.exports = {
   },
   extends: [
     'plugin:@next/next/recommended',
+    'plugin:@next/next/core-web-vitals',
+    'plugin:react-hooks/recommended',
   ],
   plugins: ['@typescript-eslint'],
   rules: {
