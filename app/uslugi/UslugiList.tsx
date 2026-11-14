@@ -29,14 +29,14 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Podczas wizyty uważnie słucham potrzeb pacjenta. Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjenta. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/service1.jpg',
+    image: 'images/service1.webp',
     type: 'solo',
   },
   {
     name: 'Konsultacja online',
     price: '190',
     description: 'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
-    image: 'images/service8.jpg',
+    image: 'images/service8.webp',
     type: 'solo',
   },
   {
@@ -44,7 +44,7 @@ const defaultServicesData: Service[] = [
     price: '130',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/service2.jpg',
+    image: 'images/service2.webp',
     type: 'solo',
   },
   {
@@ -61,7 +61,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/service6.jpg',
+    image: 'images/service6.webp',
     type: 'solo',
   },
   {
@@ -73,7 +73,7 @@ const defaultServicesData: Service[] = [
         <span className="italic">(np. faza eliminacyjna diety low FODMAP przy SIBO)</span>
       </>
     ),
-    image: 'images/service7.jpg',
+    image: 'images/service7.webp',
     type: 'solo',
   },
   {
@@ -97,7 +97,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/service5.jpg',
+    image: 'images/service5.webp',
     type: 'solo',
   },
   {
@@ -105,7 +105,7 @@ const defaultServicesData: Service[] = [
     price: '280',
     description:
       'Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjentów. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/service12.jpg',
+    image: 'images/service12.webp',
     type: 'duo',
   },
   {
@@ -113,7 +113,7 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/service3.jpg',
+    image: 'images/service3.webp',
     type: 'duo',
   },
   {
@@ -129,7 +129,7 @@ const defaultServicesData: Service[] = [
         jest niemożliwe.
       </>
     ),
-    image: 'images/milkshake.jpg',
+    image: 'images/milkshake.webp',
     type: 'duo',
   },
   {
@@ -153,7 +153,7 @@ const defaultServicesData: Service[] = [
         komponować posiłki, aby dłużej odczuwać sytość i nie mieć spadków energii.
       </>
     ),
-    image: 'images/service10.jpg',
+    image: 'images/service10.webp',
     type: 'psycho',
   },
   {
@@ -161,7 +161,7 @@ const defaultServicesData: Service[] = [
     price: '170',
     description:
       'Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy ciała.',
-    image: 'images/service11.jpg',
+    image: 'images/service11.webp',
     type: 'psycho',
   },
   {
@@ -182,7 +182,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/service4.jpg',
+    image: 'images/service4.webp',
     type: 'pakiet',
   },
   {
@@ -199,7 +199,7 @@ const defaultServicesData: Service[] = [
         <span className="italic">W cenie pakietu nie ma pierwszej konsultacji.</span>
       </>
     ),
-    image: 'images/service9.jpg',
+    image: 'images/service9.webp',
     type: 'pakiet',
   },
 ];
