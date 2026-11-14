@@ -17,7 +17,7 @@ export default function About() {
           <div className="hidden md:block">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '1 / 1' }}>
               <Image
-                src="/images/monia_sport.jpg"
+                src="/images/monia_sport.webp"
                 alt="Monika Skibicka"
                 fill
                 quality={90}

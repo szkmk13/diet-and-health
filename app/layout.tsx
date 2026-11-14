@@ -41,7 +41,7 @@ const jsonLd = {
     'Konsultacje dietetyczne, psychodietetyka, jadłospisy i analiza składu ciała w Gdyni. Dietetyk kliniczny i psychodietetyk.',
   url: 'https://diet-and-health.pl',
   email: 'kontakt@diet-and-health.pl',
-  image: 'https://diet-and-health.pl/images/monia_kontakt.jpeg',
+  image: 'https://diet-and-health.pl/images/monia_kontakt.webp',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'ul. Chłopska 34a/6',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TrainingPlan } from './TrainingPlan';
 import { Dumbbell } from 'lucide-react';
 
@@ -20,9 +20,18 @@ function todayIndex() {
 }
 
 export function TrainingWeek() {
-  const [active, setActive] = useState(todayIndex);
+  // Strona jest prerenderowana w czasie builda, więc "dzisiaj" liczymy dopiero w przeglądarce.
+  // Do tego czasu serwer i pierwszy render klienta są identyczne (brak błędu hydracji).
+  const [today, setToday] = useState<number | null>(null);
+  const [active, setActive] = useState<number | null>(null);
 
-  const day = DAYS[active];
+  useEffect(() => {
+    const t = todayIndex();
+    setToday(t);
+    setActive((current) => current ?? t);
+  }, []);
+
+  const day = active === null ? null : DAYS[active];
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -32,7 +41,7 @@ export function TrainingWeek() {
           <div className="inline-flex gap-1.5 pb-1">
             {DAYS.map((d, i) => {
               const isActive = active === i;
-              const isToday = i === todayIndex();
+              const isToday = i === today;
               return (
                 <button
                   key={d.short}
@@ -61,7 +70,9 @@ export function TrainingWeek() {
       </div>
 
       {/* Content */}
-      {day.plan ? (
+      {day === null ? (
+        <div className="min-h-[24rem]" aria-busy="true" />
+      ) : day.plan ? (
         <TrainingPlan />
       ) : (
         <div className="flex flex-col items-center justify-center py-20 gap-4">

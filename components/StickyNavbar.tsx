@@ -71,7 +71,7 @@ export default function StickyNavbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href={"/"} className="flex items-center">
           <Image
-            src="/images/Diet_and_Health_logo_bez_tla.png"
+            src="/images/Diet_and_Health_logo_bez_tla.webp"
             alt="Diet and Health logo"
             width={120} // Adjust width as needed
             height={60} // Adjust height as needed

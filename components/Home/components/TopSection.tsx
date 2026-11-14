@@ -16,7 +16,7 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
             style={{ aspectRatio: '3/4' }}
           >
             <Image
-              src="/images/monia_kontakt.jpeg"
+              src="/images/monia_kontakt.webp"
               alt="Monika Skibicka"
               fill
               className="object-cover object-top"

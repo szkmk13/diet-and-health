@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 import { IconBrandInstagram, IconBrandFacebook, IconBrandGoogleMaps } from "@tabler/icons-react" // Keeping Tabler Icons as they are compatible
 

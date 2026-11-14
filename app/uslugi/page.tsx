@@ -50,7 +50,7 @@ export default async function Page() {
             <div className="relative order-1 md:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
                 <Image
-                  src="/images/owsianka.jpeg"
+                  src="/images/owsianka.webp"
                   alt="Usługi dietetyczne"
                   fill
                   priority

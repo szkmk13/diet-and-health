@@ -86,7 +86,7 @@ pierwszą konsultacją.
             <div className="relative order-1 md:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
                 <Image
-                  src="/images/salatka-z-rukola.jpg"
+                  src="/images/salatka-z-rukola.webp"
                   alt="Zdrowa sałatka"
                   fill
                   priority

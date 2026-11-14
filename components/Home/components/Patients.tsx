@@ -1,8 +1,6 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import { Apple, Baby, Dumbbell, Cookie, Leaf, HeartPulse, Scale, Pill, ChevronDown } from 'lucide-react';
+import { Apple, Baby, Dumbbell, Cookie, Leaf, HeartPulse, Scale, Pill } from 'lucide-react';
+import PatientCard from './PatientCard';
 import type { LucideIcon } from 'lucide-react';
 
 interface CardData {
@@ -31,40 +29,6 @@ const cardsData: CardData[] = [
   },
 ];
 
-function PatientCard({ title, description, Icon }: CardData) {
-  const [open, setOpen] = useState(false);
-  const clickable = !!description;
-
-  return (
-    <div
-      onClick={() => clickable && setOpen(!open)}
-      className={`flex flex-col items-center gap-3 rounded-xl p-5 text-center transition-all duration-200 border-2 ${
-        clickable ? 'cursor-pointer hover:shadow-md hover:border-[var(--trainer-accent)]' : 'border-transparent'
-      }`}
-      style={{ backgroundColor: 'var(--trainer-secondary)' }}
-    >
-      <Icon className="h-10 w-10" style={{ color: 'var(--trainer-accent)' }} />
-      <p className="text-sm font-semibold leading-snug" style={{ color: 'var(--trainer-primary)' }}>
-        {title}
-      </p>
-      {clickable && (
-        <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-          style={{ color: 'var(--trainer-text-light)' }}
-        />
-      )}
-      {open && description && (
-        <p
-          className="text-xs leading-relaxed border-t pt-3 mt-1"
-          style={{ color: 'var(--trainer-text-light)', borderColor: 'var(--trainer-secondary)' }}
-        >
-          {description}
-        </p>
-      )}
-    </div>
-  );
-}
-
 export default function Patients() {
   return (
     <section className="py-12 md:py-20 px-6">
@@ -74,8 +38,13 @@ export default function Patients() {
         </h2>
 
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 mb-12">
-          {cardsData.map((item, index) => (
-            <PatientCard key={index} {...item} />
+          {cardsData.map(({ title, description, Icon }) => (
+            <PatientCard
+              key={title}
+              title={title}
+              description={description}
+              icon={<Icon className="h-10 w-10" style={{ color: 'var(--trainer-accent)' }} />}
+            />
           ))}
         </div>
 

@@ -78,7 +78,7 @@ export default function Page() {
             <div className="relative order-1 md:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
                 <Image
-                  src="/images/monia_kontakt.jpeg"
+                  src="/images/monia_kontakt.webp"
                   alt="Monika Skibicka - Dietetyk Kliniczny"
                   fill
                   priority
