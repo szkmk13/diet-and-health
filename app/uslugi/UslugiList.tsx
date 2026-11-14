@@ -1,9 +1,6 @@
-'use client';
-
 import type React from 'react';
-import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { BadgePercent, ChevronLeft, ChevronRight } from 'lucide-react';
+import UslugiTabs from './UslugiTabs';
 
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
 
@@ -264,34 +261,27 @@ const sections = [
 ] as const;
 
 export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null }) {
-  const [active, setActive] = useState<(typeof sections)[number]['type']>(sections[0].type);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const updateArrows = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 4);
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
-  };
-
-  useEffect(() => {
-    updateArrows();
-    window.addEventListener('resize', updateArrows);
-    return () => window.removeEventListener('resize', updateArrows);
-  }, []);
-
-  const scroll = (dir: 'left' | 'right') => {
-    scrollRef.current?.scrollBy({ left: dir === 'left' ? -160 : 160, behavior: 'smooth' });
-  };
-
   const services = defaultServicesData.map((service) => ({
     ...service,
     ...(offers?.find((item) => item.name === service.name) || {}),
   }));
 
-  const activeSection = sections.find((s) => s.type === active)!;
+  // Wszystkie sekcje renderują się na serwerze, żeby cały cennik był w HTML (SEO);
+  // UslugiTabs tylko przełącza, która jest widoczna.
+  const tabs = sections.map((section) => ({
+    type: section.type,
+    title: section.title,
+    showBadge: section.type === 'pakiet',
+    panel: (
+      <div className="rounded-xl bg-white shadow-md overflow-hidden">
+        {services
+          .filter((s) => s.type === section.type)
+          .map((service, index) => (
+            <ServiceItem key={`${service.type}-${index}`} service={service} />
+          ))}
+      </div>
+    ),
+  }));
 
   return (
     <section className="py-12 md:py-20 px-4 sm:px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
@@ -300,82 +290,7 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
           Cennik
         </h2>
 
-        {/* Tab bar - scrollable on mobile */}
-        <div className="relative mb-8">
-          {/* lewa strzalka */}
-          {canScrollLeft && (
-            <button
-              onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow-md"
-              style={{ backgroundColor: 'white', color: 'var(--trainer-primary)' }}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-          )}
-
-          {/* prawa strzalka + fade */}
-          {canScrollRight && (
-            <>
-              <div
-                className="absolute right-0 top-0 bottom-1 w-16 z-10 pointer-events-none rounded-r-xl"
-                style={{ background: 'linear-gradient(to right, transparent, var(--trainer-secondary))' }}
-              />
-              <button
-                onClick={() => scroll('right')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full flex items-center justify-center shadow-md"
-                style={{ backgroundColor: 'white', color: 'var(--trainer-primary)' }}
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </>
-          )}
-
-          <div
-            ref={scrollRef}
-            onScroll={updateArrows}
-            className="overflow-x-auto pb-1"
-            style={{ scrollbarWidth: 'none' }}
-          >
-            <div className="flex gap-2 min-w-max md:min-w-0 md:w-full md:justify-center">
-              {sections.map((section) => {
-                const isActive = active === section.type;
-                return (
-                  <button
-                    key={section.type}
-                    onClick={() => setActive(section.type)}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap border-2 transition-all duration-200 flex-shrink-0"
-                    style={
-                      isActive
-                        ? {
-                            backgroundColor: 'var(--trainer-accent)',
-                            color: 'white',
-                            borderColor: 'var(--trainer-accent)',
-                          }
-                        : {
-                            backgroundColor: 'white',
-                            color: 'var(--trainer-primary)',
-                            borderColor: 'transparent',
-                            boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
-                          }
-                    }
-                  >
-                    {section.title}
-                    {section.type === 'pakiet' && <BadgePercent size={16} />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Panel */}
-        <div className="rounded-xl bg-white shadow-md overflow-hidden">
-          {services
-            .filter((s) => s.type === activeSection.type)
-            .map((service, index) => (
-              <ServiceItem key={`${service.type}-${index}`} service={service} />
-            ))}
-        </div>
+        <UslugiTabs tabs={tabs} />
       </div>
     </section>
   );
