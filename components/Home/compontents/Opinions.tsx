@@ -1,18 +1,9 @@
-'use client';
-
-import { Loader2, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-
-interface Opinion {
-  name: string | null;
-  date: string | null;
-  opinion: string | null;
-}
+import type { Opinion } from '@/lib/fetch-opinions';
 
 interface OpinionsProps {
-  isLoading: boolean;
-  error: boolean;
-  opinions: Array<Opinion> | null;
+  opinions: Opinion[];
 }
 
 const predefinedComments: Opinion[] = [
@@ -81,9 +72,9 @@ function OpinionCard({ comment }: { comment: Opinion }) {
   );
 }
 
-export default function Opinions({ isLoading, error, opinions }: OpinionsProps) {
-  const comments =
-    isLoading || error || !opinions || opinions.length === 0 ? predefinedComments : opinions;
+export default function Opinions({ opinions }: OpinionsProps) {
+  const comments = opinions.length > 0 ? opinions : predefinedComments;
+  if (comments.length === 0) return null;
 
   return (
     <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
@@ -92,17 +83,11 @@ export default function Opinions({ isLoading, error, opinions }: OpinionsProps) 
           Opinie pacjentów
         </h2>
 
-        {isLoading ? (
-          <div className="flex justify-center py-20">
-            <Loader2 className="h-12 w-12 animate-spin" style={{ color: 'var(--trainer-accent)' }} />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {comments.map((comment, index) => (
-              <OpinionCard key={index} comment={comment} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {comments.map((comment, index) => (
+            <OpinionCard key={index} comment={comment} />
+          ))}
+        </div>
       </div>
     </section>
   );

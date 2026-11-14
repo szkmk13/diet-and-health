@@ -15,7 +15,7 @@ export default async function HomePage() {
   try {
     data = await fetchZnanyLekarzData();
   } catch {
-    // error state handled in child components
+    // brak danych: Opinions pokaże opinie zapasowe
   }
 
   return (
@@ -23,7 +23,7 @@ export default async function HomePage() {
       <TopSection opinionsCount={data?.opinionsCount ?? '100+'} />
       <About />
       <Patients />
-      <Opinions isLoading={false} error={!data} opinions={data?.opinions ?? null} />
+      <Opinions opinions={data?.opinions ?? []} />
       <CtaSection />
     </div>
   );
