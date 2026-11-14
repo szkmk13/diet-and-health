@@ -75,7 +75,7 @@ function SectionHeader({
         <div className="min-w-0">
           <span
             className="text-xs font-bold tracking-widest uppercase px-2 py-0.5 rounded"
-            style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 15%, transparent)', color: 'var(--trainer-accent)' }}
+            style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 15%, transparent)', color: 'var(--trainer-accent-strong)' }}
           >
             {label}
           </span>
@@ -83,7 +83,7 @@ function SectionHeader({
             {title}
           </p>
           {subtitle && (
-            <p className="text-xs font-semibold" style={{ color: 'var(--trainer-accent)' }}>
+            <p className="text-xs font-semibold" style={{ color: 'var(--trainer-accent-strong)' }}>
               {subtitle}
             </p>
           )}
@@ -133,12 +133,12 @@ function RoundCounter({
         <button
           onClick={() => onChange(Math.max(0, rounds - 1))}
           className="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80"
-          style={{ backgroundColor: 'white', color: 'var(--trainer-accent)' }}
+          style={{ backgroundColor: 'white', color: 'var(--trainer-accent-strong)' }}
         >
           <Minus className="h-3.5 w-3.5" />
         </button>
         <div className="text-center w-10">
-          <span className="text-2xl font-bold" style={{ color: 'var(--trainer-accent)' }}>
+          <span className="text-2xl font-bold" style={{ color: 'var(--trainer-accent-strong)' }}>
             {rounds}
           </span>
           <span className="text-sm font-medium" style={{ color: 'var(--trainer-text-light)' }}>
@@ -148,7 +148,7 @@ function RoundCounter({
         <button
           onClick={() => onChange(Math.min(maxRounds, rounds + 1))}
           className="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80"
-          style={{ backgroundColor: 'var(--trainer-accent)', color: 'white' }}
+          style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
         >
           <Plus className="h-3.5 w-3.5" />
         </button>
@@ -165,7 +165,7 @@ function SubLabel({ text }: { text: string }) {
     >
       <span
         className="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded"
-        style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 15%, transparent)', color: 'var(--trainer-accent)' }}
+        style={{ backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 15%, transparent)', color: 'var(--trainer-accent-strong)' }}
       >
         {text}
       </span>
@@ -221,7 +221,7 @@ function WorkoutRow({
         style={
           isRest
             ? { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)' }
-            : { backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 12%, transparent)', color: 'var(--trainer-accent)' }
+            : { backgroundColor: 'color-mix(in srgb, var(--trainer-accent) 12%, transparent)', color: 'var(--trainer-accent-strong)' }
         }
       >
         {time}
@@ -367,7 +367,7 @@ export function TrainingPlan() {
         {workoutRounds === 3 && (
           <div
             className="px-5 py-4 text-center font-semibold text-sm"
-            style={{ backgroundColor: 'var(--trainer-accent)', color: 'white' }}
+            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
           >
             Trening ukonczony!
           </div>

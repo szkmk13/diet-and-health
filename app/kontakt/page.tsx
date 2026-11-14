@@ -31,7 +31,7 @@ function ContactCard({ icon, title, description, href, linkLabel }: ContactCardP
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm font-medium hover:underline break-all"
-          style={{ color: 'var(--trainer-accent)' }}
+          style={{ color: 'var(--trainer-accent-strong)' }}
         >
           {linkLabel} →
         </a>
@@ -66,8 +66,8 @@ export default function Page() {
                   href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:scale-105 text-white"
-                  style={{ backgroundColor: 'var(--trainer-accent)' }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:scale-105"
+                  style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
                 >
                   <CalendarCheck size={20} />
                   <span>Umów wizytę</span>

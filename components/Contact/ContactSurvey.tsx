@@ -292,8 +292,8 @@ export default function ContactSurvey() {
           <Button
             type="submit"
             disabled={loading || !turnstileToken}
-            className="w-full text-white border-0"
-            style={{ backgroundColor: 'var(--trainer-accent)' }}
+            className="w-full border-0"
+            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
           >
             {loading ? (
               <>

@@ -43,8 +43,8 @@ function Step({ number, title, description }: StepProps) {
   return (
     <div className="flex gap-5 p-6 rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-transparent hover:border-[var(--trainer-accent)]">
       <div
-        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-medium text-sm"
-        style={{ backgroundColor: 'var(--trainer-accent)' }}
+        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-medium text-sm"
+        style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
       >
         {number}
       </div>

@@ -44,9 +44,11 @@
   --color-pink: #ffdeff;
   --trainer-primary: #1a1a1a;
   --trainer-accent: #5cbdc0;
+  /* ciemniejszy turkus do tekstu na jasnym tle (kontrast >= 4.5:1) */
+  --trainer-accent-strong: #1d7a7d;
   --trainer-secondary: #f3f4f6;
   --trainer-text: #374151;
-  --trainer-text-light: #6b7280;
+  --trainer-text-light: #646b78;
 }
 
 :root {

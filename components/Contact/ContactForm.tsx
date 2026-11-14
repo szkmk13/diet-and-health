@@ -123,8 +123,8 @@ export default function ContactForm() {
           <Button
             type="submit"
             disabled={loading || !turnstileToken}
-            className="min-w-[100px] text-white border-0"
-            style={{ backgroundColor: 'var(--trainer-accent)' }}
+            className="min-w-[100px] border-0"
+            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
           >
             {loading ? (
               <>

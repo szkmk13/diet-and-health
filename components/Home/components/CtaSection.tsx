@@ -14,8 +14,8 @@ export default function CtaSection() {
             href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium text-white transition-all hover:scale-105"
-            style={{ backgroundColor: 'var(--trainer-accent)' }}
+            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium transition-all hover:scale-105"
+            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
           >
             Umów wizytę
           </a>

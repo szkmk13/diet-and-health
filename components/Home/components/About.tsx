@@ -31,7 +31,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl">
               <span style={{ color: 'var(--trainer-text)' }}>mgr Monika Skibicka</span>
               <br />
-              <span className="text-2xl md:text-3xl text-primary2">DIETETYK KLINICZNY</span>
+              <span className="text-2xl md:text-3xl text-[var(--trainer-accent-strong)]">DIETETYK KLINICZNY</span>
             </h2>
             <div className="h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />
 
@@ -65,7 +65,7 @@ export default function About() {
             <ul className="md:hidden space-y-2 text-sm">
               {bulletPoints.map((item, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="mt-0.5 font-bold flex-shrink-0" style={{ color: 'var(--trainer-accent)' }}>
+                  <span className="mt-0.5 font-bold flex-shrink-0" style={{ color: 'var(--trainer-accent-strong)' }}>
                     ✓
                   </span>
                   <span style={{ color: 'var(--trainer-text-light)' }}>{item}</span>

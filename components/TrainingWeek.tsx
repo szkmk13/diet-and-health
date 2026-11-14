@@ -49,7 +49,7 @@ export function TrainingWeek() {
                   className="relative flex flex-col items-center px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all"
                   style={
                     isActive
-                      ? { backgroundColor: 'var(--trainer-accent)', color: 'white', border: '2px solid var(--trainer-accent)' }
+                      ? { backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)', border: '2px solid var(--trainer-accent)' }
                       : isToday
                         ? { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)', border: '2px solid var(--trainer-accent)' }
                         : { backgroundColor: 'var(--trainer-secondary)', color: 'var(--trainer-text-light)', border: '2px solid transparent' }

@@ -51,15 +51,15 @@ export default function Patients() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/uslugi"
-            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium text-white transition-all hover:scale-105"
-            style={{ backgroundColor: 'var(--trainer-accent)' }}
+            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium transition-all hover:scale-105"
+            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
           >
             Sprawdź ofertę
           </Link>
           <Link
             href="/kontakt"
             className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium border-2 transition-all hover:scale-105"
-            style={{ borderColor: 'var(--trainer-accent)', color: 'var(--trainer-accent)' }}
+            style={{ borderColor: 'var(--trainer-accent)', color: 'var(--trainer-accent-strong)' }}
           >
             Kontakt
           </Link>

@@ -223,12 +223,12 @@ const ServiceItem = ({ service }: { service: Service }) => {
                 <span className="line-through" style={{ color: 'var(--trainer-text-light)' }}>
                   {oldPrice} zł
                 </span>
-                <span className="font-semibold" style={{ color: 'var(--trainer-accent)' }}>
+                <span className="font-semibold" style={{ color: 'var(--trainer-accent-strong)' }}>
                   {newPrice} zł
                 </span>
               </div>
             ) : (
-              <span className="text-sm font-semibold" style={{ color: 'var(--trainer-accent)' }}>
+              <span className="text-sm font-semibold" style={{ color: 'var(--trainer-accent-strong)' }}>
                 {service.price} zł
               </span>
             )}

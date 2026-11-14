@@ -23,7 +23,7 @@ function ServiceCard({ icon, title, description, reverse = false }: ServiceCardP
             {icon}
           </div>
           <h3
-            className="text-xl md:text-2xl group-hover:text-[var(--trainer-accent)] transition-colors duration-300"
+            className="text-xl md:text-2xl group-hover:text-[var(--trainer-accent-strong)] transition-colors duration-300"
             style={{ color: 'var(--trainer-primary)' }}
           >
             {title}
@@ -69,8 +69,8 @@ export default function Page() {
                   href="https://www.instagram.com/k_skibicki/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:scale-105 text-white"
-                  style={{ backgroundColor: 'var(--trainer-accent)' }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:scale-105"
+                  style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
                 >
                   <Instagram size={20} />
                   <span>Śledź mnie na Instagramie</span>

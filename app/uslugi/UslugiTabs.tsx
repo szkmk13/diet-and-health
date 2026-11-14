@@ -107,7 +107,7 @@ export default function UslugiTabs({ tabs }: { tabs: UslugiTab[] }) {
                     isActive
                       ? {
                           backgroundColor: 'var(--trainer-accent)',
-                          color: 'white',
+                          color: 'var(--trainer-primary)',
                           borderColor: 'var(--trainer-accent)',
                         }
                       : {

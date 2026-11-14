@@ -45,8 +45,8 @@ function OpinionCard({ comment }: { comment: Opinion }) {
       <div className="flex items-center gap-3 mb-4">
         <Avatar className="h-10 w-10">
           <AvatarFallback
-            className="text-white text-sm font-semibold"
-            style={{ backgroundColor: 'var(--trainer-accent)' }}
+            className=" text-sm font-semibold"
+            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
           >
             {comment.name?.charAt(0) ?? '?'}
           </AvatarFallback>
