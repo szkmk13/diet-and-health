@@ -89,7 +89,7 @@ pierwszą konsultacją.
                   src="/images/salatka-z-rukola.webp"
                   alt="Zdrowa sałatka"
                   fill
-                  priority
+                  preload
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"

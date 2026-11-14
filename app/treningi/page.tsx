@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Dumbbell, Calendar, Instagram, Trophy } from 'lucide-react';
+import { Dumbbell, Calendar, Trophy } from 'lucide-react';
+import { IconBrandInstagram } from '@tabler/icons-react';
 import { TrainingWeek } from '@/components/TrainingWeek';
 
 interface ServiceCardProps {
@@ -72,7 +73,7 @@ export default function Page() {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:scale-105"
                   style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
                 >
-                  <Instagram size={20} />
+                  <IconBrandInstagram size={20} />
                   <span>Śledź mnie na Instagramie</span>
                 </a>
               </div>
@@ -84,7 +85,7 @@ export default function Page() {
                   src="/images/krzychu_solo.webp"
                   alt="Krzysztof Skibicki - certyfikowany trener HYROX i trener personalny"
                   fill
-                  priority
+                  preload
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"

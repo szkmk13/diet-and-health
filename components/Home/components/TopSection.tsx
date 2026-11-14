@@ -20,7 +20,7 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
               alt="Monika Skibicka"
               fill
               className="object-cover object-top"
-              priority
+              preload
             />
           </div>
 

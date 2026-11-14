@@ -81,7 +81,7 @@ export default function Page() {
                   src="/images/monia_kontakt.webp"
                   alt="Monika Skibicka - Dietetyk Kliniczny"
                   fill
-                  priority
+                  preload
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top"

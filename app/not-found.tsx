@@ -23,7 +23,7 @@ export default function NotFound() {
             src="/images/owsianka.webp"
             alt="Owsianka z malinami i granolą"
             fill
-            priority
+            preload
             sizes="(max-width: 768px) 0px, 40vw"
             className="object-cover"
             style={{ objectPosition: 'center 60%' }}

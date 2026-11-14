@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useSyncExternalStore } from "react"
 import { Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "sonner"
+
+const noopSubscribe = () => () => {}
 
 interface Offer {
   id: number
@@ -51,17 +53,13 @@ function OfferCard({
 export default function ProtectedPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [isClient, setIsClient] = useState<boolean>(false)
+  const isClient = useSyncExternalStore(noopSubscribe, () => true, () => false)
   const [soloOffers, setSoloOffers] = useState<Offer[]>([])
   const [duoOffers, setDuoOffers] = useState<Offer[]>([])
   const [psychoOffers, setPsychoOffers] = useState<Offer[]>([])
   const [pakietOffers, setPakietOffers] = useState<Offer[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [saveLoading, setSaveLoading] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   useEffect(() => {
     if (isClient && status === "unauthenticated") {

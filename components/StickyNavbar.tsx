@@ -76,7 +76,7 @@ export default function StickyNavbar() {
             width={120} // Adjust width as needed
             height={60} // Adjust height as needed
             className="h-auto w-auto" // Ensure image scales responsively
-            priority // Load logo image with high priority
+            preload // Load logo image with high priority
           />
         </Link>
 

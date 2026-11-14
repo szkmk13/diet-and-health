@@ -53,7 +53,7 @@ export default async function Page() {
                   src="/images/owsianka.webp"
                   alt="Usługi dietetyczne"
                   fill
-                  priority
+                  preload
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"

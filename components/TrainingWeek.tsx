@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { TrainingPlan } from './TrainingPlan';
 import { Dumbbell } from 'lucide-react';
 
@@ -14,6 +14,8 @@ const DAYS = [
   { short: 'Nd',   full: 'Niedziela',    plan: true },
 ];
 
+const noopSubscribe = () => () => {};
+
 function todayIndex() {
   const d = new Date().getDay(); // 0=niedziela
   return d === 0 ? 6 : d - 1;   // 0=poniedzialek
@@ -22,14 +24,9 @@ function todayIndex() {
 export function TrainingWeek() {
   // Strona jest prerenderowana w czasie builda, więc "dzisiaj" liczymy dopiero w przeglądarce.
   // Do tego czasu serwer i pierwszy render klienta są identyczne (brak błędu hydracji).
-  const [today, setToday] = useState<number | null>(null);
-  const [active, setActive] = useState<number | null>(null);
-
-  useEffect(() => {
-    const t = todayIndex();
-    setToday(t);
-    setActive((current) => current ?? t);
-  }, []);
+  const today = useSyncExternalStore<number | null>(noopSubscribe, todayIndex, () => null);
+  const [selected, setActive] = useState<number | null>(null);
+  const active = selected ?? today;
 
   const day = active === null ? null : DAYS[active];
 

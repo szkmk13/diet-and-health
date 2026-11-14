@@ -163,7 +163,7 @@ export default function ContactSurvey() {
                   const maxDate = dayjs().add(2, 'month').endOf('day').toDate();
                   return date < today || date > maxDate;
                 }}
-                initialFocus
+                autoFocus
               />
             </PopoverContent>
           </Popover>
