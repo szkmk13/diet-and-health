@@ -11,30 +11,35 @@ export interface ZnanyLekarzData {
   opinions: Opinion[];
 }
 
+const PROFILE_URL = 'https://www.znanylekarz.pl/profil/monika-skibicka';
+const MAX_OPINIONS = 6;
+
 export async function fetchZnanyLekarzData(): Promise<ZnanyLekarzData> {
-  const url = 'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#';
   const opinieSelector =
     '#profile-reviews > div > div.card-body.pb-0 > div > div.w-100 > div';
 
-  const response = await fetch(url, { next: { revalidate: 3600 } });
+  const response = await fetch(PROFILE_URL, { next: { revalidate: 3600 } });
+  if (!response.ok) {
+    throw new Error(`ZnanyLekarz responded with ${response.status}`);
+  }
   const html = await response.text();
   const $ = cheerio.load(html);
 
-  const opinionsCount = $(opinieSelector).text().trim();
+  const rawCount = $(opinieSelector).text().trim();
+  const opinionsCount = rawCount.match(/\d+/)?.[0] ?? '100+';
 
-  const opinionsUl = $('ul.standard-opinions-container.list-unstyled.mb-0');
-  const opinions = opinionsUl
-    .children('li')
-    .slice(0, 6)
-    .map((_, child) => {
-      const el = $(child);
+  const opinions = $('[data-test-id="opinion-block"]')
+    .map((_, block) => {
+      const el = $(block);
       return {
-        name: el.find('[itemprop="author"]').text().trim() || null,
-        opinion: el.find('[itemprop="reviewBody"]').text().trim() || null,
-        date: el.find('[itemprop="datePublished"]').text().trim() || null,
+        name: el.find('h4 span').first().text().trim() || null,
+        opinion: el.find('[data-test-id="opinion-comment"]').first().text().trim() || null,
+        date: el.find('time').first().text().trim() || null,
       };
     })
-    .get();
+    .get()
+    .filter((o) => o.opinion)
+    .slice(0, MAX_OPINIONS);
 
   return { opinionsCount, opinions };
 }

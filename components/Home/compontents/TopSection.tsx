@@ -54,9 +54,9 @@ export default function TopSection({
                   {isLoading ? (
                     <Loader2 className="inline-block h-4 w-4 animate-spin" />
                   ) : error ? (
-                    '100+'
+                    '100+ opinii'
                   ) : opinionsCount !== undefined ? (
-                    opinionsCount
+                    `${opinionsCount} opinii`
                   ) : (
                     'N/A'
                   )}
