@@ -1,18 +1,23 @@
 import Link from "next/link"
 import { IconBrandInstagram, IconBrandFacebook, IconBrandGoogleMaps } from "@tabler/icons-react" // Keeping Tabler Icons as they are compatible
+import { clinic, socialLinks } from "@/lib/seo"
 
 export function FooterCentered() {
   return (
     <footer className="bg-gray-100 py-6 border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4">
-        {/* Placeholder for your logo or site name */}
-        <Link href={"/"} className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Diet & Health
-        </Link>
+        <div className="flex flex-col items-center sm:items-start gap-1 text-center sm:text-left">
+          <Link href={"/"} className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+            Diet & Health
+          </Link>
+          <address className="not-italic text-sm text-gray-600 dark:text-gray-400">
+            {clinic.name}, {clinic.streetAddress}, {clinic.postalCode} {clinic.city}
+          </address>
+        </div>
 
         <div className="flex items-center gap-4">
           <a
-            href="https://www.facebook.com/diet.and.health.dietetyk"
+            href={socialLinks.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors"
@@ -21,7 +26,7 @@ export function FooterCentered() {
             <IconBrandFacebook style={{ width: "24px", height: "24px" }} stroke={1.5} />
           </a>
           <a
-            href="https://maps.app.goo.gl/mhi7sRzabVzfXxct5"
+            href={clinic.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors"
@@ -30,7 +35,7 @@ export function FooterCentered() {
             <IconBrandGoogleMaps style={{ width: "24px", height: "24px" }} stroke={1.5} />
           </a>
           <a
-            href="https://www.instagram.com/monikaskibicka.dietetyk"
+            href={socialLinks.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors"

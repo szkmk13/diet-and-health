@@ -18,3 +18,18 @@ export const baseOpenGraph = {
     },
   ],
 } satisfies NonNullable<Metadata['openGraph']>;
+
+/** Dane gabinetu (NAP) - te same w JSON-LD, stopce i na /kontakt. */
+export const clinic = {
+  name: 'Maritimus Clinic',
+  streetAddress: 'ul. Żwirki i Wigury 2A',
+  postalCode: '81-392',
+  city: 'Gdynia',
+  mapsUrl: 'https://maps.app.goo.gl/mhi7sRzabVzfXxct5',
+} as const;
+
+export const socialLinks = {
+  facebook: 'https://www.facebook.com/diet.and.health.dietetyk',
+  instagram: 'https://www.instagram.com/monikaskibicka.dietetyk',
+  znanyLekarz: 'https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia',
+} as const;

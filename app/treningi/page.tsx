@@ -50,13 +50,15 @@ export default function Page() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
-                <h1 className="text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
-                  Krzysiek
+                <h1>
+                  <span className="block text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
+                    Krzysiek
+                  </span>{' '}
+                  <span aria-hidden="true" className="block h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
+                  <span className="block text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
+                    Certyfikowany Trener HYROX · CrossFit · Trener Personalny z Humorem
+                  </span>
                 </h1>
-                <div className="h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-                <p className="text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
-                  Certyfikowany Trener HYROX · CrossFit · Trener Personalny z Humorem
-                </p>
                 <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                   Wierzę, że trening to nie tylko ciężka praca, ale też dobra zabawa!
                   Pomogę Ci osiągnąć cele treningowe z uśmiechem na twarzy.

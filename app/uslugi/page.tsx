@@ -33,13 +33,15 @@ export default async function Page() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
-                <h1 className="text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
-                  Oferta
+                <h1>
+                  <span className="block text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
+                    Oferta
+                  </span>{' '}
+                  <span aria-hidden="true" className="block h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
+                  <span className="block text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
+                    Usługi dietetyczne w Gdyni i online
+                  </span>
                 </h1>
-                <div className="h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-                <p className="text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
-                  Usługi dietetyczne
-                </p>
                 <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                   Oferuję szeroki zakres usług - od indywidualnych konsultacji, przez psychodietetykę,
                   po spersonalizowane jadłospisy i pakiety. Znajdź rozwiązanie dopasowane do Twoich potrzeb.

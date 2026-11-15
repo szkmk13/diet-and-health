@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Mail, CalendarCheck } from 'lucide-react';
+import { Mail, CalendarCheck, MapPin } from 'lucide-react';
+import { clinic, socialLinks } from '@/lib/seo';
 import ContactForm from '@/components/Contact/ContactForm';
 
 interface ContactCardProps {
@@ -49,13 +50,15 @@ export default function Page() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
-                <h1 className="text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
-                  Monika
+                <h1>
+                  <span className="block text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
+                    Monika
+                  </span>{' '}
+                  <span aria-hidden="true" className="block h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
+                  <span className="block text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
+                    Dietetyk kliniczny w Gdyni - kontakt i zapisy
+                  </span>
                 </h1>
-                <div className="h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-                <p className="text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
-                  Dietetyk Kliniczny
-                </p>
                 <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
                   Kompleksowe podejście do zdrowia i odżywiania. Pomagam moim pacjentom osiągać trwałe
                   zmiany poprzez indywidualnie dopasowaną dietę - bez wyrzeczeń, z przyjemnością jedzenia.
@@ -98,7 +101,7 @@ export default function Page() {
           <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
             Jak się skontaktować?
           </h2>
-          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <ContactCard
               icon={<Mail className="w-6 h-6" color="#ffffff" />}
               title="Email"
@@ -110,8 +113,15 @@ export default function Page() {
               icon={<CalendarCheck className="w-6 h-6" color="#ffffff" />}
               title="ZnanyLekarz"
               description="Umów wizytę online lub stacjonarnie w Gdyni przez platformę ZnanyLekarz."
-              href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia"
+              href={socialLinks.znanyLekarz}
               linkLabel="Umów wizytę"
+            />
+            <ContactCard
+              icon={<MapPin className="w-6 h-6" color="#ffffff" />}
+              title="Gabinet w Gdyni"
+              description={`${clinic.name}, ${clinic.streetAddress}, ${clinic.postalCode} ${clinic.city}. Wizyty stacjonarne i online.`}
+              href={clinic.mapsUrl}
+              linkLabel="Pokaż na mapie"
             />
           </div>
         </div>

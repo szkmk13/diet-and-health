@@ -17,7 +17,7 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
           >
             <Image
               src="/images/monia_kontakt.webp"
-              alt="Monika Skibicka"
+              alt="Monika Skibicka - dietetyk kliniczny w Gdyni"
               fill
               className="object-cover object-top"
               preload
@@ -25,20 +25,19 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
           </div>
 
           <div className="order-1 space-y-5">
-            <div>
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl mb-3"
+            <h1>
+              <span
+                className="block text-4xl md:text-5xl lg:text-6xl mb-3"
                 style={{ color: 'var(--trainer-primary)' }}
               >
                 Monika Skibicka
-              </h1>
-              <div className="h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-            </div>
-
-            <p className="text-lg md:text-xl flex items-center gap-2" style={{ color: 'var(--trainer-text)' }}>
-              Dietetyk Kliniczny
-              <BadgeCheck className="h-5 w-5" style={{ color: 'var(--trainer-accent)' }} />
-            </p>
+              </span>{' '}
+              <span aria-hidden="true" className="block h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
+              <span className="mt-5 text-lg md:text-xl flex items-center gap-2" style={{ color: 'var(--trainer-text)' }}>
+                Dietetyk kliniczny w Gdyni
+                <BadgeCheck className="h-5 w-5" style={{ color: 'var(--trainer-accent)' }} />
+              </span>
+            </h1>
 
             <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
               Skuteczna dieta to ta, którą jesteś w stanie utrzymać.

@@ -4,18 +4,18 @@ import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/sonner';
 import Providers from './providers';
 import type { Metadata } from 'next';
-import { baseOpenGraph } from '@/lib/seo';
+import { baseOpenGraph, clinic, socialLinks } from '@/lib/seo';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dietetyk - Monika Skibicka | diet-and-health.pl',
+    default: 'Dietetyk Gdynia - Monika Skibicka | Diet and Health',
     template: '%s | Monika Skibicka Dietetyk',
   },
   description:
-    'Diet and health Monika Skibicka. Konsultacje dietetyczne, psychodietetyka, jadłospisy, analiza składu ciała, treningi personalne. Umów wizytę online lub stacjonarnie.',
+    'Dietetyk kliniczny i psychodietetyk w Gdyni - Monika Skibicka. Konsultacje dietetyczne, jadłospisy i analiza składu ciała. Wizyty w gabinecie i online.',
   metadataBase: new URL('https://diet-and-health.pl'),
-  openGraph: baseOpenGraph,
+  openGraph: { ...baseOpenGraph, url: '/' },
   icons: {
     icon: '/favicon.jpg',
   },
@@ -23,7 +23,9 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'Dietitian'],
+  // MedicalBusiness to podtyp LocalBusiness; 'Dietitian' nie istnieje w schema.org
+  '@type': 'MedicalBusiness',
+  medicalSpecialty: 'https://schema.org/DietNutrition',
   name: 'Diet and Health - Monika Skibicka',
   alternateName: 'Dietetyk Monika Skibicka',
   description:
@@ -34,9 +36,9 @@ const jsonLd = {
   address: {
     '@type': 'PostalAddress',
     // gabinet: Maritimus Clinic (adres jak na profilu ZnanyLekarz)
-    streetAddress: 'ul. Żwirki i Wigury 2A',
-    addressLocality: 'Gdynia',
-    postalCode: '81-392',
+    streetAddress: clinic.streetAddress,
+    addressLocality: clinic.city,
+    postalCode: clinic.postalCode,
     addressCountry: 'PL',
   },
   employee: {
@@ -57,7 +59,8 @@ const jsonLd = {
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Analiza składu ciała' } },
     ],
   },
-  sameAs: ['https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia'],
+  hasMap: clinic.mapsUrl,
+  sameAs: [socialLinks.znanyLekarz, socialLinks.facebook, socialLinks.instagram, clinic.mapsUrl],
 };
 
 export default function RootLayout({

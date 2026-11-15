@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { baseOpenGraph } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Trener HYROX i CrossFit - treningi personalne',
+  // absolute: bez szablonu "| Monika Skibicka Dietetyk", to strona trenera
+  title: { absolute: 'Trener HYROX i CrossFit Krzysztof Skibicki | Diet & Health' },
   description:
-    'Certyfikowany trener HYROX Krzysztof Skibicki. Przygotowanie do zawodów HYROX, treningi CrossFit, treningi personalne i indywidualne plany treningowe dopasowane do Twoich celów.',
+    'Certyfikowany trener HYROX Krzysztof Skibicki. Przygotowanie do zawodów HYROX, treningi CrossFit i personalne oraz indywidualne plany treningowe.',
   keywords: [
     'HYROX',
     'trener HYROX',
