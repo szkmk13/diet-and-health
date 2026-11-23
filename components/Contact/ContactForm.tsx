@@ -70,8 +70,8 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="rounded-xl bg-white p-6 sm:p-8 shadow-md border-2 border-[var(--trainer-secondary)]">
-      <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
+    <div className="rounded-[24px] bg-white p-6 sm:p-9">
+      <form ref={forma} onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <Label htmlFor="website">Website</Label>
           <Input
@@ -84,23 +84,23 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
-            Email <span className="text-red-500">*</span>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email" className="text-[15px] font-semibold text-[var(--dh-ink)]">
+            Email <span className="text-[#c2410c]">*</span>
           </Label>
-          <Input id="email" name="email" type="email" placeholder="twoj_email@email.com" required className="w-full" />
+          <Input id="email" name="email" type="email" placeholder="twoj_email@email.com" required className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
-            Imię <span className="text-red-500">*</span>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="name" className="text-[15px] font-semibold text-[var(--dh-ink)]">
+            Imię <span className="text-[#c2410c]">*</span>
           </Label>
-          <Input id="name" name="name" placeholder="Jan Kowalski" required className="w-full" />
+          <Input id="name" name="name" placeholder="Jan Kowalski" required className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="message" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
-            Wiadomość <span className="text-red-500">*</span>
+        <div className="flex flex-col gap-2 sm:col-span-2">
+          <Label htmlFor="message" className="text-[15px] font-semibold text-[var(--dh-ink)]">
+            Wiadomość <span className="text-[#c2410c]">*</span>
           </Label>
           <Textarea
             id="message"
@@ -108,23 +108,24 @@ export default function ContactForm() {
             placeholder="Dzień dobry, czy na konsultację potrzebne są wyniki badań?"
             required
             rows={5}
-            className="w-full"
+            className="w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <Turnstile
+        <div className="sm:col-span-2">
+          <Turnstile
           siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
           onSuccess={setTurnstileToken}
           onExpire={() => setTurnstileToken(null)}
           options={{ theme: 'light' }}
         />
+        </div>
 
-        <div className="flex justify-end pt-4">
+        <div className="pt-1 sm:col-span-2">
           <Button
             type="submit"
             disabled={loading || !turnstileToken}
-            className="min-w-[100px] border-0"
-            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
+            className="min-h-[52px] w-full rounded-full border-0 bg-[var(--dh-indigo)] text-base font-semibold text-white hover:bg-[var(--dh-ink)]"
           >
             {loading ? (
               <>

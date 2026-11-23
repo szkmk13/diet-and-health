@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import { Mail, CalendarCheck, MapPin } from 'lucide-react';
 import { clinic, socialLinks } from '@/lib/seo';
+import { fontVariables } from '@/lib/fonts';
 import ContactForm from '@/components/Contact/ContactForm';
 
-interface ContactCardProps {
+interface ContactMethodProps {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -11,113 +12,98 @@ interface ContactCardProps {
   linkLabel: string;
 }
 
-function ContactCard({ icon, title, description, href, linkLabel }: ContactCardProps) {
+function ContactMethod({ icon, title, description, href, linkLabel }: ContactMethodProps) {
   return (
-    <div className="p-6 md:p-8 rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-2 border-transparent hover:border-[var(--trainer-accent)] flex flex-col gap-4">
-      <div
-        className="w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300"
-        style={{ backgroundColor: 'var(--trainer-accent)' }}
+    <div className="border-t-[3px] border-[var(--dh-teal)] pt-6">
+      <span
+        aria-hidden="true"
+        className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--dh-mist)] text-[var(--dh-teal-text)]"
       >
         {icon}
-      </div>
-      <div>
-        <h3 className="text-lg mb-1" style={{ color: 'var(--trainer-primary)' }}>
-          {title}
-        </h3>
-        <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--trainer-text-light)' }}>
-          {description}
-        </p>
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-medium hover:underline break-all"
-          style={{ color: 'var(--trainer-accent-strong)' }}
-        >
-          {linkLabel} →
-        </a>
-      </div>
+      </span>
+      <h3 className="mt-[18px] text-[1.375rem] font-semibold">{title}</h3>
+      <p className="mt-2 text-base leading-relaxed text-[var(--dh-body)]">{description}</p>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3.5 inline-flex min-h-11 items-center break-all text-base font-semibold text-[var(--dh-indigo)] underline underline-offset-4 hover:text-[var(--dh-ink)]"
+      >
+        {linkLabel} →
+      </a>
     </div>
   );
 }
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`dh-page min-h-screen bg-white ${fontVariables}`}>
       {/* Hero Section */}
-      <section className="py-12 md:py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 order-2 md:order-1">
-              <div>
-                <h1>
-                  <span className="block text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
-                    Monika
-                  </span>{' '}
-                  <span aria-hidden="true" className="block h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
-                  <span className="block text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
-                    Dietetyk kliniczny w Gdyni - kontakt i zapisy
-                  </span>
-                </h1>
-                <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                  Kompleksowe podejście do zdrowia i odżywiania. Pomagam moim pacjentom osiągać trwałe
-                  zmiany poprzez indywidualnie dopasowaną dietę - bez wyrzeczeń, z przyjemnością jedzenia.
-                </p>
-              </div>
-              <div className="flex justify-center md:justify-start">
-                <a
-                  href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:scale-105"
-                  style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
-                >
-                  <CalendarCheck size={20} />
-                  <span>Umów wizytę</span>
-                </a>
-              </div>
-            </div>
+      <section className="bg-[var(--dh-mist)]">
+        <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-12 px-4 py-14 sm:px-6 md:py-20 lg:flex-row lg:gap-16">
+          <div className="min-w-0 flex-1">
+            <h1>
+              <span className="font-display block text-5xl leading-[1.05] text-[var(--dh-indigo)] md:text-[4.5rem]">
+                Monika
+              </span>{' '}
+              <span className="mt-3.5 block text-lg font-semibold text-[var(--dh-teal-text)] md:text-[1.3125rem]">
+                Dietetyk kliniczny w Gdyni - kontakt i zapisy
+              </span>
+            </h1>
+            <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-[var(--dh-body)]">
+              Kompleksowe podejście do zdrowia i odżywiania. Pomagam moim pacjentom osiągać trwałe
+              zmiany poprzez indywidualnie dopasowaną dietę - bez wyrzeczeń, z przyjemnością jedzenia.
+            </p>
+            <a
+              href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[var(--dh-indigo)] px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--dh-ink)]"
+            >
+              <CalendarCheck size={20} aria-hidden="true" />
+              <span>Umów wizytę</span>
+            </a>
+          </div>
 
-            <div className="relative order-1 md:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
-                <Image
-                  src="/images/monia_kontakt.webp"
-                  alt="Monika Skibicka - Dietetyk Kliniczny"
-                  fill
-                  preload
-                  quality={90}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top"
-                />
-              </div>
+          <div className="w-full max-w-sm sm:max-w-[420px] lg:w-[420px] lg:shrink-0">
+            <div className="relative aspect-square overflow-hidden rounded-2xl">
+              <Image
+                src="/images/monia_kontakt.webp"
+                alt="Monika Skibicka - Dietetyk Kliniczny"
+                fill
+                preload
+                quality={90}
+                sizes="(min-width: 1024px) 420px, 90vw"
+                className="object-cover object-top"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Cards Section */}
-      <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
+      {/* Contact Methods Section */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6 md:py-24">
+          <h2 className="font-display text-4xl leading-tight text-[var(--dh-indigo)] md:text-5xl">
             Jak się skontaktować?
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <ContactCard
-              icon={<Mail className="w-6 h-6" color="#ffffff" />}
+          <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-8">
+            <ContactMethod
+              icon={<Mail className="h-[22px] w-[22px]" />}
               title="Email"
               description="Napisz do mnie bezpośrednio. Odpowiadam zazwyczaj w ciągu 24 godzin."
               href="mailto:kontakt@diet-and-health.pl"
               linkLabel="kontakt@diet-and-health.pl"
             />
-            <ContactCard
-              icon={<CalendarCheck className="w-6 h-6" color="#ffffff" />}
+            <ContactMethod
+              icon={<CalendarCheck className="h-[22px] w-[22px]" />}
               title="ZnanyLekarz"
               description="Umów wizytę online lub stacjonarnie w Gdyni przez platformę ZnanyLekarz."
               href={socialLinks.znanyLekarz}
               linkLabel="Umów wizytę"
             />
-            <ContactCard
-              icon={<MapPin className="w-6 h-6" color="#ffffff" />}
+            <ContactMethod
+              icon={<MapPin className="h-[22px] w-[22px]" />}
               title="Gabinet w Gdyni"
               description={`${clinic.name}, ${clinic.streetAddress}, ${clinic.postalCode} ${clinic.city}. Wizyty stacjonarne i online.`}
               href={clinic.mapsUrl}
@@ -128,15 +114,15 @@ export default function Page() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-12 md:py-20 px-6">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-center mb-4" style={{ color: 'var(--trainer-primary)' }}>
-            Napisz do mnie
-          </h2>
-          <p className="text-center mb-8 md:mb-12 text-base md:text-lg" style={{ color: 'var(--trainer-text-light)' }}>
-            Masz pytanie? Chętnie odpiszę.
-          </p>
-          <ContactForm />
+      <section className="bg-[var(--dh-mist)]">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-8 px-4 pb-24 pt-16 sm:px-6 md:pb-28 md:pt-24 lg:flex-row lg:gap-16">
+          <div className="lg:w-[300px] lg:shrink-0">
+            <h2 className="font-display text-4xl leading-tight text-[var(--dh-indigo)] md:text-5xl">Napisz do mnie</h2>
+            <p className="mt-3.5 text-lg leading-relaxed text-[var(--dh-body)]">Masz pytanie? Chętnie odpiszę.</p>
+          </div>
+          <div className="min-w-0 flex-1">
+            <ContactForm />
+          </div>
         </div>
       </section>
     </div>
