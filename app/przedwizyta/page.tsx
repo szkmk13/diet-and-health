@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import ContactSurvey from '@/components/Contact/ContactSurvey';
 import { fontVariables } from '@/lib/fonts';
 
@@ -39,7 +38,7 @@ export default function Page() {
     <div className={`dh-page min-h-screen bg-white ${fontVariables}`}>
       {/* Hero Section */}
       <section className="bg-[var(--dh-mist)]">
-        <div className="mx-auto max-w-[1240px] px-4 pt-14 sm:px-6 md:pt-20">
+        <div className="mx-auto max-w-[1240px] px-4 pb-14 pt-14 sm:px-6 md:pb-20 md:pt-20">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div>
               <h1 className="font-display text-5xl leading-[1.05] text-[var(--dh-indigo)] md:text-[4.5rem]">
@@ -53,17 +52,6 @@ export default function Page() {
               Poniżej znajdziesz wskazówki oraz wstępną ankietę, którą możesz wypełnić przed
 pierwszą konsultacją.
             </p>
-          </div>
-          <div className="relative mt-10 h-48 overflow-hidden rounded-t-[20px] sm:h-64 md:mt-12 md:h-80">
-            <Image
-              src="/images/salatka-z-rukola.webp"
-              alt="Zdrowa sałatka"
-              fill
-              preload
-              quality={90}
-              sizes="(max-width: 1240px) 100vw, 1240px"
-              className="object-cover"
-            />
           </div>
         </div>
       </section>
