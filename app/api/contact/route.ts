@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { verifyTurnstile } from '@/lib/turnstile';
 import { escapeHtml, escapeHtmlMultiline, readText } from '@/lib/escape-html';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { sendFormEmail } from '@/lib/mail';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -26,9 +24,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Weryfikacja CAPTCHA nie powiodła się.' }, { status: 400 });
   }
 
-  const { error } = await resend.emails.send({
-    from: 'Formularz kontaktowy <onboarding@resend.dev>',
-    to: process.env.RECIPIENT_EMAIL!,
+  const sent = await sendFormEmail({
+    senderName: 'Formularz kontaktowy',
     replyTo: email,
     subject: `Nowa wiadomość od ${name}`,
     html: `
@@ -40,7 +37,7 @@ export async function POST(request: Request) {
     `,
   });
 
-  if (error) {
+  if (!sent) {
     return NextResponse.json({ error: 'Błąd wysyłki emaila.' }, { status: 500 });
   }
 

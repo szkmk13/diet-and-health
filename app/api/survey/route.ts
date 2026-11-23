@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { verifyTurnstile } from '@/lib/turnstile';
 import { escapeHtmlMultiline, readText } from '@/lib/escape-html';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { sendFormEmail } from '@/lib/mail';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const LONG_FIELD_MAX = 3000;
@@ -51,9 +49,8 @@ export async function POST(request: Request) {
   const row = (label: string, value: string) =>
     `<tr><td style="padding:6px 12px;font-weight:bold;background:#f3f4f6;border:1px solid #e5e7eb;">${label}</td><td style="padding:6px 12px;border:1px solid #e5e7eb;">${value ? escapeHtmlMultiline(value) : '-'}</td></tr>`;
 
-  const { error } = await resend.emails.send({
-    from: 'Ankieta przedwizytowa <onboarding@resend.dev>',
-    to: process.env.RECIPIENT_EMAIL!,
+  const sent = await sendFormEmail({
+    senderName: 'Ankieta przedwizytowa',
     replyTo: email,
     subject: `Ankieta przedwizytowa od ${name} (${date})`,
     html: `
@@ -67,7 +64,7 @@ export async function POST(request: Request) {
     `,
   });
 
-  if (error) {
+  if (!sent) {
     return NextResponse.json({ error: 'Błąd wysyłki emaila.' }, { status: 500 });
   }
 

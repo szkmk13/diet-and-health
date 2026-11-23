@@ -4,14 +4,30 @@ Wejdź w: **Vercel → projekt → Settings → Environment Variables**
 
 ---
 
-## Resend (wysyłka maili)
+## Resend (wysyłka maili z formularzy do Moniki)
+
+Formularz kontaktowy (`/kontakt`) i ankieta (`/przedwizyta`) wysyłają maile przez Resend na adres z `RECIPIENT_EMAIL`. "Odpowiedz" w mailu trafia prosto do osoby, która wypełniła formularz.
 
 | Zmienna | Wartość |
 |---|---|
 | `RESEND_API_KEY` | Klucz API z [resend.com/api-keys](https://resend.com/api-keys) |
-| `RECIPIENT_EMAIL` | Email Moniki (docelowy adres, na który trafiają formularze) |
+| `RECIPIENT_EMAIL` | Skrzynka Moniki, na którą mają trafiać formularze (np. `kontakt@diet-and-health.pl`) |
+| `MAIL_FROM_ADDRESS` | Adres nadawcy ze zweryfikowanej domeny, np. `formularz@diet-and-health.pl` |
 
-> Na produkcji zmień też adres `from` w `app/api/contact/route.ts` i `app/api/survey/route.ts` z `onboarding@resend.dev` na `noreply@twoja-domena.pl` (domena musi być zweryfikowana w Resend).
+### Weryfikacja domeny (jednorazowo, wymagana)
+
+Bez niej maile dochodzą tylko na adres właściciela konta Resend, a nie do Moniki.
+
+1. Resend → **Domains** → **Add Domain** → `diet-and-health.pl`.
+2. Dodaj rekordy DNS, które pokaże Resend (DKIM oraz MX i TXT/SPF dla subdomeny `send`), u dostawcy domeny. Nie zmieniaj istniejących rekordów MX samej domeny, bo od nich zależy obecna poczta.
+3. Poczekaj, aż status domeny zmieni się na **Verified**.
+4. Ustaw `MAIL_FROM_ADDRESS` na Vercelu i zrób redeploy.
+
+Jeśli `MAIL_FROM_ADDRESS` nie jest ustawione, kod używa adresu testowego `onboarding@resend.dev`.
+
+### Sprawdzenie
+
+Wyślij testowy formularz na stronie i sprawdź skrzynkę z `RECIPIENT_EMAIL` (także spam). Gdy wysyłka się nie uda, w logach Vercel (Functions) pojawi się wpis zaczynający się od `[mail]` z powodem.
 
 ---
 
