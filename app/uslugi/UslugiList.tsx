@@ -233,9 +233,9 @@ type ServiceWithId = Service & { id: string };
 const ServiceDetails = ({ service }: { service: ServiceWithId }) => (
   <article
     id={service.id}
-    className="mt-10 flex scroll-mt-24 flex-col gap-8 border-t border-[var(--dh-ink)]/15 pt-10 md:flex-row md:items-start md:gap-14"
+    className="mt-8 flex scroll-mt-24 flex-col gap-6 border-t border-[var(--dh-ink)]/15 pt-8 md:mt-10 md:flex-row md:items-start md:gap-14 md:pt-10"
   >
-    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-2xl md:w-[38%] md:max-w-[440px]">
+    <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden rounded-2xl md:aspect-[4/3] md:w-[38%] md:max-w-[440px]">
       <Image
         src={`/${service.image}`}
         alt={service.name}
@@ -275,7 +275,7 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
       <section className="bg-[var(--dh-mist)]">
         <div className="mx-auto max-w-[1240px] px-4 pb-20 sm:px-6">
           <h2 className="font-display text-4xl leading-tight text-[var(--dh-indigo)] md:text-[2.75rem]">Cennik</h2>
-          <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {grouped.map((section) => (
               <div key={section.type} className="rounded-2xl bg-white px-6 pb-3 pt-6">
                 <h3 className="mb-2 text-lg font-bold text-[var(--dh-teal-text)]">{section.title}</h3>
@@ -303,7 +303,7 @@ export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null 
         <div className="mx-auto max-w-[1240px] px-4 pb-28 pt-2 sm:px-6">
           {grouped.map((section) => (
             <div key={section.type}>
-              <h2 className="font-display mt-20 text-4xl leading-tight text-[var(--dh-indigo)] md:text-[2.5rem]">
+              <h2 className="font-display mt-14 text-4xl leading-tight md:mt-20 text-[var(--dh-indigo)] md:text-[2.5rem]">
                 {section.title}
               </h2>
               {section.items.map((service) => (

@@ -50,7 +50,7 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
         </div>
 
         <div className="w-full max-w-sm sm:max-w-[460px] lg:w-[460px] lg:shrink-0">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white">
+          <div className="relative aspect-square overflow-hidden rounded-2xl bg-white sm:aspect-[4/5]">
             <Image
               src="/images/monia_kontakt.webp"
               alt="Monika Skibicka - dietetyk kliniczny w Gdyni"
