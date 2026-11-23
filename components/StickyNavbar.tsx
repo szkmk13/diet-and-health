@@ -14,7 +14,8 @@ const links = [
   { link: "/uslugi", label: "Usługi", active: true },
   { link: "/przedwizyta", label: "Przed wizytą", active: true },
   { link: "/kontakt", label: "Kontakt", active: true },
-  { link: "/treningi", label: "Treningi", active: true },
+  // Treningi tymczasowo ukryte w menu (strona /treningi nadal istnieje). Żeby przywrócić, usuń `hidden: true`.
+  { link: "/treningi", label: "Treningi", active: true, hidden: true },
 ]
 
 export default function StickyNavbar() {
@@ -27,7 +28,7 @@ export default function StickyNavbar() {
     }
   }
 
-  const items = links.map((link) => {
+  const items = links.filter((link) => !('hidden' in link && link.hidden)).map((link) => {
     const isActive = link.link === pathname
     const linkClasses = `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
       isActive
