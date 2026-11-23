@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { createClient } from '@supabase/supabase-js';
+import { fontVariables } from '@/lib/fonts';
 import UslugiList from './UslugiList';
 
 interface SupabaseOffer {
@@ -26,47 +26,24 @@ async function fetchOffers(): Promise<SupabaseOffer[] | null> {
 export default async function Page() {
   const offers = await fetchOffers();
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-12 md:py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 order-2 md:order-1">
-              <div>
-                <h1>
-                  <span className="block text-3xl md:text-5xl mb-4" style={{ color: 'var(--trainer-primary)' }}>
-                    Oferta
-                  </span>{' '}
-                  <span aria-hidden="true" className="block h-1 w-20 mb-6" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
-                  <span className="block text-lg md:text-xl mb-4" style={{ color: 'var(--trainer-text)' }}>
-                    Usługi dietetyczne w Gdyni i online
-                  </span>
-                </h1>
-                <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                  Oferuję szeroki zakres usług - od indywidualnych konsultacji, przez psychodietetykę,
-                  po spersonalizowane jadłospisy i pakiety. Znajdź rozwiązanie dopasowane do Twoich potrzeb.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative order-1 md:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4 / 3' }}>
-                <Image
-                  src="/images/owsianka.webp"
-                  alt="Usługi dietetyczne"
-                  fill
-                  preload
-                  quality={90}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
+    <div className={`dh-page min-h-screen bg-white ${fontVariables}`}>
+      <section className="bg-[var(--dh-mist)]">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-8 px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:flex-row lg:items-end lg:justify-between">
+          <h1>
+            <span className="font-display block text-5xl leading-[1.05] text-[var(--dh-indigo)] md:text-[4.5rem]">
+              Oferta
+            </span>{' '}
+            <span className="mt-3.5 block text-lg font-semibold text-[var(--dh-teal-text)] md:text-xl">
+              Usługi dietetyczne w Gdyni i online
+            </span>
+          </h1>
+          <p className="max-w-[520px] text-lg leading-relaxed text-[var(--dh-body)]">
+            Oferuję szeroki zakres usług - od indywidualnych konsultacji, przez psychodietetykę,
+            po spersonalizowane jadłospisy i pakiety. Znajdź rozwiązanie dopasowane do Twoich potrzeb.
+          </p>
         </div>
       </section>
 
-      {/* Services */}
       <UslugiList offers={offers} />
     </div>
   );

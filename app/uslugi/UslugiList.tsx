@@ -1,6 +1,5 @@
 import type React from 'react';
 import Image from 'next/image';
-import UslugiTabs from './UslugiTabs';
 
 type ServiceType = 'solo' | 'duo' | 'psycho' | 'pakiet';
 
@@ -206,51 +205,20 @@ const Description = ({ content }: { content: string | React.ReactNode }) => {
   return <>{content}</>;
 };
 
-const ServiceItem = ({ service }: { service: Service }) => {
-  const isPakiet = service.type === 'pakiet';
-  const [oldPrice, newPrice] = isPakiet ? service.price.split('/') : [service.price, null];
-
-  return (
-    <div className="px-6 py-6 border-b last:border-b-0" style={{ borderColor: 'var(--trainer-secondary)' }}>
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-        <div className="flex-1">
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
-            <h3 className="text-base font-medium" style={{ color: 'var(--trainer-primary)' }}>
-              {service.name}
-            </h3>
-            {isPakiet ? (
-              <div className="flex items-center gap-2 text-sm">
-                <span className="line-through" style={{ color: 'var(--trainer-text-light)' }}>
-                  {oldPrice} zł
-                </span>
-                <span className="font-semibold" style={{ color: 'var(--trainer-accent-strong)' }}>
-                  {newPrice} zł
-                </span>
-              </div>
-            ) : (
-              <span className="text-sm font-semibold" style={{ color: 'var(--trainer-accent-strong)' }}>
-                {service.price} zł
-              </span>
-            )}
-          </div>
-          <div className="text-sm leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-            <Description content={service.description} />
-            {service.description2 && <p className="mt-4">{service.description2}</p>}
-          </div>
-        </div>
-        <div className="hidden sm:block sm:w-40 lg:w-52 flex-shrink-0">
-          <Image
-            src={`/${service.image}`}
-            alt={service.name}
-            width={208}
-            height={156}
-            className="w-full rounded-xl object-cover"
-            style={{ height: '156px' }}
-          />
-        </div>
-      </div>
-    </div>
-  );
+const Price = ({ service, size }: { service: Service; size: 'sm' | 'lg' }) => {
+  if (service.type === 'pakiet') {
+    const [oldPrice, newPrice] = service.price.split('/');
+    return (
+      <span className="whitespace-nowrap">
+        <span className={`line-through text-[#6b7591] ${size === 'lg' ? 'text-lg' : ''}`}>
+          {oldPrice}
+          {size === 'lg' ? ' zł' : ''}
+        </span>{' '}
+        <strong className="font-semibold text-[var(--dh-teal-text)]">{newPrice} zł</strong>
+      </span>
+    );
+  }
+  return <strong className="whitespace-nowrap font-semibold text-[var(--dh-teal-text)]">{service.price} zł</strong>;
 };
 
 const sections = [
@@ -260,38 +228,91 @@ const sections = [
   { title: 'Pakiety', type: 'pakiet' },
 ] as const;
 
+type ServiceWithId = Service & { id: string };
+
+const ServiceDetails = ({ service }: { service: ServiceWithId }) => (
+  <article
+    id={service.id}
+    className="mt-10 flex scroll-mt-24 flex-col gap-8 border-t border-[var(--dh-ink)]/15 pt-10 md:flex-row md:items-start md:gap-14"
+  >
+    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-2xl md:w-[38%] md:max-w-[440px]">
+      <Image
+        src={`/${service.image}`}
+        alt={service.name}
+        fill
+        sizes="(min-width: 768px) 440px, 100vw"
+        className="object-cover"
+      />
+    </div>
+    <div className="min-w-0 flex-1">
+      <h3 className="text-2xl font-semibold leading-snug md:text-[1.625rem]">{service.name}</h3>
+      <p className="mt-2.5 text-2xl">
+        <Price service={service} size="lg" />
+      </p>
+      <div className="mt-4 max-w-[66ch] space-y-3 text-[1.0625rem] leading-relaxed text-[var(--dh-body)]">
+        <Description content={service.description} />
+        {service.description2 && <p>{service.description2}</p>}
+      </div>
+    </div>
+  </article>
+);
+
 export default function UslugiList({ offers }: { offers: SupabaseOffer[] | null }) {
-  const services = defaultServicesData.map((service) => ({
+  const services: ServiceWithId[] = defaultServicesData.map((service, index) => ({
     ...service,
     ...(offers?.find((item) => item.name === service.name) || {}),
+    id: `usluga-${index}`,
   }));
 
-  // Wszystkie sekcje renderują się na serwerze, żeby cały cennik był w HTML (SEO);
-  // UslugiTabs tylko przełącza, która jest widoczna.
-  const tabs = sections.map((section) => ({
-    type: section.type,
-    title: section.title,
-    showBadge: section.type === 'pakiet',
-    panel: (
-      <div className="rounded-xl bg-white shadow-md overflow-hidden">
-        {services
-          .filter((s) => s.type === section.type)
-          .map((service, index) => (
-            <ServiceItem key={`${service.type}-${index}`} service={service} />
-          ))}
-      </div>
-    ),
+  const grouped = sections.map((section) => ({
+    ...section,
+    items: services.filter((s) => s.type === section.type),
   }));
 
   return (
-    <section className="py-12 md:py-20 px-4 sm:px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
-          Cennik
-        </h2>
+    <>
+      {/* Przegląd cen - wszystkie usługi w jednym miejscu, każda linkuje do opisu */}
+      <section className="bg-[var(--dh-mist)]">
+        <div className="mx-auto max-w-[1240px] px-4 pb-20 sm:px-6">
+          <h2 className="font-display text-4xl leading-tight text-[var(--dh-indigo)] md:text-[2.75rem]">Cennik</h2>
+          <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {grouped.map((section) => (
+              <div key={section.type} className="rounded-2xl bg-white px-6 pb-3 pt-6">
+                <h3 className="mb-2 text-lg font-bold text-[var(--dh-teal-text)]">{section.title}</h3>
+                <ul>
+                  {section.items.map((service) => (
+                    <li key={service.id} className="border-t border-[var(--dh-ink)]/12">
+                      <a
+                        href={`#${service.id}`}
+                        className="flex min-h-11 items-baseline justify-between gap-3 py-3 text-[0.95rem] leading-snug text-[var(--dh-ink)] hover:text-[var(--dh-indigo)]"
+                      >
+                        <span>{service.name}</span>
+                        <Price service={service} size="sm" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <UslugiTabs tabs={tabs} />
-      </div>
-    </section>
+      {/* Pełne opisy usług */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1240px] px-4 pb-28 pt-2 sm:px-6">
+          {grouped.map((section) => (
+            <div key={section.type}>
+              <h2 className="font-display mt-20 text-4xl leading-tight text-[var(--dh-indigo)] md:text-[2.5rem]">
+                {section.title}
+              </h2>
+              {section.items.map((service) => (
+                <ServiceDetails key={service.id} service={service} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

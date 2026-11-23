@@ -128,8 +128,8 @@
     @apply bg-background text-foreground;
   }
 }
-/* Strona główna - Propozycja A */
-.home {
+/* Nowy wygląd stron (strona główna, usługi) */
+.dh-page {
   --dh-ink: #22305c;
   --dh-indigo: #4361ac;
   --dh-teal: #5cbdc0;
@@ -140,12 +140,12 @@
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
-.home .font-display {
+.dh-page .font-display {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 400;
 }
 
-.home a:focus-visible {
+.dh-page a:focus-visible {
   outline: 3px solid var(--dh-indigo);
   outline-offset: 3px;
 }
