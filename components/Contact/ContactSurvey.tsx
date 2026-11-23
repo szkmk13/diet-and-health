@@ -101,8 +101,8 @@ export default function ContactSurvey() {
   };
 
   return (
-    <div className="rounded-xl bg-white p-6 sm:p-8 shadow-md border-2 border-[var(--trainer-secondary)]">
-      <form ref={forma} onSubmit={handleSubmit} className="space-y-4">
+    <div className="rounded-[24px] bg-white p-6 sm:p-9">
+      <form ref={forma} onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <Label htmlFor="website">Website</Label>
           <Input
@@ -115,15 +115,15 @@ export default function ContactSurvey() {
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="name" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Imię i nazwisko
           </Label>
-          <Input id="name" name="name" placeholder="Jan Kowalski" required className="w-full" />
+          <Input id="name" name="name" placeholder="Jan Kowalski" required className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Email
           </Label>
           <Input
@@ -132,19 +132,19 @@ export default function ContactSurvey() {
             type="email"
             placeholder="twoj_email@email.com"
             required
-            className="w-full"
+            className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>Data konsultacji</Label>
+        <div className="flex flex-col gap-2">
+          <Label className="text-[15px] font-semibold text-[var(--dh-ink)]">Data konsultacji</Label>
           <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className={cn('w-full justify-start text-left font-normal', !selectedDate && 'text-muted-foreground')}
+                className={cn('min-h-12 w-full justify-start rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 text-left text-base font-normal text-[var(--dh-ink)]', !selectedDate && 'text-muted-foreground')}
               >
-                <CalendarDays className="mr-2 h-4 w-4" />
+                <CalendarDays className="mr-2 h-4 w-4 text-[var(--dh-teal-text)]" />
                 {selectedDate ? formatDate(selectedDate) : 'Wybierz datę'}
               </Button>
             </PopoverTrigger>
@@ -169,8 +169,8 @@ export default function ContactSurvey() {
           </Popover>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="purpose" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="purpose" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Cel porady
           </Label>
           <Input
@@ -178,12 +178,12 @@ export default function ContactSurvey() {
             name="purpose"
             placeholder="Jaki jest powód/cel porady dietetycznej?"
             required
-            className="w-full"
+            className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="problems" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2 sm:col-span-2">
+          <Label htmlFor="problems" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Problemy
           </Label>
           <Textarea
@@ -192,12 +192,12 @@ export default function ContactSurvey() {
             placeholder="Proszę wypisać problemy zdrowotne/choroby (np. cukrzyca, insulinooporność, nadciśnienie tętnicze, zespół jelita drażliwego, anemia)"
             required
             rows={5}
-            className="w-full"
+            className="w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="drugs" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="drugs" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Leki
           </Label>
           <Input
@@ -205,12 +205,12 @@ export default function ContactSurvey() {
             name="drugs"
             placeholder="Proszę wymienić przyjmowane leki."
             required
-            className="w-full"
+            className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="supplements" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="supplements" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Suplementy diety
           </Label>
           <Input
@@ -218,12 +218,12 @@ export default function ContactSurvey() {
             name="supplements"
             placeholder="Proszę wymienić przyjmowane suplementy diety."
             required
-            className="w-full"
+            className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="intolerances" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="intolerances" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Nietolerancje
           </Label>
           <Input
@@ -231,25 +231,12 @@ export default function ContactSurvey() {
             name="intolerances"
             placeholder="Czy ma Pani/Pan stwierdzone alergie lub nietolerancje pokarmowe?"
             required
-            className="w-full"
+            className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="ailments" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
-            Dolegliwości
-          </Label>
-          <Textarea
-            id="ailments"
-            name="ailments"
-            placeholder="Czy ma Pani/Pan dolegliwości ze strony układu pokarmowego? (np. bóle brzucha, wzdęcia, biegunki, zaparcia, zgaga, nudności)"
-            required
-            className="w-full"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="liquids" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="liquids" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Płyny
           </Label>
           <Input
@@ -257,12 +244,25 @@ export default function ContactSurvey() {
             name="liquids"
             placeholder="Jakie płyny Pani/Pan wypija w ciągu dnia i w jakich ilościach?"
             required
-            className="w-full"
+            className="min-h-12 w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="diet" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2 sm:col-span-2">
+          <Label htmlFor="ailments" className="text-[15px] font-semibold text-[var(--dh-ink)]">
+            Dolegliwości
+          </Label>
+          <Textarea
+            id="ailments"
+            name="ailments"
+            placeholder="Czy ma Pani/Pan dolegliwości ze strony układu pokarmowego? (np. bóle brzucha, wzdęcia, biegunki, zaparcia, zgaga, nudności)"
+            required
+            className="w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 sm:col-span-2">
+          <Label htmlFor="diet" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Obecna dieta
           </Label>
           <Textarea
@@ -270,30 +270,31 @@ export default function ContactSurvey() {
             name="diet"
             placeholder="Proszę opisać, jak do tej pory wyglądały Pani/Pana posiłki. Proszę wymienić kilka przykładowych śniadań, drugich śniadań, obiadów itd."
             required
-            className="w-full"
+            className="w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="not_liked" className="text-sm font-medium" style={{ color: 'var(--trainer-text)' }}>
+        <div className="flex flex-col gap-2 sm:col-span-2">
+          <Label htmlFor="not_liked" className="text-[15px] font-semibold text-[var(--dh-ink)]">
             Produkty lub dania których nie lubisz
           </Label>
-          <Textarea id="not_liked" name="not_liked" placeholder="Jarmuż ..." required className="w-full" />
+          <Textarea id="not_liked" name="not_liked" placeholder="Jarmuż ..." required className="w-full rounded-[10px] border-[1.5px] border-[var(--dh-ink)]/20 bg-white text-base text-[var(--dh-ink)]" />
         </div>
 
+        <div className="sm:col-span-2">
           <Turnstile
             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
             onSuccess={setTurnstileToken}
             onExpire={() => setTurnstileToken(null)}
             options={{ theme: 'light' }}
           />
+        </div>
 
-        <div className="flex justify-end pt-4">
+        <div className="pt-1 sm:col-span-2">
           <Button
             type="submit"
             disabled={loading || !turnstileToken}
-            className="w-full border-0"
-            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
+            className="min-h-[52px] w-full rounded-full border-0 bg-[var(--dh-indigo)] text-base font-semibold text-white hover:bg-[var(--dh-ink)]"
           >
             {loading ? (
               <>
