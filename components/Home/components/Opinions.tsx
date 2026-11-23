@@ -1,5 +1,3 @@
-import { Star } from 'lucide-react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import type { Opinion } from '@/lib/fetch-opinions';
 
 interface OpinionsProps {
@@ -39,55 +37,29 @@ const predefinedComments: Opinion[] = [
   },
 ];
 
-function OpinionCard({ comment }: { comment: Opinion }) {
-  return (
-    <div className="flex flex-col rounded-xl bg-white p-6 shadow-md border-2 border-[var(--trainer-secondary)] h-full">
-      <div className="flex items-center gap-3 mb-4">
-        <Avatar className="h-10 w-10">
-          <AvatarFallback
-            className=" text-sm font-semibold"
-            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
-          >
-            {comment.name?.charAt(0) ?? '?'}
-          </AvatarFallback>
-        </Avatar>
-        <div>
-          <p className="font-semibold text-sm" style={{ color: 'var(--trainer-primary)' }}>
-            {comment.name ?? ''}
-          </p>
-          <div className="flex">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-3 w-3" style={{ color: 'var(--trainer-accent)' }} fill="currentColor" />
-            ))}
-          </div>
-        </div>
-      </div>
-      <p className="flex-1 italic text-sm leading-relaxed line-clamp-6" style={{ color: 'var(--trainer-text-light)' }}>
-        &ldquo;{comment.opinion ?? ''}&rdquo;
-      </p>
-      <p className="text-xs mt-4 text-right" style={{ color: 'var(--trainer-text-light)' }}>
-        {comment.date ?? ''}
-      </p>
-    </div>
-  );
-}
-
 export default function Opinions({ opinions }: OpinionsProps) {
   const comments = opinions.length > 0 ? opinions : predefinedComments;
   if (comments.length === 0) return null;
 
   return (
-    <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
-          Opinie pacjentów
-        </h2>
-
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="bg-[var(--dh-ink)] text-white">
+      <div className="mx-auto max-w-[1240px] px-4 py-16 sm:px-6 md:py-24">
+        <h2 className="font-display text-4xl leading-tight md:text-[3.25rem] md:leading-[1.1]">Opinie pacjentów</h2>
+        <ul className="mt-14 gap-12 md:columns-2 lg:columns-3">
           {comments.map((comment, index) => (
-            <OpinionCard key={index} comment={comment} />
+            <li key={index} className="mb-11 break-inside-avoid border-l-2 border-[var(--dh-teal)] pl-6">
+              <figure>
+                <blockquote className="text-[1.0625rem] leading-relaxed text-white/90">
+                  &bdquo;{comment.opinion ?? ''}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3.5 text-sm text-white/70">
+                  <strong className="font-semibold text-white">{comment.name ?? ''}</strong>
+                  {comment.date ? `, ${comment.date}` : null}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

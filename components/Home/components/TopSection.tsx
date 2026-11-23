@@ -8,70 +8,57 @@ interface TopSectionProps {
 
 export default function TopSection({ opinionsCount }: TopSectionProps) {
   return (
-    <section className="py-12 md:py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          <div
-            className="relative rounded-2xl overflow-hidden shadow-2xl order-2 mx-auto w-full max-h-64 md:max-h-[520px]"
-            style={{ aspectRatio: '3/4' }}
-          >
+    <section className="bg-[var(--dh-mist)]">
+      <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-12 px-4 py-14 sm:px-6 md:py-20 lg:flex-row lg:gap-16 lg:py-24">
+        <div className="min-w-0 flex-1">
+          <h1>
+            <span className="block text-base font-semibold text-[var(--dh-teal-text)] sm:text-lg">Monika Skibicka</span>{' '}
+            <span className="flex items-center gap-2 text-base text-[var(--dh-teal-text)] sm:text-lg">
+              Dietetyk kliniczny w Gdyni
+              <BadgeCheck className="h-5 w-5" aria-hidden="true" />
+            </span>
+          </h1>
+          <p className="font-display mt-5 max-w-[15ch] text-[2.5rem] leading-[1.08] tracking-[-0.01em] text-[var(--dh-indigo)] sm:text-6xl lg:text-[4.5rem] lg:leading-[1.06]">
+            Skuteczna dieta to ta, którą jesteś w stanie utrzymać.
+          </p>
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[var(--dh-indigo)] px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--dh-ink)]"
+            >
+              Umów wizytę
+            </a>
+            <Link
+              href="/uslugi"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-full border-[1.5px] border-[var(--dh-ink)]/30 px-7 text-base font-semibold text-[var(--dh-ink)] transition-colors hover:border-[var(--dh-ink)]"
+            >
+              Zobacz ofertę
+            </Link>
+          </div>
+
+          <div className="mt-9 flex items-center gap-2 text-[0.95rem] text-[var(--dh-body)]">
+            <span className="flex text-[#e08a12]" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4" fill="currentColor" strokeWidth={0} />
+              ))}
+            </span>
+            <strong className="font-semibold text-[var(--dh-ink)]">{opinionsCount} opinii</strong>
+          </div>
+        </div>
+
+        <div className="w-full max-w-sm sm:max-w-[460px] lg:w-[460px] lg:shrink-0">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white">
             <Image
               src="/images/monia_kontakt.webp"
               alt="Monika Skibicka - dietetyk kliniczny w Gdyni"
               fill
-              className="object-cover object-top"
+              sizes="(min-width: 1024px) 460px, 90vw"
+              className="object-cover object-[50%_20%]"
               preload
             />
-          </div>
-
-          <div className="order-1 space-y-5">
-            <h1>
-              <span
-                className="block text-4xl md:text-5xl lg:text-6xl mb-3"
-                style={{ color: 'var(--trainer-primary)' }}
-              >
-                Monika Skibicka
-              </span>{' '}
-              <span aria-hidden="true" className="block h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />{' '}
-              <span className="mt-5 text-lg md:text-xl flex items-center gap-2" style={{ color: 'var(--trainer-text)' }}>
-                Dietetyk kliniczny w Gdyni
-                <BadgeCheck className="h-5 w-5" style={{ color: 'var(--trainer-accent)' }} />
-              </span>
-            </h1>
-
-            <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-              Skuteczna dieta to ta, którą jesteś w stanie utrzymać.
-            </p>
-
-            <div className="flex items-center gap-2">
-              <div className="flex">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4" style={{ color: 'var(--trainer-accent)' }} fill="currentColor" />
-                ))}
-              </div>
-              <span className="text-sm font-medium" style={{ color: 'var(--trainer-text-light)' }}>
-                {opinionsCount} opinii
-              </span>
-            </div>
-
-            <div className="flex flex-wrap gap-3 pt-1">
-              <a
-                href="https://www.znanylekarz.pl/monika-skibicka/dietetyk/gdynia#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 rounded-lg font-medium transition-all hover:scale-105"
-                style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
-              >
-                Umów wizytę
-              </a>
-              <Link
-                href="/uslugi"
-                className="inline-flex items-center px-6 py-3 rounded-lg font-medium border-2 transition-all hover:scale-105"
-                style={{ borderColor: 'var(--trainer-accent)', color: 'var(--trainer-accent-strong)' }}
-              >
-                Zobacz ofertę
-              </Link>
-            </div>
           </div>
         </div>
       </div>

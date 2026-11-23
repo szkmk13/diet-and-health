@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Apple, Baby, Dumbbell, Cookie, Leaf, HeartPulse, Scale, Pill } from 'lucide-react';
-import PatientCard from './PatientCard';
 import type { LucideIcon } from 'lucide-react';
 
 interface CardData {
@@ -31,39 +30,45 @@ const cardsData: CardData[] = [
 
 export default function Patients() {
   return (
-    <section className="py-12 md:py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-center mb-8 md:mb-12" style={{ color: 'var(--trainer-primary)' }}>
-          Komu pomagam?
-        </h2>
+    <section className="bg-[var(--dh-mist)]">
+      <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-4 py-16 sm:px-6 md:py-24 lg:flex-row lg:gap-16">
+        <div className="lg:w-[300px] lg:shrink-0">
+          <h2 className="font-display text-4xl leading-tight text-[var(--dh-indigo)] md:text-[3.25rem] md:leading-[1.1]">
+            Komu pomagam?
+          </h2>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/uslugi"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--dh-indigo)] px-6 text-base font-semibold text-white transition-colors hover:bg-[var(--dh-ink)]"
+            >
+              Sprawdź ofertę
+            </Link>
+            <Link
+              href="/kontakt"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border-[1.5px] border-[var(--dh-ink)]/30 px-6 text-base font-semibold text-[var(--dh-ink)] transition-colors hover:border-[var(--dh-ink)]"
+            >
+              Kontakt
+            </Link>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 mb-12">
+        <ul className="grid min-w-0 flex-1 border-b border-[var(--dh-ink)]/15 sm:grid-cols-2 sm:gap-x-10">
           {cardsData.map(({ title, description, Icon }) => (
-            <PatientCard
-              key={title}
-              title={title}
-              description={description}
-              icon={<Icon className="h-10 w-10" style={{ color: 'var(--trainer-accent)' }} />}
-            />
+            <li key={title} className="flex items-start gap-4 border-t border-[var(--dh-ink)]/15 py-5">
+              <Icon
+                className="mt-0.5 h-6 w-6 shrink-0 text-[var(--dh-teal-text)]"
+                strokeWidth={1.75}
+                aria-hidden="true"
+              />
+              <div>
+                <p className="text-lg font-medium leading-snug">{title}</p>
+                {description && (
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-[#4b587c]">{description}</p>
+                )}
+              </div>
+            </li>
           ))}
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            href="/uslugi"
-            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium transition-all hover:scale-105"
-            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
-          >
-            Sprawdź ofertę
-          </Link>
-          <Link
-            href="/kontakt"
-            className="inline-flex items-center px-8 py-3 rounded-lg text-base font-medium border-2 transition-all hover:scale-105"
-            style={{ borderColor: 'var(--trainer-accent)', color: 'var(--trainer-accent-strong)' }}
-          >
-            Kontakt
-          </Link>
-        </div>
+        </ul>
       </div>
     </section>
   );

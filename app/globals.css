@@ -128,3 +128,24 @@
     @apply bg-background text-foreground;
   }
 }
+/* Strona główna - Propozycja A */
+.home {
+  --dh-ink: #22305c;
+  --dh-indigo: #4361ac;
+  --dh-teal: #5cbdc0;
+  --dh-teal-text: #217074;
+  --dh-mist: #eaf4f3;
+  --dh-body: #3d4a70;
+  color: var(--dh-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.home .font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+}
+
+.home a:focus-visible {
+  outline: 3px solid var(--dh-indigo);
+  outline-offset: 3px;
+}

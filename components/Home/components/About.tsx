@@ -10,77 +10,68 @@ const bulletPoints = [
   'Wizyty w gabinecie w Gdyni (Maritimus Clinic) oraz online',
 ];
 
+const strong = 'font-semibold text-[var(--dh-ink)]';
+
 export default function About() {
   return (
-    <section className="py-12 md:py-20 px-6" style={{ backgroundColor: 'var(--trainer-secondary)' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="hidden md:block">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '1 / 1' }}>
-              <Image
-                src="/images/monia_sport.webp"
-                alt="Monika Skibicka"
-                fill
-                quality={90}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-top"
-              />
-            </div>
+    <section className="bg-white">
+      <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-12 px-4 py-16 sm:px-6 md:py-24 lg:flex-row lg:items-start lg:gap-[72px]">
+        <div className="hidden w-[460px] shrink-0 lg:block">
+          <div className="relative aspect-square overflow-hidden rounded-2xl">
+            <Image
+              src="/images/monia_sport.webp"
+              alt="Monika Skibicka"
+              fill
+              quality={90}
+              sizes="460px"
+              className="object-cover object-top"
+            />
+          </div>
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <h2>
+            <span className="font-display block text-4xl leading-tight text-[var(--dh-indigo)] md:text-[3.25rem] md:leading-[1.1]">
+              mgr Monika Skibicka
+            </span>
+            <span className="mt-2.5 block text-lg font-semibold text-[var(--dh-teal-text)]">DIETETYK KLINICZNY</span>
+          </h2>
+
+          {/* Full text - desktop */}
+          <div className="mt-6 hidden max-w-[64ch] space-y-4 text-[1.0625rem] leading-relaxed text-[var(--dh-body)] md:block">
+            <p>
+              Jestem <span className={strong}>dietetykiem klinicznym i psychodietetykiem.</span> Ukończyłam studia
+              magisterskie na Gdańskim Uniwersytecie Medycznym na kierunku Dietetyka oraz studia podyplomowe z
+              Psychodietetyki na Uniwersytecie WSB Merito. Do każdego pacjenta podchodzę{' '}
+              <span className={`${strong} underline underline-offset-4`}>indywidualnie.</span> Jadłospisy układam po
+              szczegółowym wywiadzie dotyczącym dotychczasowego sposobu żywienia. Uwzględniam wszystkie dolegliwości,
+              problemy zdrowotne, a także preferencje smakowe.
+            </p>
+            <p>
+              Chcę, aby zaproponowane posiłki były nie tylko zdrowe, ale przede wszystkim smaczne i łatwe do
+              przygotowania.{' '}
+              <span className={strong}>Zależy mi przede wszystkim na znalezieniu przyczyny problemów z jedzeniem.</span>{' '}
+              Nie jestem zwolenniczką systemu zero-jedynkowego -{' '}
+              <span className={strong}>najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.</span>
+            </p>
+            <p>
+              Przyjmuję stacjonarnie w gabinecie w{' '}
+              <span className={strong}>Gdyni (Maritimus Clinic, ul. Żwirki i Wigury 2A)</span> oraz online, więc na
+              konsultację możesz umówić się z każdego miejsca w Polsce.
+            </p>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl">
-              <span style={{ color: 'var(--trainer-text)' }}>mgr Monika Skibicka</span>
-              <br />
-              <span className="text-2xl md:text-3xl text-[var(--trainer-accent-strong)]">DIETETYK KLINICZNY</span>
-            </h2>
-            <div className="h-1 w-20" style={{ backgroundColor: 'var(--trainer-accent)' }} />
-
-            {/* Full text - desktop */}
-            <div className="hidden md:block space-y-4">
-              <p className="text-base leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                Jestem{' '}
-                <span className="font-semibold" style={{ color: 'var(--trainer-text)' }}>
-                  dietetykiem klinicznym i psychodietetykiem.
-                </span>{' '}
-                Ukończyłam studia magisterskie na Gdańskim Uniwersytecie Medycznym na kierunku Dietetyka oraz studia
-                podyplomowe z Psychodietetyki na Uniwersytecie WSB Merito. Do każdego pacjenta podchodzę{' '}
-                <span className="font-semibold underline">indywidualnie.</span> Jadłospisy układam po szczegółowym
-                wywiadzie dotyczącym dotychczasowego sposobu żywienia. Uwzględniam wszystkie dolegliwości, problemy
-                zdrowotne, a także preferencje smakowe.
-              </p>
-              <p className="text-base leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                Chcę, aby zaproponowane posiłki były nie tylko zdrowe, ale przede wszystkim smaczne i łatwe do
-                przygotowania.{' '}
-                <span className="font-semibold" style={{ color: 'var(--trainer-text)' }}>
-                  Zależy mi przede wszystkim na znalezieniu przyczyny problemów z jedzeniem.
-                </span>{' '}
-                Nie jestem zwolenniczką systemu zero-jedynkowego -{' '}
-                <span className="font-semibold">
-                  najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.
+          {/* Bullet points - mobile */}
+          <ul className="mt-6 space-y-3 text-[0.95rem] leading-relaxed text-[var(--dh-body)] md:hidden">
+            {bulletPoints.map((item) => (
+              <li key={item} className="flex items-start gap-3 border-t border-[var(--dh-ink)]/15 pt-3">
+                <span className="font-bold text-[var(--dh-teal-text)]" aria-hidden="true">
+                  ✓
                 </span>
-              </p>
-              <p className="text-base leading-relaxed" style={{ color: 'var(--trainer-text-light)' }}>
-                Przyjmuję stacjonarnie w gabinecie w{' '}
-                <span className="font-semibold" style={{ color: 'var(--trainer-text)' }}>
-                  Gdyni (Maritimus Clinic, ul. Żwirki i Wigury 2A)
-                </span>{' '}
-                oraz online, więc na konsultację możesz umówić się z każdego miejsca w Polsce.
-              </p>
-            </div>
-
-            {/* Bullet points - mobile */}
-            <ul className="md:hidden space-y-2 text-sm">
-              {bulletPoints.map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="mt-0.5 font-bold flex-shrink-0" style={{ color: 'var(--trainer-accent-strong)' }}>
-                    ✓
-                  </span>
-                  <span style={{ color: 'var(--trainer-text-light)' }}>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
