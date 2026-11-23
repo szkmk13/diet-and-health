@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
+import { fontVariables } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'Nie znaleziono strony',
@@ -17,59 +18,48 @@ const links = [
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] items-center bg-white px-6 py-12 md:py-20">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
-        <div className="relative mx-auto hidden aspect-[4/5] w-full max-h-[560px] overflow-hidden rounded-2xl shadow-2xl md:block">
+    <section className={`dh-page bg-[var(--dh-mist)] ${fontVariables}`}>
+      <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-12 px-4 py-14 sm:px-6 md:py-20 lg:flex-row lg:gap-[72px]">
+        <div className="relative hidden aspect-[4/5] w-[440px] max-w-full shrink-0 overflow-hidden rounded-2xl md:block">
           <Image
             src="/images/owsianka.webp"
             alt="Owsianka z malinami i granolą"
             fill
             preload
-            sizes="(max-width: 768px) 0px, 40vw"
+            sizes="(max-width: 768px) 0px, 440px"
             className="object-cover"
             style={{ objectPosition: 'center 60%' }}
           />
         </div>
 
-        <div className="flex w-full flex-col gap-7">
-          <div className="flex flex-col gap-3.5">
-            <p className="m-0 text-sm font-semibold uppercase tracking-[2px]" style={{ color: '#1d7a7d' }}>
-              Błąd 404
-            </p>
-            <h1
-              className="m-0 text-3xl font-bold leading-tight md:text-[44px]"
-              style={{ color: 'var(--trainer-primary)' }}
-            >
-              Zboczyłeś z planu? Spokojnie, to się zdarza.
-            </h1>
-            <p className="m-0 text-lg leading-relaxed" style={{ color: '#4b5563' }}>
-              Tej strony nie ma albo została przeniesiona. Wybierz, dokąd chcesz przejść:
-            </p>
-          </div>
+        <div className="flex w-full min-w-0 flex-1 flex-col">
+          <p className="m-0 text-[17px] font-semibold text-[var(--dh-teal-text)]">Błąd 404</p>
+          <h1 className="font-display m-0 mt-3.5 max-w-[16ch] text-4xl leading-[1.08] text-[var(--dh-indigo)] md:text-[3.5rem]">
+            Zboczyłeś z planu? Spokojnie, to się zdarza.
+          </h1>
+          <p className="m-0 mt-5 max-w-[48ch] text-lg leading-relaxed text-[var(--dh-body)]">
+            Tej strony nie ma albo została przeniesiona. Wybierz, dokąd chcesz przejść:
+          </p>
 
-          <nav aria-label="Przydatne strony" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <nav aria-label="Przydatne strony" className="mt-7 border-b border-[var(--dh-ink)]/15">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex min-h-16 items-center justify-between gap-3 rounded-xl border-2 border-transparent px-[18px] py-3.5 transition-colors hover:border-[var(--trainer-accent)]"
-                style={{ color: 'var(--trainer-primary)', backgroundColor: 'var(--trainer-secondary)' }}
+                className="flex min-h-16 items-center justify-between gap-4 border-t border-[var(--dh-ink)]/15 py-3.5 text-[var(--dh-ink)] transition-colors hover:text-[var(--dh-indigo)]"
               >
                 <span className="flex flex-col gap-0.5">
-                  <span className="text-base font-semibold">{link.title}</span>
-                  <span className="text-[13px]" style={{ color: 'var(--trainer-text-light)' }}>
-                    {link.hint}
-                  </span>
+                  <span className="text-lg font-semibold">{link.title}</span>
+                  <span className="text-[15px] text-[#4b587c]">{link.hint}</span>
                 </span>
-                <ArrowRight aria-hidden="true" className="h-5 w-5 shrink-0" style={{ color: 'var(--trainer-accent)' }} />
+                <ArrowRight aria-hidden="true" className="h-[22px] w-[22px] shrink-0 text-[var(--dh-teal-text)]" />
               </Link>
             ))}
           </nav>
 
           <Link
             href="/"
-            className="inline-flex min-h-12 items-center self-start rounded-[10px] px-7 text-base font-semibold transition-all hover:scale-105"
-            style={{ backgroundColor: 'var(--trainer-accent)', color: 'var(--trainer-primary)' }}
+            className="mt-8 inline-flex min-h-[52px] items-center self-start rounded-full bg-[var(--dh-indigo)] px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--dh-ink)]"
           >
             Wróć na stronę główną
           </Link>
