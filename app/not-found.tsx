@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 
 const links = [
   { href: '/uslugi', title: 'Oferta i cennik', hint: 'Konsultacje i jadłospisy' },
-  { href: '/treningi', title: 'Treningi', hint: 'HYROX, CrossFit, plany' },
+  // Treningi tymczasowo ukryte (jak w menu). Żeby przywrócić, odkomentuj:
+  // { href: '/treningi', title: 'Treningi', hint: 'HYROX, CrossFit, plany' },
   { href: '/przedwizyta', title: 'Przed wizytą', hint: 'Ankieta i wskazówki' },
   { href: '/kontakt', title: 'Kontakt', hint: 'Umów wizytę' },
 ];
