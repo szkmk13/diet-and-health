@@ -22,7 +22,7 @@ export default function NotFound() {
       <div className="mx-auto flex max-w-[1240px] flex-col items-center gap-12 px-4 py-14 sm:px-6 md:py-20 lg:flex-row lg:gap-[72px]">
         <div className="relative hidden aspect-[4/5] w-[440px] max-w-full shrink-0 overflow-hidden rounded-2xl md:block">
           <Image
-            src="/images/jogurt_granola.webp"
+            src="/images/jedzenie/jogurt-z-granola.webp"
             alt="Jogurt z granolą i malinami"
             fill
             preload
