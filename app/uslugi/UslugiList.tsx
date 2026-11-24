@@ -125,7 +125,7 @@ const defaultServicesData: Service[] = [
         jest niemożliwe.
       </>
     ),
-    image: 'images/milkshake.webp',
+    image: 'images/service13.webp',
     type: 'duo',
   },
   {
