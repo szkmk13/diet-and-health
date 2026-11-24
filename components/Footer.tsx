@@ -6,14 +6,9 @@ export function FooterCentered() {
   return (
     <footer className="bg-gray-100 py-6 border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4">
-        <div className="flex flex-col items-center sm:items-start gap-1 text-center sm:text-left">
-          <Link href={"/"} className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            Diet & Health
-          </Link>
-          <address className="not-italic text-sm text-gray-600 dark:text-gray-400">
-            {clinic.name}, {clinic.streetAddress}, {clinic.postalCode} {clinic.city}
-          </address>
-        </div>
+        <Link href={"/"} className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          Diet & Health
+        </Link>
 
         <div className="flex items-center gap-4">
           <a

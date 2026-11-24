@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const bulletPoints = [
   'Dietetyk kliniczny i psychodietetyk - mgr Gdańskiego Uniwersytetu Medycznego',
@@ -7,7 +8,7 @@ const bulletPoints = [
   'Posiłki zdrowe, smaczne i łatwe do przygotowania',
   'Szukam przyczyny problemu, nie tylko objawów',
   'Zdrowa relacja z jedzeniem - bez zakazów i systemu zero-jedynkowego',
-  'Wizyty w gabinecie w Gdyni (Maritimus Clinic) oraz online',
+  'Konsultacje online (z Polski i z zagranicy) oraz stacjonarnie w Gdyni (Maritimus Clinic)',
 ];
 
 const strong = 'font-semibold text-[var(--dh-ink)]';
@@ -55,9 +56,13 @@ export default function About() {
               <span className={strong}>najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.</span>
             </p>
             <p>
-              Przyjmuję stacjonarnie w gabinecie w{' '}
-              <span className={strong}>Gdyni (Maritimus Clinic, ul. Żwirki i Wigury 2A)</span> oraz online, więc na
-              konsultację możesz umówić się z każdego miejsca w Polsce.
+              Konsultacje prowadzę <span className={strong}>online oraz stacjonarnie.</span> Na wizytę online możesz
+              umówić się z każdego miejsca w Polsce, a także z zagranicy - konsultuję m.in. pacjentów z Niemiec,
+              Holandii i Anglii. Jeśli wolisz spotkanie na żywo, zapraszam do gabinetu w{' '}
+              <span className={strong}>Gdyni (Maritimus Clinic).</span>{' '}
+              <Link href="/kontakt" className={`${strong} underline underline-offset-4`}>
+                Zapraszam do kontaktu!
+              </Link>
             </p>
           </div>
 

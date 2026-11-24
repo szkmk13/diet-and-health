@@ -11,7 +11,7 @@ const steps = [
     number: 2,
     title: 'Analiza składu ciała',
     description:
-      'Na konsultacji wykonuję analizę składu ciała. Bezpośrednio przed badaniem nie zaleca się intensywnego treningu ani sauny. Najlepiej przyjść 2–3 godziny po posiłku i po opróżnieniu pęcherza.',
+      'Na konsultacji wykonuję analizę składu ciała. Bezpośrednio przed badaniem nie zaleca się intensywnego treningu ani korzystania z sauny. Najlepiej przyjść 2–3 godziny po posiłku i po opróżnieniu pęcherza.',
   },
   {
     number: 3,

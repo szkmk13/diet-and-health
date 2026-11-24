@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Apple, Baby, Dumbbell, Cookie, Leaf, HeartPulse, Scale, Pill } from 'lucide-react';
+import { Apple, Baby, Brain, Dumbbell, Leaf, HeartPulse, Scale, Pill, Syringe } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface CardData {
@@ -14,7 +14,17 @@ const cardsData: CardData[] = [
   { title: 'Sportowcom', description: null, Icon: Dumbbell },
   { title: 'Osobom na diecie roślinnej', description: null, Icon: Leaf },
   { title: 'Osobom chcącym zmienić nawyki żywieniowe', description: null, Icon: Apple },
-  { title: 'Osobom, które mają problem z utratą kontroli nad jedzeniem', description: null, Icon: Cookie },
+  {
+    title: 'Osobom z zaburzeniami odżywiania',
+    description: 'M.in. utrata kontroli nad jedzeniem, napadowe objadanie się, anoreksja.',
+    Icon: Brain,
+  },
+  {
+    title: 'Osobom w trakcie farmakologicznego leczenia otyłości',
+    description:
+      'Dietoterapia dla pacjentów przyjmujących leki z grupy agonistów receptora GLP-1, zleconych przez lekarza prowadzącego.',
+    Icon: Syringe,
+  },
   {
     title: 'Osobom z dolegliwościami układu pokarmowego',
     description: 'Zaparcia, biegunki, wzdęcia, zgaga, nudności, refluks żołądkowo-przełykowy.',
