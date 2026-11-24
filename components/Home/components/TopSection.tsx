@@ -56,6 +56,7 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
               src="/images/monia_kontakt.webp"
               alt="Monika Skibicka - dietetyk kliniczny w Gdyni"
               fill
+              quality={90}
               sizes="(min-width: 640px) 360px, 320px"
               className="object-cover object-[50%_20%]"
               preload
