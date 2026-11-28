@@ -40,3 +40,6 @@ storybook-static
 .claude/*
 .idea/
 next-env.d.ts
+
+# Oryginalne zdjęcia od klienta (HEIC) - do strony trafiają przekonwertowane webp
+/public/images/nowe_zdjecia/
