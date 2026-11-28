@@ -109,7 +109,7 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/jedzenie/gnocchi-ze-szpinakiem.webp',
+    image: 'images/jedzenie/burgery-z-batatami.webp',
     type: 'duo',
   },
   {
@@ -157,7 +157,7 @@ const defaultServicesData: Service[] = [
     price: '170',
     description:
       'Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy ciała.',
-    image: 'images/jedzenie/babeczki-z-owocami.webp',
+    image: 'images/jedzenie/ciasteczka-z-kokardka.webp',
     type: 'psycho',
   },
   {
@@ -195,7 +195,7 @@ const defaultServicesData: Service[] = [
         <span className="italic">W cenie pakietu nie ma pierwszej konsultacji.</span>
       </>
     ),
-    image: 'images/jedzenie/zupa-krem-z-chlebem.webp',
+    image: 'images/jedzenie/nalesniki-z-malinami.webp',
     type: 'pakiet',
   },
 ];
