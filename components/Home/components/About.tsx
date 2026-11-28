@@ -8,7 +8,7 @@ const bulletPoints = [
   'Posiłki zdrowe, smaczne i łatwe do przygotowania',
   'Szukam przyczyny problemu, nie tylko objawów',
   'Zdrowa relacja z jedzeniem - bez zakazów i systemu zero-jedynkowego',
-  'Konsultacje online (z Polski i z zagranicy) oraz stacjonarnie w Gdyni (Maritimus Clinic)',
+  'Konsultacje stacjonarne w Gdyni (Klinika Nadmorska Maritimus Clinic) oraz online (Google Meet lub WhatsApp)',
 ];
 
 const strong = 'font-semibold text-[var(--dh-ink)]';
@@ -56,10 +56,9 @@ export default function About() {
               <span className={strong}>najważniejsze jest dla mnie zadbanie o zdrową relację z jedzeniem.</span>
             </p>
             <p>
-              Konsultacje prowadzę <span className={strong}>online oraz stacjonarnie.</span> Na wizytę online możesz
-              umówić się z każdego miejsca w Polsce, a także z zagranicy - konsultuję m.in. pacjentów z Niemiec,
-              Holandii i Anglii. Jeśli wolisz spotkanie na żywo, zapraszam do gabinetu w{' '}
-              <span className={strong}>Gdyni (Maritimus Clinic).</span>{' '}
+              Konsultacje stacjonarne prowadzę między innymi w gabinecie w{' '}
+              <span className={strong}>Gdyni (Klinika Nadmorska Maritimus Clinic).</span> Jest też możliwość umówienia
+              się na <span className={strong}>konsultację online</span> - za pośrednictwem Google Meet lub WhatsApp.{' '}
               <Link href="/kontakt" className={`${strong} underline underline-offset-4`}>
                 Zapraszam do kontaktu!
               </Link>
