@@ -25,14 +25,14 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Podczas wizyty uważnie słucham potrzeb pacjenta. Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjenta. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/jedzenie/miska-warzyw-tofu.webp',
+    image: 'images/service1.webp',
     type: 'solo',
   },
   {
     name: 'Konsultacja online',
     price: '190',
     description: 'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
-    image: 'images/jedzenie/salatka-z-grzankami.webp',
+    image: 'images/service8.webp',
     type: 'solo',
   },
   {
@@ -40,7 +40,7 @@ const defaultServicesData: Service[] = [
     price: '130',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/jedzenie/salatka-grecka.webp',
+    image: 'images/service2.webp',
     type: 'solo',
   },
   {
@@ -57,7 +57,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/jedzenie/makaron-azjatycki.webp',
+    image: 'images/service6.webp',
     type: 'solo',
   },
   {
@@ -69,7 +69,7 @@ const defaultServicesData: Service[] = [
         <span className="italic">(np. faza eliminacyjna diety low FODMAP przy SIBO)</span>
       </>
     ),
-    image: 'images/jedzenie/makaron-z-tofu.webp',
+    image: 'images/service7.webp',
     type: 'solo',
   },
   {
@@ -93,7 +93,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/jedzenie/targ-warzywny.webp',
+    image: 'images/jedzenie/miska-warzyw-tofu.webp',
     type: 'solo',
   },
   {
@@ -101,7 +101,7 @@ const defaultServicesData: Service[] = [
     price: '280',
     description:
       'Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjentów. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/jedzenie/burgery-z-batatami.webp',
+    image: 'images/jedzenie/salatka-grecka.webp',
     type: 'duo',
   },
   {
@@ -109,7 +109,7 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/jedzenie/nalesniki-z-malinami.webp',
+    image: 'images/jedzenie/gnocchi-ze-szpinakiem.webp',
     type: 'duo',
   },
   {
@@ -125,7 +125,7 @@ const defaultServicesData: Service[] = [
         jest niemożliwe.
       </>
     ),
-    image: 'images/jedzenie/salatka-grecka-z-sokiem.webp',
+    image: 'images/jedzenie/salatka-z-grzankami.webp',
     type: 'duo',
   },
   {
@@ -149,7 +149,7 @@ const defaultServicesData: Service[] = [
         komponować posiłki, aby dłużej odczuwać sytość i nie mieć spadków energii.
       </>
     ),
-    image: 'images/jedzenie/babeczki-z-owocami.webp',
+    image: 'images/service10.webp',
     type: 'psycho',
   },
   {
@@ -157,7 +157,7 @@ const defaultServicesData: Service[] = [
     price: '170',
     description:
       'Na kolejnych konsultacjach omawiamy miniony okres, pojawiające się trudności. Pracujemy na przyczynami problemów z jedzeniem. Uczę Cię jak jeść świadomie i uważnie. Na każdej konsultacji wykonywana jest analiza składu i masy ciała.',
-    image: 'images/jedzenie/kruszonka-owocowa.webp',
+    image: 'images/jedzenie/babeczki-z-owocami.webp',
     type: 'psycho',
   },
   {
@@ -178,7 +178,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/jedzenie/gnocchi-ze-szpinakiem.webp',
+    image: 'images/jedzenie/makaron-azjatycki.webp',
     type: 'pakiet',
   },
   {
