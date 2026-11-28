@@ -49,15 +49,16 @@ export default function TopSection({ opinionsCount }: TopSectionProps) {
           </div>
         </div>
 
-        <div className="w-full max-w-sm sm:max-w-[420px] lg:w-[420px] lg:shrink-0">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-white">
+        {/* Zdjęcie źródłowe ma 530 x 529 px - większe wyświetlanie robi się rozmyte */}
+        <div className="w-full max-w-[320px] sm:max-w-[360px] lg:w-[360px] lg:shrink-0">
+          <div className="relative aspect-square overflow-hidden rounded-2xl bg-white">
             <Image
-              src="/images/monika-z-burgerem.webp"
+              src="/images/monia_kontakt.webp"
               alt="Monika Skibicka - dietetyk kliniczny w Gdyni"
               fill
               quality={90}
-              sizes="(min-width: 640px) 420px, 90vw"
-              className="object-cover"
+              sizes="(min-width: 640px) 360px, 320px"
+              className="object-cover object-[50%_20%]"
               preload
             />
           </div>
