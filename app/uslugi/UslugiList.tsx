@@ -25,14 +25,14 @@ const defaultServicesData: Service[] = [
     price: '190',
     description:
       'Podczas wizyty uważnie słucham potrzeb pacjenta. Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjenta. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/service1.webp',
+    image: 'images/jedzenie/placuszki.webp',
     type: 'solo',
   },
   {
     name: 'Konsultacja online',
     price: '190',
     description: 'Przed konsultacją otrzymasz link do spotkania na platformie Skype (nie trzeba posiadać konta)',
-    image: 'images/service8.webp',
+    image: 'images/jedzenie/batoniki.webp',
     type: 'solo',
   },
   {
@@ -40,7 +40,7 @@ const defaultServicesData: Service[] = [
     price: '130',
     description:
       'Na każdej wizycie kontrolnej analizowane są wdrożone zmiany, postępy, a także pojawiające się trudności. Podsumowujemy zmiany w masie ciała, samopoczuciu oraz dolegliwościach zdrowotnych.',
-    image: 'images/service2.webp',
+    image: 'images/jedzenie/tortilla.webp',
     type: 'solo',
   },
   {
@@ -57,7 +57,7 @@ const defaultServicesData: Service[] = [
         </span>
       </>
     ),
-    image: 'images/service6.webp',
+    image: 'images/jedzenie/jablka-pod-kruszonka.webp',
     type: 'solo',
   },
   {
@@ -69,7 +69,7 @@ const defaultServicesData: Service[] = [
         <span className="italic">(np. faza eliminacyjna diety low FODMAP przy SIBO)</span>
       </>
     ),
-    image: 'images/service7.webp',
+    image: 'images/jedzenie/placki-z-cukinii.webp',
     type: 'solo',
   },
   {
@@ -149,7 +149,7 @@ const defaultServicesData: Service[] = [
         komponować posiłki, aby dłużej odczuwać sytość i nie mieć spadków energii.
       </>
     ),
-    image: 'images/service10.webp',
+    image: 'images/jedzenie/kulki-kokosowe.webp',
     type: 'psycho',
   },
   {
