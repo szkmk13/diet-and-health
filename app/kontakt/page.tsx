@@ -44,7 +44,7 @@ export default function Page() {
           <div className="min-w-0 flex-1">
             <h1>
               <span className="font-display block text-5xl leading-[1.05] text-[var(--dh-indigo)] md:text-[4.5rem]">
-                Monika
+                Monika Skibicka
               </span>{' '}
               <span className="mt-3.5 block text-lg font-semibold text-[var(--dh-teal-text)] md:text-[1.3125rem]">
                 Dietetyk kliniczny w Gdyni - kontakt i zapisy
