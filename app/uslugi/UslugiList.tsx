@@ -101,7 +101,7 @@ const defaultServicesData: Service[] = [
     price: '280',
     description:
       'Wspólnie omawiamy stan zdrowia, nawyki żywieniowe oraz tryb życia pacjentów. Przeprowadzam szczegółowy wywiad medyczny i żywieniowy. Na podstawie analizy sposobu żywienia wskazuję błędy żywieniowe. Proponuję łatwe do zastosowania rozwiązania i zmiany. Tłumaczę w jaki sposób komponować posiłki. Wspólnie ustalamy wstępne założenia i cele diety.',
-    image: 'images/jedzenie/salatka-grecka.webp',
+    image: 'images/jedzenie/kruszonka-owocowa.webp',
     type: 'duo',
   },
   {
